@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news_headlines_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="16dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10sp"
+    app:cardBackgroundColor="@color/lightest_black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="8dp"
+            android:layout_weight="2">
+
+            <TextView
+                android:id="@+id/news_title"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/productsansbold"
+                android:maxLines="3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/news_source"
+                android:textSize="17sp"
+                android:textColor="@color/gray"
+                android:fontFamily="@font/productsansregular"
+                android:maxLines="1"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </LinearLayout>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/news_headline_img"
+                app:shapeAppearanceOverlay="@style/news_img_roundedCorners"
+                app:srcCompat="@drawable/not_available"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

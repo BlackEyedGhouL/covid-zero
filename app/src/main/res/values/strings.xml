@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MyHealthPlusPlus</string>
+    <string name="btnGlobalName">Global</string>
+    <string name="btnSriLankaName">Sri Lanka</string>
+    <string name="lblDeaths">Deaths</string>
+    <string name="lblRecovered">Recovered</string>
+    <string name="lblActive">Active</string>
+    <string name="lblConfirmed">Confirmed</string>
+    <string name="lblMoreDetails">Find out More</string>
+    <string name="lblSample">Total Tests</string>
+    <string name="lblaffectedCountries">Affected Countries</string>
+    <string name="lblpb">Loading...</string>
+    <string name="no_connection">Whoops!</string>
+    <string name="no_connection_txt">Slow or no internet connections. Please check your internet settings.</string>
+    <string name="try_again">Try Again</string>
+    <string name="symptoms_of">Symptoms of</string>
+    <string name="covid_19">COVID-19</string>
+    <string name="dry_cough">Dry Cough</string>
+    <string name="headache">Headache</string>
+    <string name="breathless">Breathless</string>
+    <string name="fever">Fever</string>
+    <string name="know_more_txt">To Know More About COVID -19</string>
+    <string name="more_info">More Info</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="get_your_pcrTest_txt">Have You Been Tested ?</string>
+    <string name="think_sick">If You Think You Are Sick ?</string>
+    <string name="api_key">d450bca4de2144d5b3d805e5bc614b15</string>
+</resources>

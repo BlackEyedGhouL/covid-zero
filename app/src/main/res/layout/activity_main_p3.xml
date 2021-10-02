@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView3"
+    android:layout_width="390dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:padding="20dp"
+    app:cardBackgroundColor="#424242"
+    app:cardCornerRadius="20sp"
+    app:cardElevation="16dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/medical_teams" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#424242"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/productsansbold"
+                android:text="@string/think_sick"
+                android:textColor="@color/white"
+                android:textSize="23sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/callHotline"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/btns_fav_red_main"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Call 1999"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/know_if_your_sick_more"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/btns_light_black_main"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="More"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

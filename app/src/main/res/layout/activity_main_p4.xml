@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:scrollbars="none"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/prevention_txt">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/wear_mask_1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Always wear a clean face mask when you leave home"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/wash_hands" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Wash your hands often"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cover_face_with_hand" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Cover your cough and sneeze using elbow"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cover_face" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Cover your cough and sneeze using a tissue properly"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/no_hugs" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Avoid Shaking hands or hugging your friends"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/no_gatherings" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Avoid crowded places"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:elevation="16dp"
+            android:padding="20dp"
+            app:cardCornerRadius="20sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/m_distance" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/productsansbold"
+                    android:gravity="center_vertical"
+                    android:text="Maintain at least one meter distance"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</HorizontalScrollView>
