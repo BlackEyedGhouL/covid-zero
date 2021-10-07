@@ -35,7 +35,13 @@
             android:exported="true" />
         <activity
             android:name=".IfYoureFeelingSick"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".News_Main"
+            android:theme="@style/Theme.MyHealthPlusPlus">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".DetailedView_COVID"
             android:exported="true"

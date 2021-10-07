@@ -26,4 +26,5 @@
     <string name="get_your_pcrTest_txt">Have You Been Tested ?</string>
     <string name="think_sick">If You Think You Are Sick ?</string>
     <string name="api_key">d450bca4de2144d5b3d805e5bc614b15</string>
+    <string name="sick_starting">If you have a cough, a fever or difficulty breathing, and you are worried that you may have COVID-19, here are recommendations on what to do, step by step.</string>
 </resources>

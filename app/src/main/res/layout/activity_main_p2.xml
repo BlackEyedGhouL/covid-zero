@@ -13,12 +13,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="163dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="163dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:elevation="16dp"
@@ -53,8 +53,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="163dp"
             android:layout_marginEnd="10dp"
             android:elevation="16dp"
             android:padding="20dp"
@@ -88,8 +88,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="163dp"
             android:layout_marginEnd="10dp"
             android:elevation="16dp"
             android:padding="20dp"
@@ -123,8 +123,8 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="163dp"
             android:layout_marginEnd="10dp"
 
             android:elevation="16dp"
