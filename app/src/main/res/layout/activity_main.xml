@@ -84,7 +84,8 @@
                             android:text="@string/btnGlobalName"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:foreground="@drawable/ripple"/>
 
                         <Button
                             android:id="@+id/main_btnSriLanka"
@@ -101,7 +102,8 @@
                             android:text="@string/btnSriLankaName"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:foreground="@drawable/ripple"/>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -281,7 +283,8 @@
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"
                                     android:textSize="18sp"
-                                    tools:ignore="TouchTargetSizeCheck" />
+                                    tools:ignore="TouchTargetSizeCheck"
+                                    android:foreground="@drawable/ripple_round"/>
                             </LinearLayout>
 
                             <ImageView
@@ -352,7 +355,8 @@
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"
                                     android:textSize="18sp"
-                                    tools:ignore="TouchTargetSizeCheck" />
+                                    tools:ignore="TouchTargetSizeCheck"
+                                    android:foreground="@drawable/ripple_round"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -411,7 +415,8 @@
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"
                                     android:textSize="18sp"
-                                    tools:ignore="TouchTargetSizeCheck" />
+                                    tools:ignore="TouchTargetSizeCheck"
+                                    android:foreground="@drawable/ripple_round"/>
                             </LinearLayout>
 
 

@@ -67,7 +67,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:foreground="@drawable/ripple_round"/>
 
                 <Button
                     android:id="@+id/know_if_your_sick_more"
@@ -86,7 +87,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:foreground="@drawable/ripple_round"/>
             </LinearLayout>
 
         </LinearLayout>
