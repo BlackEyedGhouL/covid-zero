@@ -15,7 +15,6 @@
     </style>
 
     <style name="navigationTheme">
-
         <item name="colorPrimary">@color/white</item>
         <item name="colorControlHighlight">@color/lightest_black</item>
         <item name="android:statusBarColor">#00000000</item>
@@ -24,6 +23,21 @@
     <style name="news_img_roundedCorners" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="reg_txtInputLayout" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorSecondary">@color/dark_black</item>
+        <item name="buttonTint">@color/red_pie</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondary</item>
+    </style>
+
+    <style name="MyDatePicker" >
+        <!-- Text color -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Divider color -->
+        <item name="colorControlNormal">@color/red_pie</item>
     </style>
 
 </resources>

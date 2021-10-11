@@ -13,8 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealthPlusPlus">
         <activity
+            android:name=".GetVaccined_p2"
+            android:exported="true"
+            android:parentActivityName=".News_Main"
+            android:theme="@style/reg_txtInputLayout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".GetVaccined"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".News_Main"
+            android:theme="@style/reg_txtInputLayout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".News_Detailed"
             android:exported="true"

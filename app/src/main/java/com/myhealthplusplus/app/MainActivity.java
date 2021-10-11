@@ -163,6 +163,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        Button getVacc = findViewById(R.id.btngetVaccinated);
+        getVacc.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GetVaccined.class);
+                startActivity(intent);
+            }
+        });
+
         moreDetails = (TextView) findViewById(R.id.lblMoreDetails);
         moreDetails.setOnClickListener(this::onClick);
     }

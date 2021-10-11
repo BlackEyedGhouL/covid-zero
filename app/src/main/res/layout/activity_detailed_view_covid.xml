@@ -50,6 +50,7 @@
                         android:textSize="16sp"
                         android:clickable="true"
                         android:focusable="true"
+                        android:elevation="5dp"
                         android:foreground="@drawable/ripple"/>
 
                     <Button
@@ -68,6 +69,7 @@
                         android:textSize="16sp"
                         android:clickable="true"
                         android:focusable="true"
+                        android:elevation="5dp"
                         android:foreground="@drawable/ripple"/>
 
                     <LinearLayout
