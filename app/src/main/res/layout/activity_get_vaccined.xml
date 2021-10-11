@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_black"
-    android:paddingTop="8dp"
-    android:paddingRight="8dp"
-    android:paddingLeft="8dp"
-    tools:context=".GetYourPcrTest">
+    tools:context=".GetVaccined">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

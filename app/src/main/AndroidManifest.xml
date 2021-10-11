@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealthPlusPlus">
         <activity
+            android:name=".GetVaccined"
+            android:exported="true" />
+        <activity
             android:name=".News_Detailed"
             android:exported="true"
             android:parentActivityName=".News_Main"

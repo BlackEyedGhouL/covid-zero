@@ -36,7 +36,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/cough" />
+                    android:src="@drawable/re_cough" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -71,7 +71,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/head" />
+                    android:src="@drawable/re_head" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -106,7 +106,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/heart" />
+                    android:src="@drawable/re_heart" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -142,7 +142,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/fever" />
+                    android:src="@drawable/re_fever" />
 
                 <TextView
                     android:layout_width="100dp"

@@ -27,7 +27,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/medical_teams" />
+            android:src="@drawable/re_medical_teams" />
 
         <LinearLayout
             android:layout_width="0dp"
