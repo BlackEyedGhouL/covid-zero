@@ -95,7 +95,10 @@
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/dark_black"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
-                app:startIconTint="@color/dark_black">
+                app:startIconTint="@color/dark_black"
+                app:errorTextColor="@color/red_pie"
+                app:boxStrokeErrorColor="@color/red_pie"
+                app:errorIconTint="@color/red_pie">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/get_vaccined_reg_firstName_txt"
@@ -123,7 +126,10 @@
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/dark_black"
                 app:startIconDrawable="@drawable/ic_baseline_person_24"
-                app:startIconTint="@color/dark_black">
+                app:startIconTint="@color/dark_black"
+                app:errorTextColor="@color/red_pie"
+                app:boxStrokeErrorColor="@color/red_pie"
+                app:errorIconTint="@color/red_pie">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/get_vaccined_reg_LastName_txt"
@@ -146,19 +152,23 @@
                 android:textColorHint="@color/gray"
                 app:boxStrokeColor="@color/reg_txtimputlayout"
                 app:counterEnabled="true"
-                app:counterMaxLength="10"
+                app:counterMaxLength="5"
                 app:counterTextColor="@color/gray"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/dark_black"
                 app:startIconDrawable="@drawable/ic_baseline_location_city_24"
-                app:startIconTint="@color/dark_black">
+                app:startIconTint="@color/dark_black"
+                app:errorTextColor="@color/red_pie"
+                app:boxStrokeErrorColor="@color/red_pie"
+                app:errorIconTint="@color/red_pie">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/get_vaccined_reg_PostalCode_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/productsansregular"
-                    android:maxLength="10"
+                    android:maxLength="5"
+                    android:inputType="number"
                     android:singleLine="true"
                     android:textColor="@color/white" />
 
@@ -179,7 +189,10 @@
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/dark_black"
                 app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
-                app:startIconTint="@color/dark_black">
+                app:startIconTint="@color/dark_black"
+                app:errorTextColor="@color/red_pie"
+                app:boxStrokeErrorColor="@color/red_pie"
+                app:errorIconTint="@color/red_pie">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/get_vaccined_reg_NIC_txt"
