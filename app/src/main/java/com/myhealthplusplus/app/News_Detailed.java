@@ -39,7 +39,7 @@ public class News_Detailed extends AppCompatActivity {
         txt_author.setText(headlines.getAuthor());
         txt_time.setText(headlines.getPublishedAt());
         txt_details.setText(headlines.getDescription());
-        txt_url.setText(headlines.getUrl());
+        txt_url.setText("Read More:  " + headlines.getUrl());
         Picasso.get().load(headlines.getUrlToImage()).into(img_news);
     }
 }

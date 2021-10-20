@@ -163,6 +163,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        Button proceed = findViewById(R.id.btnsi_proceed);
+        proceed.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, IsolationCountDown.class);
+                startActivity(intent);
+            }
+        });
+
         Button getVacc = findViewById(R.id.btngetVaccinated);
         getVacc.setOnClickListener(new OnClickListener() {
             @Override

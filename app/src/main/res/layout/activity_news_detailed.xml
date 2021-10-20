@@ -73,22 +73,25 @@
             <TextView
                 android:id="@+id/news_detailed_details"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/productsansregular"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="10dp">
             </TextView>
 
             <TextView
                 android:id="@+id/news_detailed_url"
                 android:layout_width="match_parent"
                 android:textSize="18sp"
+                android:fontFamily="@font/productsansregular"
                 android:text=""
                 android:clickable="true"
                 android:focusable="true"
                 android:autoLink="all"
+                android:textColor="@color/gray"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp">
             </TextView>
 
