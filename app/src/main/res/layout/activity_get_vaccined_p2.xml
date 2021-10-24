@@ -172,7 +172,8 @@
                 android:foreground="@drawable/ripple_round"
                 android:text="Proceed"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="17sp"
+                android:textAllCaps="false"
                 android:theme="@style/Theme.MyHealthPlusPlus" />
 
         </LinearLayout>

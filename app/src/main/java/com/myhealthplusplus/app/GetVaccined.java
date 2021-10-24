@@ -32,6 +32,15 @@ public class GetVaccined extends AppCompatActivity {
         nic = findViewById(R.id.get_vaccined_reg_NIC_txtLayout);
         postalCode = findViewById(R.id.get_vaccined_reg_PostalCode_txtLayout);
 
+        Button locations = findViewById(R.id.get_vaccined_locations);
+        locations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GetVaccined.this, AllowPermissionsLocation.class);
+                startActivity(intent);
+            }
+        });
+
         Button next = findViewById(R.id.get_vaccined_reg_Next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
