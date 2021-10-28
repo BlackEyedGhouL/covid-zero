@@ -8,6 +8,28 @@
     android:background="@color/light_black"
     tools:context=".IfYoureFeelingSick">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/productsansbold"
+        android:text="What do I do if I Feel Sick?"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="@font/productsansregular"
+        android:text="If you are concerned that you may have COVID-19, follow these steps to help protect your health and the health of others."
+        android:textColor="@color/white"
+        android:textSize="19sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

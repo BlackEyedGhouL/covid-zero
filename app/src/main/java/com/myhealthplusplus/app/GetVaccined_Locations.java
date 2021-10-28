@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -36,6 +37,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +52,8 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -60,6 +65,8 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
     private FusedLocationProviderClient mLocationClient;
     private int GPS_REQUEST_CODE = 9001;
     LatLngBounds srilanka_boundry;
+    ConstraintLayout layout;
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
     private MainActivity activity = new MainActivity();
 
@@ -71,6 +78,8 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setTitle(Html.fromHtml("<font color=\"white\">" + "Vaccination Centers" + "</font>"));
 
+        layout = findViewById(R.id.get_vaccined_locations_layout);
+
         double bottomBoundry = 5.707286989912513;
         double leftBoundry = 79.49138290060732;
         double topBoundry = 10.037499991480718;
@@ -81,9 +90,48 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
                 new LatLng(topBoundry, rightBoundry)
         );
 
+        setLastUpdated();
+
         initMap();
 
         mLocationClient = new FusedLocationProviderClient(this);
+    }
+
+    private void setLastUpdated() {
+        DatabaseReference lastUpdateRef = rootRef
+                .child("lastUpdated");
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String tag ="Hello";
+                Log.d("", tag);
+
+                String lastUpdated = snapshot
+                        .child("vaccineCenters")
+                        .getValue().toString();
+
+                Log.d("Last Updated: ", lastUpdated);
+
+                Snackbar.make(layout, "Last Updated: " + lastUpdated, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                        .setAction("Hide", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(R.color.red_pie))
+                        .setBackgroundTint(getResources().getColor(R.color.light_black))
+                        .setTextColor(getResources().getColor(R.color.white))
+                        .show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        lastUpdateRef.addListenerForSingleValueEvent(valueEventListener);
     }
 
     private void initMap() {
@@ -134,7 +182,6 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
 
         activity.ShowDialog(this);
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference usersRef = rootRef
                 .child("vaccineCenters");
 
@@ -143,7 +190,7 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-
+                    
                     String center_Display = ds
                             .child("center")
                             .getValue().toString();
