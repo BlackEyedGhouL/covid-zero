@@ -8,13 +8,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.audiofx.Equalizer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,9 +30,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -37,6 +49,9 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class GetVaccined_Locations extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -45,6 +60,8 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
     private FusedLocationProviderClient mLocationClient;
     private int GPS_REQUEST_CODE = 9001;
     LatLngBounds srilanka_boundry;
+
+    private MainActivity activity = new MainActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +84,6 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
         initMap();
 
         mLocationClient = new FusedLocationProviderClient(this);
-    }
-
-    private void gotoLocation(double latitude, double longitude) {
-        LatLng latLng = new LatLng(latitude, longitude);
-
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 7);
-        mgooglemap.moveCamera(cameraUpdate);
-        mgooglemap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
     private void initMap() {
@@ -114,6 +123,7 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
+
         mgooglemap = googleMap;
         mgooglemap.setMyLocationEnabled(true);
         mgooglemap.setLatLngBoundsForCameraTarget(srilanka_boundry);
@@ -121,6 +131,59 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
         LatLng latLng = new LatLng(7.618352550486964, 80.67400124702566);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 7);
         mgooglemap.moveCamera(cameraUpdate);
+
+        activity.ShowDialog(this);
+
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usersRef = rootRef
+                .child("vaccineCenters");
+
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                    String center_Display = ds
+                            .child("center")
+                            .getValue().toString();
+
+                    String district_Display = ds
+                            .child("district")
+                            .getValue().toString();
+
+                    String latitude_Display = ds
+                            .child("latitude")
+                            .getValue().toString();
+
+                    String longitude_Display = ds
+                            .child("longitude")
+                            .getValue().toString();
+
+                    String policeArea_Display = ds
+                            .child("policeArea")
+                            .getValue().toString();
+
+                    double latitude = Double.parseDouble(latitude_Display);
+                    double longitude = Double.parseDouble(longitude_Display);
+
+                    // map.clear();
+
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(latitude, longitude))
+                            .title(center_Display + ", " + policeArea_Display + ", " + district_Display));
+
+                    Log.d("New Marker Added: ", center_Display);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+
+        usersRef.addListenerForSingleValueEvent(eventListener);
+
+        activity.DismissDialog();
     }
 
     @Override
@@ -157,4 +220,5 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
             }
         }
     }
+
 }
