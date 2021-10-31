@@ -60,6 +60,7 @@ public class ViewProfile extends AppCompatActivity {
                 builder.setView(v);
 
                 final Dialog dialog = builder.create();
+                dialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                 btnReview.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -85,6 +86,7 @@ public class ViewProfile extends AppCompatActivity {
                         builder1.setView(v1);
 
                         final Dialog dialog1 = builder1.create();
+                        dialog1.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                         btnChange.setOnClickListener(new View.OnClickListener() {
                             @Override

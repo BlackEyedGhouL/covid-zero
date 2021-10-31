@@ -288,6 +288,7 @@ public class DetailedView_COVID extends AppCompatActivity {
                 builder.setView(view);
 
                 AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                 alertDialog.show();
 

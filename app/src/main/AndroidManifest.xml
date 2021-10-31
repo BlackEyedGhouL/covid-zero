@@ -17,11 +17,17 @@
         android:theme="@style/Theme.MyHealthPlusPlus">
         <activity
             android:name=".Settings"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.MyHealthPlusPlus">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ViewProfile"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".Settings"
             android:theme="@style/Theme.MyHealthPlusPlus">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -120,6 +126,7 @@
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -128,8 +135,6 @@
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 

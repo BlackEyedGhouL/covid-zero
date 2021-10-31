@@ -45,4 +45,9 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_down_animation</item>
+    </style>
+    
 </resources>

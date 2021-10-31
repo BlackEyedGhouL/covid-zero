@@ -317,7 +317,6 @@
             android:id="@+id/profile_editBirthOfDate_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple"
             app:cardBackgroundColor="@color/lightest_black">
 
             <LinearLayout

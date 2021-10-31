@@ -123,6 +123,7 @@ public class News_Main extends AppCompatActivity implements News_SelectListener 
                 builder.setView(view);
 
                 AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                 alertDialog.show();
 
