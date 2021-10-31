@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/spinner_status_image"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/not_set"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/spinner_status_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@id/spinner_status_image"
+        android:fontFamily="@font/productsansregular"
+        android:text="Not Set" />
+
+</RelativeLayout>

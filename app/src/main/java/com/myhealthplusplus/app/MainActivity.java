@@ -397,6 +397,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_login:
                 break;
+            case R.id.nav_settings:
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
+                break;
             case R.id.nav_share:
                 break;
         }

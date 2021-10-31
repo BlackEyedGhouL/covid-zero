@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/light_black"
+    tools:context=".ViewProfile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.github.captain_miao.optroundcardview.OptRoundCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:optRoundCardBackgroundColor="@color/lightest_black"
+            app:optRoundCardCornerRadius="20sp"
+            app:optRoundCardElevation="50dp"
+            app:optRoundCardLeftTopCorner="false"
+            app:optRoundCardRightTopCorner="false"
+            app:optRoundCardPreventCornerOverlap="false"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="196dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="176dp"
+                    android:src="@drawable/bg_edit_profile"
+                    android:scaleType="fitXY"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profile_color_ring"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="-150dp"
+                    app:cardElevation="50dp"
+                    android:outlineAmbientShadowColor="@color/yellow"
+                    android:outlineSpotShadowColor="@color/yellow"
+                    app:cardBackgroundColor="#FFCA28"
+                    app:cardCornerRadius="150dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        app:cardCornerRadius="150dp">
+
+                        <ImageView
+                            android:id="@+id/profile_picture"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/defaultprofilepic" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </com.github.captain_miao.optroundcardview.OptRoundCardView>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/profile_pictureEdit_ring"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="229dp"
+        android:layout_marginTop="-108dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_150dp"
+        app:cardElevation="50dp"
+        android:layout_marginBottom="15dp"
+        app:cardBackgroundColor="@color/light_black"
+        app:cardCornerRadius="150dp">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/profile_pictureEdit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_edit_24" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/dark_black"
+            app:cardElevation="16dp"
+            app:cardCornerRadius="20sp">
+
+            <Spinner
+                android:id="@+id/spinner_status"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:dropDownVerticalOffset="40dp"
+                android:layout_margin="10dp"
+                android:popupBackground="@color/dark_black"
+                android:popupElevation="16dp"
+                android:background="@drawable/bg_spinner_status"/>
+
+        </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Personal details"
+            android:fontFamily="@font/productsansbold"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_editName_card"
+            app:cardCornerRadius="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/lightest_black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="Name"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <TextView
+                    android:id="@+id/profile_editName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    android:text="Senith Umesha"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/arrow_next_gray"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="1dp"
+            app:cardCornerRadius="0dp"
+            android:id="@+id/profile_editUsername_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/lightest_black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="Username"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <TextView
+                    android:id="@+id/profile_editUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    android:text="senith43"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/arrow_next_gray"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="1dp"
+            app:cardCornerRadius="0dp"
+            android:id="@+id/profile_editAddress_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="@drawable/ripple"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/lightest_black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="Address"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <TextView
+                    android:id="@+id/profile_editAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    android:text="Galle"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/arrow_next_gray"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="1dp"
+            app:cardCornerRadius="0dp"
+            android:id="@+id/profile_editGender_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/lightest_black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="Gender"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <TextView
+                    android:id="@+id/profile_editGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    android:text="Male"
+                    android:fontFamily="@font/productsansregular"
+                    android:layout_marginEnd="45dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginTop="1dp"
+            app:cardCornerRadius="0dp"
+            android:id="@+id/profile_editBirthOfDate_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/lightest_black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="Birth of Date"
+                    android:fontFamily="@font/productsansregular"/>
+
+                <TextView
+                    android:id="@+id/profile_editBirthOfDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    android:text="21/12/2001"
+                    android:fontFamily="@font/productsansregular"
+                    android:layout_marginEnd="45dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="178dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/productsansbold"
+            android:text="Contact details"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_editEmail_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/lightest_black"
+            app:cardCornerRadius="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/productsansregular"
+                    android:text="Email"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/profile_editEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/productsansregular"
+                    android:text="34senith@gmail.com"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/arrow_next_gray" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_editPhoneNumber_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="0dp"
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/lightest_black"
+            app:cardCornerRadius="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/productsansregular"
+                    android:text="Phone Number"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/profile_editPhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/productsansregular"
+                    android:text="+94 711997144"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/arrow_next_gray" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</LinearLayout>
