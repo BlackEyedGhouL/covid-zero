@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     DrawerLayout drawerLayout;
 
-    int i = 1;
+    int i = 1, isAlertBoxAlreadyRunning = 0;
 
     ImageView menu_btn;
 
@@ -240,30 +240,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ShowDialog(this);
 
+        isAlertBoxAlreadyRunning = 1;
+
         Handler delay = new Handler();
         delay.postDelayed(new Runnable() {
             @Override
             public void run() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setCancelable(false);
-
                 View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.activity_no_connection, findViewById(R.id.no_connection_layout));
+                builder.setCancelable(false);
+                builder.setView(view);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
+
                 view.findViewById(R.id.try_again).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (!isConnected(MainActivity.this)) {
+                            alertDialog.dismiss();
                             showInternetDialog();
                         } else {
+                            isAlertBoxAlreadyRunning = 0;
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }
                     }
                 });
-
-                builder.setView(view);
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                 alertDialog.show();
 
@@ -386,7 +389,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             requestQueue.add(jsonObjectRequest);
 
         } else {
-            showInternetDialog();
+            if(isAlertBoxAlreadyRunning == 1) {
+
+            }
+            else {
+                showInternetDialog();
+            }
         }
     }
 

@@ -270,13 +270,18 @@ public class DetailedView_COVID extends AppCompatActivity {
             @Override
             public void run() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailedView_COVID.this);
-                builder.setCancelable(false);
-
                 View view = LayoutInflater.from(DetailedView_COVID.this).inflate(R.layout.activity_no_connection, findViewById(R.id.no_connection_layout));
+                builder.setCancelable(false);
+                builder.setView(view);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
+
                 view.findViewById(R.id.try_again).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (!isConnected(DetailedView_COVID.this)) {
+                            alertDialog.dismiss();
                             showInternetDialog();
                         } else {
                             startActivity(new Intent(getApplicationContext(), DetailedView_COVID.class));
@@ -284,11 +289,6 @@ public class DetailedView_COVID extends AppCompatActivity {
                         }
                     }
                 });
-
-                builder.setView(view);
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                 alertDialog.show();
 

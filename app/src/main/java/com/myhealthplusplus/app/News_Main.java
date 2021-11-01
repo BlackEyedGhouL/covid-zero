@@ -105,13 +105,18 @@ public class News_Main extends AppCompatActivity implements News_SelectListener 
             @Override
             public void run() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(News_Main.this);
-                builder.setCancelable(false);
-
                 View view = LayoutInflater.from(News_Main.this).inflate(R.layout.activity_no_connection, findViewById(R.id.no_connection_layout));
+                builder.setCancelable(false);
+                builder.setView(view);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
+
                 view.findViewById(R.id.try_again).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (!isConnected(News_Main.this)) {
+                            alertDialog.dismiss();
                             showInternetDialog();
                         } else {
                             startActivity(new Intent(getApplicationContext(), News_Main.class));
@@ -119,11 +124,6 @@ public class News_Main extends AppCompatActivity implements News_SelectListener 
                         }
                     }
                 });
-
-                builder.setView(view);
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
                 alertDialog.show();
 
