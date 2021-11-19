@@ -3,6 +3,7 @@ package com.myhealthplusplus.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -45,8 +46,6 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    TextView moreDetails;
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -145,6 +144,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        Button showMore = findViewById(R.id.btnShowMore);
+        showMore.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent1 = new Intent(MainActivity.this, DetailedView_COVID.class);
+                    startActivity(intent1);
+            }
+        });
+
         Button know_more = findViewById(R.id.know_if_your_sick_more);
         know_more.setOnClickListener(new OnClickListener() {
             @Override
@@ -180,10 +188,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
-
-        moreDetails = (TextView) findViewById(R.id.lblMoreDetails);
-        moreDetails.setOnClickListener(this::onClick);
     }
+
+
 
     private void navigationDrawer() {
 
@@ -205,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        animateNavigationDrawer();
+        //animateNavigationDrawer();
     }
 
     private void animateNavigationDrawer() {
@@ -284,11 +291,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return (wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected());
     }
 
-    public void onClick(View view) {
-        Intent intent1 = new Intent(MainActivity.this, DetailedView_COVID.class);
-        startActivity(intent1);
-    }
-
     public void ShowDialog(Context context) {
         p_bar = new ProgressDialog(context);
         p_bar.show();
@@ -322,18 +324,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String apiUrl = "https://disease.sh/v3/covid-19/all";
             Button btn1 = findViewById(R.id.main_btnSriLanka);
             Button btn2 = findViewById(R.id.main_btnGlobal);
+            View d_Srilanka_view = findViewById(R.id.main_btnSriLanka_view);
+            View d_Global_view = findViewById(R.id.main_btnGlobal_view);
 
             if (i == 1) {
-                if (btn1.getSolidColor() != getResources().getColor(R.color.fav_red)) {
-                    btn1.setBackgroundResource(R.color.fav_red);
-                    btn2.setBackgroundResource(R.color.light_black);
+                if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
+                    btn1.setTextColor(getResources().getColor(R.color.white));
+                    btn2.setTextColor(getResources().getColor(R.color.gray));
+                    d_Srilanka_view.setBackgroundResource(R.color.red_pie);
+                    d_Global_view.setBackgroundResource(R.color.lightest_black);
                 }
 
                 apiUrl = "https://disease.sh/v3/covid-19/countries/lk";
             } else {
-                if (btn1.getSolidColor() != getResources().getColor(R.color.fav_red)) {
-                    btn2.setBackgroundResource(R.color.fav_red);
-                    btn1.setBackgroundResource(R.color.light_black);
+                if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
+                    btn2.setTextColor(getResources().getColor(R.color.white));
+                    btn1.setTextColor(getResources().getColor(R.color.gray));
+                    d_Global_view.setBackgroundResource(R.color.red_pie);
+                    d_Srilanka_view.setBackgroundResource(R.color.lightest_black);
                 }
 
                 apiUrl = "https://disease.sh/v3/covid-19/all";

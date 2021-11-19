@@ -92,7 +92,7 @@ public class Settings extends AppCompatActivity {
                             Toast.makeText(Settings.this, "Password changed successfully!", Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(Settings.this, "Password doesn't match the requirements", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Settings.this, "New password invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

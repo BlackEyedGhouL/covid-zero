@@ -105,7 +105,7 @@
         android:foreground="@drawable/ripple_round"
         android:gravity="center"
         android:text="Review Change"
-        android:textColor="@color/white"
+        android:textColor="@color/red_pie"
         android:textSize="15sp" />
 
     <TextView

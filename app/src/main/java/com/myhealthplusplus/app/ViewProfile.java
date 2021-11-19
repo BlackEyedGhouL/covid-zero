@@ -69,13 +69,14 @@ public class ViewProfile extends AppCompatActivity {
                         firstName = (TextInputLayout) v.findViewById(R.id.editProfileName_firstName_txtLayout);
                         lastName = (TextInputLayout) v.findViewById(R.id.editProfileName_LastName_txtLayout);
                         password = (TextInputLayout) v.findViewById(R.id.editProfileName_password_txtLayout);
+                        FName = firstName.getEditText().getText().toString();
+                        LName = lastName.getEditText().getText().toString();
 
                         if (!validateFirstName() | !validateLastName()) {
                             return;
                         }
 
-                        FName = firstName.getEditText().getText().toString();
-                        LName = lastName.getEditText().getText().toString();
+                        Toast.makeText(ViewProfile.this, "hello", Toast.LENGTH_SHORT).show();
 
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(ViewProfile.this);
                         LayoutInflater inflater1 = (LayoutInflater) ViewProfile.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -91,8 +92,6 @@ public class ViewProfile extends AppCompatActivity {
                         btnChange.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
-
 
                                 PWord = password.getEditText().getText().toString();
                             }

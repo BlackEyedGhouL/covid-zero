@@ -8,10 +8,19 @@
     android:background="@color/light_black"
     tools:context=".IfYoureFeelingSick">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="410dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="17dp"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        android:scaleType="fitCenter"
+        app:lottie_rawRes="@raw/prevent_epidemic_new_new"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"

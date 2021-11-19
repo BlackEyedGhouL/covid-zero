@@ -27,7 +27,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/re_medical_teams" />
+            android:src="@drawable/c_medicalteams" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="7dp"
-                    android:background="@drawable/btns_fav_red_main"
+                    android:background="@drawable/btns_light_black_main"
                     android:fontFamily="@font/productsansbold"
                     android:gravity="center"
                     android:paddingLeft="20dp"
@@ -65,7 +65,7 @@
                     android:text="Call 1999"
                     android:textAlignment="center"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/red_pie"
                     android:textSize="18sp"
                     tools:ignore="TouchTargetSizeCheck"
                     android:foreground="@drawable/ripple_round"/>

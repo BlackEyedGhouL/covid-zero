@@ -59,7 +59,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView1"
                         android:layout_width="390dp"
-                        android:layout_height="290dp"
+                        android:layout_height="307dp"
                         android:layout_marginTop="20dp"
                         app:cardBackgroundColor="#424242"
                         app:cardCornerRadius="20sp"
@@ -69,47 +69,83 @@
                         app:layout_constraintStart_toEndOf="@+id/main_view"
                         app:layout_constraintTop_toBottomOf="@+id/menu_btn">
 
-                        <Button
-                            android:id="@+id/main_btnGlobal"
-                            style="?android:attr/buttonBarButtonStyle"
-                            android:layout_width="141dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="end"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginEnd="30dp"
-                            android:background="@drawable/btn_global"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:fontFamily="@font/productsansbold"
-                            android:text="@string/btnGlobalName"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:foreground="@drawable/ripple"
-                            android:elevation="5dp"/>
+                        <LinearLayout
+                            android:id="@+id/main_btn_holding_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
 
-                        <Button
-                            android:id="@+id/main_btnSriLanka"
-                            style="?android:attr/buttonBarButtonStyle"
-                            android:layout_width="141dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="start"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="20dp"
-                            android:background="@drawable/btn_srilanka"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:fontFamily="@font/productsansbold"
-                            android:text="@string/btnSriLankaName"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="16sp"
-                            android:foreground="@drawable/ripple"
-                            android:elevation="5dp"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:weightSum="2">
+
+                                <Button
+                                    android:id="@+id/main_btnSriLanka"
+                                    style="?android:attr/buttonBarButtonStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="48dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/btn_srilanka"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:fontFamily="@font/productsansbold"
+                                    android:foreground="@drawable/ripple"
+                                    android:text="@string/btnSriLankaName"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp" />
+
+                                <View
+                                    android:id="@+id/main_btnSriLanka_view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="3dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/red_pie" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:weightSum="2">
+
+                                <Button
+                                    android:id="@+id/main_btnGlobal"
+                                    style="?android:attr/buttonBarButtonStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="48dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/btn_global"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:fontFamily="@font/productsansbold"
+                                    android:foreground="@drawable/ripple"
+                                    android:text="@string/btnGlobalName"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/gray"
+                                    android:textSize="16sp" />
+
+                                <View
+                                    android:id="@+id/main_btnGlobal_view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="3dp"
+                                    android:layout_weight="1"
+                                    android:background="@color/lightest_black" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content" >
 
                             <include
                                 layout="@layout/activity_main_p1"
@@ -131,23 +167,27 @@
                             android:orientation="horizontal"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:paddingBottom="16dp">
+                            android:paddingBottom="15dp">
 
-                            <TextView
-                                android:id="@+id/lblMoreDetails"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="118dp"
-                                android:clickable="true"
-                                android:drawablePadding="2dp"
-                                android:focusable="true"
+                            <Button
+                                android:id="@+id/btnShowMore"
+                                style="?android:attr/buttonBarButtonStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="37dp"
+                                android:layout_marginTop="7dp"
+                                android:background="@drawable/btns_light_black_main"
                                 android:fontFamily="@font/productsansbold"
                                 android:gravity="center"
-                                android:text="@string/lblMoreDetails"
-                                android:textColor="@color/white"
-                                android:textSize="16sp"
-                                app:drawableStartCompat="@drawable/ic_baseline_expand_more_24"
-                                tools:ignore="TouchTargetSizeCheck" />
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:text="Show More"
+                                android:elevation="5dp"
+                                android:textAlignment="center"
+                                android:textAllCaps="false"
+                                android:textColor="@color/red_pie"
+                                android:textSize="18sp"
+                                tools:ignore="TouchTargetSizeCheck"
+                                android:foreground="@drawable/ripple_round"/>
 
                         </LinearLayout>
 
@@ -283,17 +323,18 @@
                                     android:paddingRight="20dp"
                                     android:text="View All"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/red_pie"
                                     android:textSize="18sp"
                                     tools:ignore="TouchTargetSizeCheck"
                                     android:foreground="@drawable/ripple_round"/>
+
                             </LinearLayout>
 
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/re_news" />
+                                android:src="@drawable/c_news" />
 
 
                         </LinearLayout>
@@ -325,7 +366,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/re_pcr_test" />
+                                android:src="@drawable/c_pcr" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -355,7 +396,7 @@
                                     android:paddingRight="20dp"
                                     android:text="@string/more_info"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/red_pie"
                                     android:textSize="18sp"
                                     tools:ignore="TouchTargetSizeCheck"
                                     android:foreground="@drawable/ripple_round"/>
@@ -414,17 +455,18 @@
                                     android:paddingRight="20dp"
                                     android:text="@string/more_info"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/red_pie"
                                     android:textSize="18sp"
                                     tools:ignore="TouchTargetSizeCheck"
                                     android:foreground="@drawable/ripple_round"/>
+
                             </LinearLayout>
 
                             <ImageView
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/re_vaccine" />
+                                android:src="@drawable/c_get_your_vaccine" />
 
                         </LinearLayout>
 
@@ -455,7 +497,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/isolation" />
+                                android:src="@drawable/c_isolation" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -485,7 +527,7 @@
                                     android:paddingRight="20dp"
                                     android:text="Proceed"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/red_pie"
                                     android:textSize="18sp"
                                     tools:ignore="TouchTargetSizeCheck"
                                     android:foreground="@drawable/ripple_round"/>
@@ -545,7 +587,7 @@
                                     android:paddingRight="20dp"
                                     android:text="@string/more_info"
                                     android:textAllCaps="false"
-                                    android:textColor="@color/white"
+                                    android:textColor="@color/red_pie"
                                     android:textSize="18sp"
                                     tools:ignore="TouchTargetSizeCheck"
                                     android:foreground="@drawable/ripple_round"/>
@@ -556,7 +598,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/re_know_more" />
+                                android:src="@drawable/c_family" />
 
                         </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.myhealthplusplus.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.AlertDialog;
@@ -8,6 +9,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.SweepGradient;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -30,6 +33,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
@@ -37,6 +52,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class DetailedView_COVID extends AppCompatActivity {
@@ -54,6 +70,8 @@ public class DetailedView_COVID extends AppCompatActivity {
     private int int_active_new = 0;
 
     Button d_Global, d_Srilanka;
+
+    private BarChart barChart_newCases;
 
     int i = 1;
 
@@ -99,6 +117,63 @@ public class DetailedView_COVID extends AppCompatActivity {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+
+        BarDataSet barDataSet1 = new BarDataSet(dataValues1(), "New cases");
+        barDataSet1.setValueTextColor(Color.WHITE);
+        barDataSet1.setColor(getResources().getColor(R.color.red_pie));
+        BarData barData1 = new BarData();
+        barData1.addDataSet(barDataSet1);
+
+        barChart_newCases.setData(barData1);
+        XAxis xAxis = barChart_newCases.getXAxis();
+        xAxis.setValueFormatter(new MyXAxisValueFormatter());
+
+        YAxis yAxis = barChart_newCases.getAxisLeft();
+        yAxis.setTextColor(Color.WHITE);
+
+        Paint mPaint = barChart_newCases.getRenderer().getPaintRender(); mPaint.setShader(new
+                SweepGradient(550,750,Color.parseColor("#007afe"),Color.parseColor("#F6404F")));
+
+        barChart_newCases.getAxisLeft().setAxisMinValue(0f);
+        barChart_newCases.getAxisLeft().setAxisMaxValue(1000f);
+        barChart_newCases.getXAxis().setDrawGridLines(false);
+        barChart_newCases.setTouchEnabled(false);
+        barChart_newCases.getAxisRight().setEnabled(false);
+        barChart_newCases.getLegend().setEnabled(false);
+        barChart_newCases.setDoubleTapToZoomEnabled(false);
+        barChart_newCases.setFitBars(true);
+        barChart_newCases.setScaleEnabled(false);
+        barChart_newCases.setClickable(false);
+        barChart_newCases.setDrawBarShadow(false);
+        barChart_newCases.setDrawGridBackground(false);
+        barChart_newCases.getAxisRight().setEnabled(false);
+        barChart_newCases.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        Description description = new Description();
+        description.setText("");
+        barChart_newCases.setDescription(description);
+        barChart_newCases.invalidate();
+    }
+
+    public class MyXAxisValueFormatter implements IAxisValueFormatter {
+
+        @Override
+        public String getFormattedValue(float v, AxisBase axisBase) {
+            axisBase.setLabelCount(7);
+            axisBase.setTextColor(Color.WHITE);
+            return "Nov " + Math.round(v);
+        }
+    }
+
+    private ArrayList<BarEntry> dataValues1() {
+        ArrayList<BarEntry> dataV = new ArrayList<>();
+        dataV.add(new BarEntry(10, 693));
+        dataV.add(new BarEntry(11, 715));
+        dataV.add(new BarEntry(12, 723));
+        dataV.add(new BarEntry(13, 716));
+        dataV.add(new BarEntry(14, 697));
+        dataV.add(new BarEntry(15, 732));
+        dataV.add(new BarEntry(16, 720));
+        return dataV;
     }
 
     private void FetchData() {
@@ -112,25 +187,31 @@ public class DetailedView_COVID extends AppCompatActivity {
         String apiUrl = "https://disease.sh/v3/covid-19/all";
         Button btn1 = findViewById(R.id.detailed_btnSriLanka);
         Button btn2 = findViewById(R.id.detailed_btnGlobal);
-        LinearLayout d_linear_countries = findViewById(R.id.detailed_affectedCountries_linear);
+        View d_Srilanka_view = findViewById(R.id.detailed_btnSriLanka_view);
+        View d_Global_view = findViewById(R.id.detailed_btnGlobal_view);
+        CardView d_card_countries = findViewById(R.id.detailed_affectedCountries_card_txt);
         TextView activeNew = findViewById(R.id.detailed_active_new_txt);
 
         if(i==1){
-            d_linear_countries.setVisibility(View.GONE);
+            d_card_countries.setVisibility(View.GONE);
 
-            if( btn1.getSolidColor() != getResources().getColor(R.color.fav_red)){
-                btn1.setBackgroundResource(R.color.fav_red);
-                btn2.setBackgroundResource(R.color.light_black);
+            if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
+                btn1.setTextColor(getResources().getColor(R.color.white));
+                btn2.setTextColor(getResources().getColor(R.color.gray));
+                d_Srilanka_view.setBackgroundResource(R.color.red_pie);
+                d_Global_view.setBackgroundResource(R.color.lightest_black);
             }
 
             apiUrl = "https://disease.sh/v3/covid-19/countries/lk";
         }
         else{
-            d_linear_countries.setVisibility(View.VISIBLE);
+            d_card_countries.setVisibility(View.VISIBLE);
 
-            if( btn1.getSolidColor() != getResources().getColor(R.color.fav_red)){
-                btn2.setBackgroundResource(R.color.fav_red);
-                btn1.setBackgroundResource(R.color.light_black);
+            if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
+                btn2.setTextColor(getResources().getColor(R.color.white));
+                btn1.setTextColor(getResources().getColor(R.color.gray));
+                d_Global_view.setBackgroundResource(R.color.red_pie);
+                d_Srilanka_view.setBackgroundResource(R.color.lightest_black);
             }
 
             apiUrl = "https://disease.sh/v3/covid-19/all";
@@ -240,6 +321,7 @@ public class DetailedView_COVID extends AppCompatActivity {
         tv_death = findViewById(R.id.detailed_deaths_num_txt);
         tv_death_new = findViewById(R.id.detailed_deaths_new_txt);
         tv_tests = findViewById(R.id.detailed_sample_num_txt);
+        barChart_newCases = findViewById(R.id.detailed_new_cases_BarChart);
 
         if(i==1){
         }
