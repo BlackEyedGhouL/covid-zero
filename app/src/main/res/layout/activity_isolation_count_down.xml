@@ -99,7 +99,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/btns_fav_red_main"
+        android:background="@drawable/btn_red_si"
         android:elevation="5dp"
         android:fontFamily="@font/productsansbold"
         android:foreground="@drawable/ripple_round"

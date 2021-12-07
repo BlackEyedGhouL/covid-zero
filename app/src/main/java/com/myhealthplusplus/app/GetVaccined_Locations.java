@@ -90,8 +90,6 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
                 new LatLng(topBoundry, rightBoundry)
         );
 
-        setLastUpdated();
-
         initMap();
 
         mLocationClient = new FusedLocationProviderClient(this);
@@ -159,8 +157,7 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
                         startActivityForResult(intent, GPS_REQUEST_CODE);
                     }))
                     .setNegativeButton("Cancel", ((dialogInterface, i) -> {
-                        Intent intent = new Intent(this, GetVaccined.class);
-                        startActivity(intent);
+                        finish();
                     }))
                     .setCancelable(false)
                     .show();
@@ -221,6 +218,8 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
                             .title(center_Display + ", " + policeArea_Display + ", " + district_Display));
 
                     Log.d("New Marker Added: ", center_Display);
+
+                    setLastUpdated();
                 }
             }
 

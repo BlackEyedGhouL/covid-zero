@@ -83,7 +83,7 @@ public class ViewProfile extends AppCompatActivity {
                         View v1 = inflater1.inflate(R.layout.edit_profile_name_window_p2, findViewById(R.id.edit_profile_name_window_p2_layout));
                         TextView btnChange = v1.findViewById(R.id.editProfileName_save_btn);
                         TextView btnP2Cancel = v1.findViewById(R.id.editProfileName_cancel_p2_btn);
-                        builder1.setCancelable(false);
+                        builder1.setCancelable(true);
                         builder1.setView(v1);
 
                         final Dialog dialog1 = builder1.create();
