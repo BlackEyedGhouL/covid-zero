@@ -63,7 +63,7 @@ public class Settings extends AppCompatActivity {
                 View v = inflater.inflate(R.layout.activity_change_password, findViewById(R.id.changePassword_layout));
                 btnSave = v.findViewById(R.id.changePassword_saveBtn);
                 btnCancel = v.findViewById(R.id.changePassword_cancelBtn);
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 builder.setView(v);
 
                 final Dialog dialog = builder.create();
