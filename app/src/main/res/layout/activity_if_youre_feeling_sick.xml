@@ -11,7 +11,7 @@
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="410dp"
         android:layout_height="176dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="7dp"
         app:lottie_autoPlay="false"
         app:lottie_loop="false"
         android:scaleType="fitCenter"
@@ -20,10 +20,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="6dp"
         android:fontFamily="@font/productsansbold"
         android:text="What do I do if I Feel Sick?"
         android:textColor="@color/white"
@@ -34,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
         android:fontFamily="@font/productsansregular"
         android:text="If you are concerned that you may have COVID-19, follow these steps to help protect your health and the health of others."
         android:textColor="@color/white"
