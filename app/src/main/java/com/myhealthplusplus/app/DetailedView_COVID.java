@@ -44,6 +44,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import org.eazegraph.lib.charts.PieChart;
@@ -51,6 +52,7 @@ import org.eazegraph.lib.models.PieModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -131,8 +133,9 @@ public class DetailedView_COVID extends AppCompatActivity {
         YAxis yAxis = barChart_newCases.getAxisLeft();
         yAxis.setTextColor(Color.WHITE);
 
-        Paint mPaint = barChart_newCases.getRenderer().getPaintRender(); mPaint.setShader(new
-                SweepGradient(550,750,Color.parseColor("#007afe"),Color.parseColor("#F6404F")));
+        barDataSet1.setValueFormatter(new MyValueFormatter());
+        //Paint mPaint = barChart_newCases.getRenderer().getPaintRender(); mPaint.setShader(new
+          //      SweepGradient(550,750,Color.parseColor("#007afe"),Color.parseColor("#F6404F")));
 
         barChart_newCases.getAxisLeft().setAxisMinValue(0f);
         barChart_newCases.getAxisLeft().setAxisMaxValue(1000f);
@@ -161,6 +164,21 @@ public class DetailedView_COVID extends AppCompatActivity {
             axisBase.setLabelCount(7);
             axisBase.setTextColor(Color.WHITE);
             return "Nov " + Math.round(v);
+        }
+    }
+
+    public class MyValueFormatter implements IValueFormatter {
+
+        private DecimalFormat mFormat;
+
+        public MyValueFormatter() {
+            mFormat = new DecimalFormat("###,###,##0");
+        }
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            // write your logic here
+            return mFormat.format(value);
         }
     }
 
