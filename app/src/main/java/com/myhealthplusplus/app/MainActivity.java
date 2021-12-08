@@ -37,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+import com.myhealthplusplus.app.LoginSignup.StartUpScreen;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
@@ -96,10 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         moving_content = (LinearLayout) findViewById(R.id.moving_content);
 
-        Menu menu = navigationView.getMenu();
-        menu.findItem(R.id.nav_logout).setVisible(false);
-        menu.findItem(R.id.nav_profile).setVisible(false);
-
         navigationDrawer();
 
         m_Global = findViewById(R.id.main_btnGlobal);
@@ -148,8 +145,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         showMore.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Intent intent1 = new Intent(MainActivity.this, DetailedView_COVID.class);
-                    startActivity(intent1);
+                Intent intent1 = new Intent(MainActivity.this, DetailedView_COVID.class);
+                startActivity(intent1);
             }
         });
 
@@ -191,11 +188,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     private void navigationDrawer() {
 
         navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
@@ -206,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 if (drawerLayout.isDrawerVisible(GravityCompat.START))
                     drawerLayout.closeDrawer(GravityCompat.START);
-                else{
+                else {
                     drawerLayout.openDrawer(GravityCompat.START);
                 }
             }
@@ -328,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             View d_Global_view = findViewById(R.id.main_btnGlobal_view);
 
             if (i == 1) {
-                if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
+                if (btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)) {
                     btn1.setTextColor(getResources().getColor(R.color.white));
                     btn2.setTextColor(getResources().getColor(R.color.gray));
                     d_Srilanka_view.setBackgroundResource(R.color.red_pie);
@@ -337,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 apiUrl = "https://disease.sh/v3/covid-19/countries/lk";
             } else {
-                if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
+                if (btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)) {
                     btn2.setTextColor(getResources().getColor(R.color.white));
                     btn1.setTextColor(getResources().getColor(R.color.gray));
                     d_Global_view.setBackgroundResource(R.color.red_pie);
@@ -397,10 +393,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             requestQueue.add(jsonObjectRequest);
 
         } else {
-            if(isAlertBoxAlreadyRunning == 1) {
+            if (isAlertBoxAlreadyRunning == 1) {
 
-            }
-            else {
+            } else {
                 showInternetDialog();
             }
         }
@@ -409,16 +404,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.nav_home:
                 break;
-            case R.id.nav_login:
-                break;
             case R.id.nav_settings:
-                Intent intent = new Intent(MainActivity.this, Settings.class);
-                startActivity(intent);
+                Intent i1 = new Intent(MainActivity.this, Settings.class);
+                startActivity(i1);
                 break;
             case R.id.nav_share:
+                break;
+            case R.id.nav_logout:
+                Intent i2 = new Intent(MainActivity.this, StartUpScreen.class);
+                startActivity(i2);
                 break;
         }
 

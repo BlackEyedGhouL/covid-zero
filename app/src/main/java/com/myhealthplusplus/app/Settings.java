@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.myhealthplusplus.app.LoginSignup.StartUpScreen;
 
 import java.util.Objects;
 
@@ -49,6 +50,15 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings.this, ViewProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView logOut = findViewById(R.id.settings_logout_card);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Settings.this, StartUpScreen.class);
                 startActivity(intent);
             }
         });

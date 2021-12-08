@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <group android:checkableBehavior="none">
+    <group
+        android:id="@+id/nav_group_home"
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/nav_home"
@@ -10,7 +13,9 @@
 
     </group>
 
-    <group android:checkableBehavior="none">
+    <group
+        android:id="@+id/nav_group_settings"
+        android:checkableBehavior="none">
 
         <item
             android:id="@+id/nav_settings"
@@ -19,37 +24,13 @@
 
     </group>
 
-    <item android:title="Profile">
-
-        <menu>
-
-            <group android:checkableBehavior="none">
-
-                <item
-                    android:id="@+id/nav_login"
-                    android:icon="@drawable/ic_baseline_login_24"
-                    android:title="Log In" />
-
-                <item
-                    android:id="@+id/nav_profile"
-                    android:icon="@drawable/ic_baseline_account_circle_24"
-                    android:title="Profile" />
-
-                <item
-                    android:id="@+id/nav_logout"
-                    android:icon="@drawable/ic_baseline_logout_24"
-                    android:title="Log Out" />
-            </group>
-
-        </menu>
-
-    </item>
-
     <item android:title="Communicate">
 
         <menu>
 
-            <group android:checkableBehavior="none">
+            <group
+                android:id="@+id/nav_group_share"
+                android:checkableBehavior="none">
 
                 <item
                     android:id="@+id/nav_share"
@@ -61,5 +42,15 @@
 
     </item>
 
+    <group
+        android:id="@+id/nav_group_logout"
+        android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="Log Out" />
+
+    </group>
 
 </menu>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#303030"
+    android:background="@color/light_black"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
@@ -42,7 +42,7 @@
                         android:id="@+id/main_view"
                         android:layout_width="match_parent"
                         android:layout_height="125dp"
-                        android:background="#212121"
+                        android:background="@color/dark_black"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView

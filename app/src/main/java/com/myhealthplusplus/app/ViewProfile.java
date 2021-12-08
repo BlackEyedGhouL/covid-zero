@@ -56,7 +56,7 @@ public class ViewProfile extends AppCompatActivity {
                 View v = inflater.inflate(R.layout.edit_profile_name_window_p1, findViewById(R.id.edit_profile_name_window_p1_layout));
                 TextView btnReview = v.findViewById(R.id.editProfileName_review_btn);
                 TextView btnP1Cancel = v.findViewById(R.id.editProfileName_cancel_p1_btn);
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 builder.setView(v);
 
                 final Dialog dialog = builder.create();
@@ -116,34 +116,6 @@ public class ViewProfile extends AppCompatActivity {
                 });
 
                 dialog.show();
-            }
-        });
-
-        editUsernameCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        editAddressCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        editGenderCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
-        editBirthOfDateCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 

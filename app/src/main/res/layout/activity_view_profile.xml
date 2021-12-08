@@ -185,9 +185,6 @@
             android:id="@+id/profile_editUsername_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="@drawable/ripple"
-            android:focusable="true"
             app:cardBackgroundColor="@color/lightest_black">
 
             <LinearLayout
@@ -213,14 +210,8 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="senith43"
-                    android:fontFamily="@font/productsansregular"/>
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_gray"/>
+                    android:fontFamily="@font/productsansregular"
+                    android:layout_marginEnd="45dp"/>
 
             </LinearLayout>
 
@@ -232,9 +223,6 @@
             android:id="@+id/profile_editAddress_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="@drawable/ripple"
-            android:focusable="true"
             app:cardBackgroundColor="@color/lightest_black">
 
             <LinearLayout
@@ -260,14 +248,8 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="Galle"
-                    android:fontFamily="@font/productsansregular"/>
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_gray"/>
+                    android:fontFamily="@font/productsansregular"
+                    android:layout_marginEnd="45dp"/>
 
             </LinearLayout>
 
