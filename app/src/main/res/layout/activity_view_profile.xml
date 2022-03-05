@@ -8,6 +8,51 @@
     android:background="@color/light_black"
     tools:context=".ViewProfile">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_black"
+        android:elevation="20dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="20dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/profile_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="@string/profile_title"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/profile_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="-5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"
+            app:elevation="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,7 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="176dp"
                     android:src="@drawable/bg_edit_profile"
-                    android:scaleType="fitXY"/>
+                    android:scaleType="fitXY"
+                    tools:ignore="ContentDescription"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/profile_color_ring"
@@ -44,7 +90,8 @@
                     android:outlineAmbientShadowColor="@color/yellow"
                     android:outlineSpotShadowColor="@color/yellow"
                     app:cardBackgroundColor="#FFCA28"
-                    app:cardCornerRadius="150dp">
+                    app:cardCornerRadius="150dp"
+                    tools:targetApi="p">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
@@ -57,7 +104,8 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/defaultprofilepic" />
+                            android:src="@drawable/default_profile_picture"
+                            tools:ignore="ContentDescription"/>
 
                     </androidx.cardview.widget.CardView>
 
@@ -73,23 +121,25 @@
         android:id="@+id/profile_pictureEdit_ring"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="229dp"
+        android:layout_marginStart="229dp"
         android:layout_marginTop="-108dp"
+        android:layout_marginBottom="15dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="@drawable/ripple_150dp"
-        app:cardElevation="50dp"
-        android:layout_marginBottom="15dp"
         app:cardBackgroundColor="@color/light_black"
-        app:cardCornerRadius="150dp">
+        app:cardCornerRadius="150dp"
+        app:cardElevation="50dp"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck">
 
-            <ImageView
-                android:layout_gravity="center"
-                android:id="@+id/profile_pictureEdit"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_baseline_edit_24" />
+        <ImageView
+            android:id="@+id/profile_pictureEdit"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_edit_24"
+            tools:ignore="ContentDescription"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -103,15 +153,16 @@
             app:cardElevation="16dp"
             app:cardCornerRadius="20sp">
 
-            <Spinner
-                android:id="@+id/spinner_status"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:dropDownVerticalOffset="40dp"
-                android:layout_margin="10dp"
-                android:popupBackground="@color/dark_black"
-                android:popupElevation="16dp"
-                android:background="@drawable/bg_spinner_status"/>
+        <Spinner
+            android:id="@+id/profile_spinner_status"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_spinner_status"
+            android:dropDownVerticalOffset="40dp"
+            android:popupBackground="@color/dark_black"
+            android:popupElevation="16dp"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         </androidx.cardview.widget.CardView>
 
@@ -126,7 +177,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:text="Personal details"
+            android:text="@string/profile_personal_details"
             android:fontFamily="@font/product_sans_bold"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"
@@ -135,279 +186,14 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/profile_editName_card"
-            app:cardCornerRadius="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:foreground="@drawable/ripple"
-            android:focusable="true"
-            app:cardBackgroundColor="@color/lightest_black">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:text="Name"
-                    android:fontFamily="@font/product_sans_regular"/>
-
-                <TextView
-                    android:id="@+id/profile_editName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp"
-                    android:text="Senith Umesha"
-                    android:fontFamily="@font/product_sans_regular"/>
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_gray"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="1dp"
-            app:cardCornerRadius="0dp"
-            android:id="@+id/profile_editUsername_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/lightest_black">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:text="Username"
-                    android:fontFamily="@font/product_sans_regular"/>
-
-                <TextView
-                    android:id="@+id/profile_editUsername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp"
-                    android:text="senith43"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:layout_marginEnd="45dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="1dp"
-            app:cardCornerRadius="0dp"
-            android:id="@+id/profile_editAddress_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/lightest_black">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:text="Address"
-                    android:fontFamily="@font/product_sans_regular"/>
-
-                <TextView
-                    android:id="@+id/profile_editAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp"
-                    android:text="Galle"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:layout_marginEnd="45dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="1dp"
-            app:cardCornerRadius="0dp"
-            android:id="@+id/profile_editGender_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/lightest_black">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:text="Gender"
-                    android:fontFamily="@font/product_sans_regular"/>
-
-                <TextView
-                    android:id="@+id/profile_editGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp"
-                    android:text="Male"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:layout_marginEnd="45dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_marginTop="1dp"
-            app:cardCornerRadius="0dp"
-            android:id="@+id/profile_editBirthOfDate_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/lightest_black">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="15dp"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:text="Birth of Date"
-                    android:fontFamily="@font/product_sans_regular"/>
-
-                <TextView
-                    android:id="@+id/profile_editBirthOfDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp"
-                    android:text="21/12/2001"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:layout_marginEnd="45dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="178dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/product_sans_bold"
-            android:text="Contact details"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profile_editEmail_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
             android:foreground="@drawable/ripple"
             app:cardBackgroundColor="@color/lightest_black"
-            app:cardCornerRadius="0dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:text="Email"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/profile_editEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:text="34senith@gmail.com"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_gray" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profile_editPhoneNumber_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardElevation="0dp"
-            android:foreground="@drawable/ripple"
-            app:cardBackgroundColor="@color/lightest_black"
-            app:cardCornerRadius="0dp">
+            app:cardCornerRadius="0dp"
+            tools:ignore="TouchTargetSizeCheck">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -420,17 +206,17 @@
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/product_sans_regular"
-                    android:text="Phone Number"
+                    android:text="@string/profile_name"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/profile_editPhoneNumber"
+                    android:id="@+id/profile_editName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:fontFamily="@font/product_sans_regular"
-                    android:text="+94 711997144"
+                    android:text=""
                     android:textColor="@color/gray"
                     android:textSize="18sp" />
 
@@ -439,7 +225,68 @@
                     android:layout_height="22dp"
                     android:layout_gravity="end"
                     android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_gray" />
+                    android:src="@drawable/arrow_next_gray"
+                    tools:ignore="ContentDescription"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="@string/profile_contact_details"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profile_editEmail_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/lightest_black"
+            app:cardCornerRadius="0dp"
+            tools:ignore="TouchTargetSizeCheck">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/product_sans_regular"
+                    android:text="@string/profile_email"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/profile_editEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="45dp"
+                    android:fontFamily="@font/product_sans_regular"
+                    android:text=""
+                    android:textColor="@color/gray"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

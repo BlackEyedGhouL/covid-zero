@@ -8,6 +8,51 @@
     android:orientation="vertical"
     tools:context=".Settings">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settings_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_black"
+        android:elevation="20dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="20dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="@string/settings_title"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settings_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="-5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"
+            app:elevation="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,16 +91,17 @@
             android:background="@color/lightest_black"/>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="20dp"
             android:id="@+id/settings_editProfile_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:clickable="true"
-            app:cardElevation="0dp"
             android:focusable="true"
             android:foreground="@drawable/ripple"
             app:cardBackgroundColor="@color/light_black"
-            app:cardCornerRadius="0dp">
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            tools:ignore="TouchTargetSizeCheck">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,16 +130,17 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
             android:id="@+id/settings_editProfile_changePassword_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:clickable="true"
-            android:foreground="@drawable/ripple"
             android:focusable="true"
-            app:cardBackgroundColor="@color/light_black">
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/light_black"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            tools:ignore="TouchTargetSizeCheck">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,19 +150,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="15dp"
-                    android:textColor="@color/gray"
-                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="Change Password"
-                    android:fontFamily="@font/product_sans_regular"/>
+                    android:textColor="@color/gray"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="end"
                     android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_gray"/>
+                    android:src="@drawable/arrow_next_gray" />
 
             </LinearLayout>
 
@@ -130,16 +177,17 @@
             android:background="@color/lightest_black"/>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
             android:id="@+id/settings_deleteAccount_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:clickable="true"
-            android:foreground="@drawable/ripple"
             android:focusable="true"
-            app:cardBackgroundColor="@color/light_black">
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/light_black"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            tools:ignore="TouchTargetSizeCheck">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,19 +197,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginStart="15dp"
-                    android:textColor="@color/red_pie"
-                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="Delete Account"
-                    android:fontFamily="@font/product_sans_regular"/>
+                    android:textColor="@color/red_pie"
+                    android:textSize="18sp" />
 
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="end"
                     android:layout_marginEnd="15dp"
-                    android:src="@drawable/arrow_next_red"/>
+                    android:src="@drawable/arrow_next_red" />
 
             </LinearLayout>
 
@@ -169,16 +217,17 @@
 
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="392dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
-            android:id="@+id/settings_logout_card"
+            android:id="@+id/settings_sign_out_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="392dp"
             android:clickable="true"
-            android:foreground="@drawable/ripple"
             android:focusable="true"
-            app:cardBackgroundColor="@color/light_black">
+            android:foreground="@drawable/ripple"
+            app:cardBackgroundColor="@color/light_black"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            tools:ignore="TouchTargetSizeCheck">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,14 +237,14 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/product_sans_regular"
+                    android:gravity="center"
+                    android:text="Sign out"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:text="Log Out"
-                    android:fontFamily="@font/product_sans_regular"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

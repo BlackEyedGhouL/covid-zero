@@ -35,6 +35,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.myhealthplusplus.app.LoginSignup.SignIn;
 
 import org.eazegraph.lib.charts.PieChart;
@@ -47,26 +48,18 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private SwipeRefreshLayout swipeRefreshLayout;
-
     String str_active, str_recovered, str_death;
-
     private TextView tv_active, tv_recovered, tv_death;
-
     private ProgressDialog p_bar;
-
     private PieChart pieChart;
-
     Button m_Global, m_sri_lanka;
-
     NavigationView navigationView;
     DrawerLayout drawerLayout;
-
     int i = 1, isAlertBoxAlreadyRunning = 0;
-
     ImageView menu_btn;
-
     static final float END_SCALE = 0.7f;
     LinearLayout moving_content;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             showInternetDialog();
         }
         Init();
+        mAuth = FirebaseAuth.getInstance();
         FetchData();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -412,6 +406,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_share:
                 break;
             case R.id.nav_logout:
+                mAuth.signOut();
                 Intent i2 = new Intent(MainActivity.this, SignIn.class);
                 startActivity(i2);
                 break;

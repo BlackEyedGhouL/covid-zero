@@ -52,4 +52,11 @@
     <string name="fp_submit">Submit</string>
     <string name="fp_text_p1">Don\'t worry it happens. Please enter the</string>
     <string name="fp_text_p2">email associated with your account.</string>
+    <string name="profile_personal_details">Personal details</string>
+    <string name="profile_name">Name</string>
+    <string name="profile_username">Username</string>
+    <string name="profile_contact_details">Contact details</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_title">Profile</string>
+    <string name="settings_title">Settings</string>
 </resources>

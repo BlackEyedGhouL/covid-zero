@@ -2,6 +2,7 @@ package com.myhealthplusplus.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -16,10 +17,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.myhealthplusplus.app.LoginSignup.SignIn;
 
 import java.util.Objects;
@@ -30,28 +33,39 @@ public class Settings extends AppCompatActivity {
     CardView card1, card2, card3, card4;
     EditText editTextPassword;
     TextView btnSave, btnCancel;
+    ImageView back;
+    FirebaseAuth mAuth;
 
     public static String Password;
-    private  boolean is8char=false, hasUpper=false, hasnum=false, hasSpecialSymbol =false, isReady=false;
+    private  boolean is8char=false, hasUpper=false, hasNum=false, hasSpecialSymbol =false, isReady=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        getWindow().setStatusBarColor(ContextCompat.getColor(Settings.this, R.color.dark_black));
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle(Html.fromHtml("<font color=\"white\">" + "Settings" + "</font>"));
+        mAuth = FirebaseAuth.getInstance();
+
+        back = findViewById(R.id.settings_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         CardView editProfile = findViewById(R.id.settings_editProfile_card);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
                 Intent intent = new Intent(Settings.this, ViewProfile.class);
                 startActivity(intent);
             }
         });
 
-        CardView logOut = findViewById(R.id.settings_logout_card);
+        CardView logOut = findViewById(R.id.settings_sign_out_card);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,7 +128,7 @@ public class Settings extends AppCompatActivity {
 
                         checkRequirements();
 
-                        if(is8char && hasnum && hasSpecialSymbol && hasUpper)
+                        if(is8char && hasNum && hasSpecialSymbol && hasUpper)
                         {
                             isReady = true;
                         }
@@ -155,7 +169,7 @@ public class Settings extends AppCompatActivity {
 
         if(password.matches("(.*[0-9].*)"))
         {
-            hasnum = true;
+            hasNum = true;
             card2.setCardBackgroundColor(Color.parseColor(getString(R.color.red_pie)));
         }else{
             hasUpper = false;

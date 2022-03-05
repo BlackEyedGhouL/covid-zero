@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "704740888249",
+    "firebase_url": "https://myhealthplusplus-default-rtdb.firebaseio.com",
     "project_id": "myhealthplusplus",
     "storage_bucket": "myhealthplusplus.appspot.com"
   },
@@ -14,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "704740888249-n889vke0mhap83f0pqc965das9de5b2l.apps.googleusercontent.com",
+          "client_id": "704740888249-cajpp2d1gv0qq70r3h3qrqivj72krlru.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.myhealthplusplus.app",
-            "certificate_hash": "c5cd36475f8c1b05f1a80c2cd50ca5ca8bfbd1fb"
+            "certificate_hash": "1b1dbff3abfde682d7dcc4a5658e14e034e4bd84"
           }
         },
         {

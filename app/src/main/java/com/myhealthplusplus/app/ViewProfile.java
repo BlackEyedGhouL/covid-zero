@@ -1,51 +1,51 @@
 package com.myhealthplusplus.app;
 
-import static java.security.AccessController.getContext;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 import com.myhealthplusplus.app.Status.Data;
-
-import java.util.Objects;
 
 public class ViewProfile extends AppCompatActivity {
 
     Spinner spinner;
     CardView profile_color_ring;
-    CardView editNameCard, editUsernameCard, editAddressCard, editGenderCard, editBirthOfDateCard, editEmailCard, editPhoneNumberCard;
-    TextView editName, editUsername, editAddress, editGender, editBirthOfDate, editEmail, editPhoneNumber;
+    CardView editNameCard, editEmailCard;
+    TextView editName, editEmail;
     TextInputLayout firstName, lastName, password;
-
+    ImageView back, profile_picture;
     public static String FName, LName, PWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
+        getWindow().setStatusBarColor(ContextCompat.getColor(ViewProfile.this, R.color.dark_black));
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle(Html.fromHtml("<font color=\"white\" >" + "Edit Profile" + "</font>"));
+        init();
+        getDataFromSharedPreferences();
 
-        Init();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         editNameCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +66,9 @@ public class ViewProfile extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        firstName = (TextInputLayout) v.findViewById(R.id.editProfileName_firstName_txtLayout);
-                        lastName = (TextInputLayout) v.findViewById(R.id.editProfileName_LastName_txtLayout);
-                        password = (TextInputLayout) v.findViewById(R.id.editProfileName_password_txtLayout);
+                        firstName = v.findViewById(R.id.editProfileName_firstName_txtLayout);
+                        lastName = v.findViewById(R.id.editProfileName_LastName_txtLayout);
+                        password = v.findViewById(R.id.editProfileName_password_txtLayout);
                         FName = firstName.getEditText().getText().toString();
                         LName = lastName.getEditText().getText().toString();
 
@@ -126,13 +126,6 @@ public class ViewProfile extends AppCompatActivity {
             }
         });
 
-        editPhoneNumberCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         StatusAdapter adapter = new StatusAdapter(ViewProfile.this, Data.getStatusList());
         spinner.setAdapter(adapter);
 
@@ -168,6 +161,19 @@ public class ViewProfile extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+    }
+
+    private void getDataFromSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+        String fullName = preferences.getString("fullName", "");
+        String email = preferences.getString("userEmail", "");
+        String profilePicture = preferences.getString("userPhoto", "");
+
+        editName.setText(fullName);
+        editEmail.setText(email);
+
+        Glide.with(this).load(profilePicture).into(profile_picture);
     }
 
     private boolean validateLastName() {
@@ -212,22 +218,14 @@ public class ViewProfile extends AppCompatActivity {
         }
     }
 
-    private void Init() {
-        spinner = findViewById(R.id.spinner_status);
+    private void init() {
+        spinner = findViewById(R.id.profile_spinner_status);
         profile_color_ring = findViewById(R.id.profile_color_ring);
         editNameCard = findViewById(R.id.profile_editName_card);
-        editUsernameCard = findViewById(R.id.profile_editUsername_card);
         editEmailCard = findViewById(R.id.profile_editEmail_card);
-        editAddressCard = findViewById(R.id.profile_editAddress_card);
-        editPhoneNumberCard = findViewById(R.id.profile_editPhoneNumber_card);
-        editBirthOfDateCard = findViewById(R.id.profile_editBirthOfDate_card);
-        editGenderCard = findViewById(R.id.profile_editGender_card);
         editName = findViewById(R.id.profile_editName);
-        editUsername = findViewById(R.id.profile_editUsername);
         editEmail = findViewById(R.id.profile_editEmail);
-        editAddress = findViewById(R.id.profile_editAddress);
-        editPhoneNumber = findViewById(R.id.profile_editPhoneNumber);
-        editGender = findViewById(R.id.profile_editGender);
-        editBirthOfDate = findViewById(R.id.profile_editBirthOfDate);
+        back = findViewById(R.id.profile_back);
+        profile_picture = findViewById(R.id.profile_picture);
     }
 }
