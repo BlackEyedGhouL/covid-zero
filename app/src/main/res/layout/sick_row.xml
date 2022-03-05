@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="10sp"
     app:cardBackgroundColor="@color/lightest_black"
     app:cardElevation="16dp"
@@ -10,56 +11,57 @@
     app:cardPreventCornerOverlap="false"
     android:foreground="@drawable/ripple">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sick_constraint"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sick_linear_layout"
-        android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/sick_topic"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/product_sans_bold"
             android:text=""
-            android:textSize="22sp"
-            android:padding="16dp"
-            android:fontFamily="@font/productsansbold"
             android:textColor="@color/white"
-            android:layout_weight="9.8"/>
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="7dp"
-            android:background="@drawable/ic_baseline_add_24"
-            android:layout_weight="0.2"/>
-
-    </LinearLayout>
+            android:id="@+id/faq_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/sick_topic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sick_topic"
+            app:srcCompat="@drawable/drop_down"
+            tools:ignore="ContentDescription" />
 
         <RelativeLayout
+            android:id="@+id/sick_relative"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sick_expandable_layout">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/sick_topic"
+            tools:layout_editor_absoluteX="20dp">
 
             <TextView
                 android:id="@+id/sick_content"
-                android:layout_width="wrap_content"
+                android:layout_width="345dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/productsansregular"
-                android:padding="16dp"
+                android:fontFamily="@font/product_sans_regular"
                 android:text=""
                 android:textColor="@color/gray"
                 android:textSize="18sp" />
 
         </RelativeLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

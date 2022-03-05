@@ -18,7 +18,7 @@
         android:layout_marginStart="8dp"
         android:textColor="@color/white"
         android:layout_toRightOf="@id/spinner_status_image"
-        android:fontFamily="@font/productsansregular"
+        android:fontFamily="@font/product_sans_regular"
         android:text="Not Set" />
 
 </RelativeLayout>

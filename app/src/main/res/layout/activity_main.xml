@@ -85,23 +85,24 @@
                                 android:weightSum="2">
 
                                 <Button
-                                    android:id="@+id/main_btnSriLanka"
+                                    android:id="@+id/main_btn_sri_lanka"
                                     style="?android:attr/buttonBarButtonStyle"
                                     android:layout_width="match_parent"
                                     android:layout_height="48dp"
                                     android:layout_weight="1"
-                                    android:background="@drawable/btn_srilanka"
+                                    android:background="@drawable/btn_sri_lanka"
                                     android:clickable="true"
                                     android:focusable="true"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:foreground="@drawable/ripple"
-                                    android:text="@string/btnSriLankaName"
+                                    android:text="@string/btn_sri_lankaName"
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"
-                                    android:textSize="16sp" />
+                                    android:textSize="16sp"
+                                    tools:ignore="NestedWeights" />
 
                                 <View
-                                    android:id="@+id/main_btnSriLanka_view"
+                                    android:id="@+id/main_btn_sri_lanka_view"
                                     android:layout_width="match_parent"
                                     android:layout_height="3dp"
                                     android:layout_weight="1"
@@ -125,19 +126,20 @@
                                     android:background="@drawable/btn_global"
                                     android:clickable="true"
                                     android:focusable="true"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:foreground="@drawable/ripple"
                                     android:text="@string/btnGlobalName"
                                     android:textAllCaps="false"
                                     android:textColor="@color/gray"
-                                    android:textSize="16sp" />
+                                    android:textSize="16sp"
+                                    tools:ignore="NestedWeights" />
 
                                 <View
                                     android:id="@+id/main_btnGlobal_view"
                                     android:layout_width="match_parent"
                                     android:layout_height="3dp"
                                     android:layout_weight="1"
-                                    android:background="@color/lightest_black" />
+                                    android:background="@color/gray" />
 
                             </LinearLayout>
 
@@ -176,7 +178,7 @@
                                 android:layout_height="37dp"
                                 android:layout_marginTop="7dp"
                                 android:background="@drawable/btns_light_black_main"
-                                android:fontFamily="@font/productsansbold"
+                                android:fontFamily="@font/product_sans_bold"
                                 android:gravity="center"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
@@ -207,7 +209,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/productsansbold"
+                            android:fontFamily="@font/product_sans_bold"
                             android:gravity="center"
                             android:paddingStart="10dp"
                             android:paddingEnd="0dp"
@@ -218,7 +220,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/productsansbold"
+                            android:fontFamily="@font/product_sans_bold"
                             android:gravity="center"
                             android:paddingStart="10dp"
                             android:paddingEnd="0dp"
@@ -248,7 +250,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/productsansbold"
+                            android:fontFamily="@font/product_sans_bold"
                             android:gravity="center"
                             android:paddingStart="10dp"
                             android:paddingEnd="0dp"
@@ -259,7 +261,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/productsansbold"
+                            android:fontFamily="@font/product_sans_bold"
                             android:gravity="center"
                             android:paddingStart="10dp"
                             android:paddingEnd="0dp"
@@ -307,7 +309,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:text="Latest News About COVID-19"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
@@ -318,7 +320,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="7dp"
                                     android:background="@drawable/btns_light_black_main"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
                                     android:text="View All"
@@ -334,7 +336,8 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/c_news" />
+                                android:src="@drawable/c_news"
+                                tools:ignore="ContentDescription" />
 
 
                         </LinearLayout>
@@ -366,7 +369,8 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/c_pcr" />
+                                android:src="@drawable/c_pcr"
+                                tools:ignore="ContentDescription" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -380,7 +384,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:text="@string/get_your_pcrTest_txt"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
@@ -391,7 +395,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="7dp"
                                     android:background="@drawable/btns_light_black_main"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
                                     android:text="@string/more_info"
@@ -439,7 +443,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:text="@string/get_vaccinated_txt"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
@@ -450,7 +454,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="7dp"
                                     android:background="@drawable/btns_light_black_main"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
                                     android:text="@string/more_info"
@@ -466,7 +470,8 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/c_get_your_vaccine" />
+                                android:src="@drawable/c_get_your_vaccine"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 
@@ -497,7 +502,8 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/c_isolation" />
+                                android:src="@drawable/c_isolation"
+                                tools:ignore="ContentDescription" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -511,7 +517,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:text="Self-isolation Countdown"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
@@ -522,7 +528,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="7dp"
                                     android:background="@drawable/btns_light_black_main"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
                                     android:text="Proceed"
@@ -571,7 +577,7 @@
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:text="@string/know_more_txt"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
@@ -582,7 +588,7 @@
                                     android:layout_height="35dp"
                                     android:layout_marginTop="7dp"
                                     android:background="@drawable/btns_light_black_main"
-                                    android:fontFamily="@font/productsansbold"
+                                    android:fontFamily="@font/product_sans_bold"
                                     android:paddingLeft="20dp"
                                     android:paddingRight="20dp"
                                     android:text="@string/more_info"
@@ -598,7 +604,8 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/c_family" />
+                                android:src="@drawable/c_family"
+                                tools:ignore="ContentDescription" />
 
                         </LinearLayout>
 

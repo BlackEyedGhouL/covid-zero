@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private PieChart pieChart;
 
-    Button m_Global, m_Srilanka;
+    Button m_Global, m_sri_lanka;
 
     NavigationView navigationView;
     DrawerLayout drawerLayout;
@@ -109,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        m_Srilanka = findViewById(R.id.main_btnSriLanka);
-        m_Srilanka.setOnClickListener(new View.OnClickListener() {
+        m_sri_lanka = findViewById(R.id.main_btn_sri_lanka);
+        m_sri_lanka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 i = 1;
@@ -318,17 +318,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             RequestQueue requestQueue = Volley.newRequestQueue(this);
 
             String apiUrl = "https://disease.sh/v3/covid-19/all";
-            Button btn1 = findViewById(R.id.main_btnSriLanka);
+            Button btn1 = findViewById(R.id.main_btn_sri_lanka);
             Button btn2 = findViewById(R.id.main_btnGlobal);
-            View d_Srilanka_view = findViewById(R.id.main_btnSriLanka_view);
+            View d_sri_lanka_view = findViewById(R.id.main_btn_sri_lanka_view);
             View d_Global_view = findViewById(R.id.main_btnGlobal_view);
 
             if (i == 1) {
                 if (btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)) {
                     btn1.setTextColor(getResources().getColor(R.color.white));
                     btn2.setTextColor(getResources().getColor(R.color.gray));
-                    d_Srilanka_view.setBackgroundResource(R.color.red_pie);
-                    d_Global_view.setBackgroundResource(R.color.lightest_black);
+                    d_sri_lanka_view.setBackgroundResource(R.color.red_pie);
+                    d_Global_view.setBackgroundResource(R.color.gray);
                 }
 
                 apiUrl = "https://disease.sh/v3/covid-19/countries/lk";
@@ -337,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     btn2.setTextColor(getResources().getColor(R.color.white));
                     btn1.setTextColor(getResources().getColor(R.color.gray));
                     d_Global_view.setBackgroundResource(R.color.red_pie);
-                    d_Srilanka_view.setBackgroundResource(R.color.lightest_black);
+                    d_sri_lanka_view.setBackgroundResource(R.color.gray);
                 }
 
                 apiUrl = "https://disease.sh/v3/covid-19/all";

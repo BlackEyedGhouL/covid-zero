@@ -127,7 +127,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:text="Personal details"
-            android:fontFamily="@font/productsansbold"
+            android:fontFamily="@font/product_sans_bold"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
@@ -156,7 +156,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:text="Name"
-                    android:fontFamily="@font/productsansregular"/>
+                    android:fontFamily="@font/product_sans_regular"/>
 
                 <TextView
                     android:id="@+id/profile_editName"
@@ -166,7 +166,7 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="Senith Umesha"
-                    android:fontFamily="@font/productsansregular"/>
+                    android:fontFamily="@font/product_sans_regular"/>
 
                 <ImageView
                     android:layout_width="22dp"
@@ -200,7 +200,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:text="Username"
-                    android:fontFamily="@font/productsansregular"/>
+                    android:fontFamily="@font/product_sans_regular"/>
 
                 <TextView
                     android:id="@+id/profile_editUsername"
@@ -210,7 +210,7 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="senith43"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:layout_marginEnd="45dp"/>
 
             </LinearLayout>
@@ -238,7 +238,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:text="Address"
-                    android:fontFamily="@font/productsansregular"/>
+                    android:fontFamily="@font/product_sans_regular"/>
 
                 <TextView
                     android:id="@+id/profile_editAddress"
@@ -248,7 +248,7 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="Galle"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:layout_marginEnd="45dp"/>
 
             </LinearLayout>
@@ -276,7 +276,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:text="Gender"
-                    android:fontFamily="@font/productsansregular"/>
+                    android:fontFamily="@font/product_sans_regular"/>
 
                 <TextView
                     android:id="@+id/profile_editGender"
@@ -286,7 +286,7 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="Male"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:layout_marginEnd="45dp"/>
 
             </LinearLayout>
@@ -314,7 +314,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:text="Birth of Date"
-                    android:fontFamily="@font/productsansregular"/>
+                    android:fontFamily="@font/product_sans_regular"/>
 
                 <TextView
                     android:id="@+id/profile_editBirthOfDate"
@@ -324,7 +324,7 @@
                     android:textColor="@color/gray"
                     android:textSize="18sp"
                     android:text="21/12/2001"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:layout_marginEnd="45dp"/>
 
             </LinearLayout>
@@ -346,7 +346,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:fontFamily="@font/productsansbold"
+            android:fontFamily="@font/product_sans_bold"
             android:text="Contact details"
             android:textColor="@color/white"
             android:textSize="20sp" />
@@ -371,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="Email"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
@@ -381,7 +381,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="34senith@gmail.com"
                     android:textColor="@color/gray"
                     android:textSize="18sp" />
@@ -419,7 +419,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="Phone Number"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
@@ -429,7 +429,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="@font/productsansregular"
+                    android:fontFamily="@font/product_sans_regular"
                     android:text="+94 711997144"
                     android:textColor="@color/gray"
                     android:textSize="18sp" />

@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/productsansbold"
+            android:fontFamily="@font/product_sans_bold"
             android:text="@string/covid_19"
             android:textColor="@color/red_pie"
             android:textSize="25sp" />

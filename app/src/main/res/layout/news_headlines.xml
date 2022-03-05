@@ -27,7 +27,7 @@
                 android:id="@+id/news_title"
                 android:textSize="20sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/productsansbold"
+                android:fontFamily="@font/product_sans_bold"
                 android:maxLines="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -38,7 +38,7 @@
                 android:id="@+id/news_source"
                 android:textSize="17sp"
                 android:textColor="@color/gray"
-                android:fontFamily="@font/productsansregular"
+                android:fontFamily="@font/product_sans_regular"
                 android:maxLines="1"
                 android:layout_marginTop="6dp"
                 android:layout_width="match_parent"

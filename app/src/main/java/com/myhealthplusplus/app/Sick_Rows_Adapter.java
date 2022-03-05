@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.myhealthplusplus.app.Models.Sick_Rows;
@@ -50,7 +51,7 @@ public class Sick_Rows_Adapter extends RecyclerView.Adapter<Sick_Rows_Adapter.Si
     public class Sick_Rows_VH extends RecyclerView.ViewHolder {
 
         TextView topicTxt, contentTxt;
-        LinearLayout linearLayout;
+        ConstraintLayout constraintLayout;
         RelativeLayout expandableLayout;
 
         public Sick_Rows_VH(@NonNull View itemView) {
@@ -58,10 +59,10 @@ public class Sick_Rows_Adapter extends RecyclerView.Adapter<Sick_Rows_Adapter.Si
 
             topicTxt = itemView.findViewById(R.id.sick_topic);
             contentTxt = itemView.findViewById(R.id.sick_content);
-            linearLayout = itemView.findViewById(R.id.sick_linear_layout);
-            expandableLayout = itemView.findViewById(R.id.sick_expandable_layout);
+            constraintLayout = itemView.findViewById(R.id.sick_constraint);
+            expandableLayout = itemView.findViewById(R.id.sick_relative);
 
-            linearLayout.setOnClickListener(new View.OnClickListener() {
+            constraintLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 

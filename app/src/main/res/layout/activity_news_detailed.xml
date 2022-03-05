@@ -17,7 +17,7 @@
             <TextView
                 android:id="@+id/news_detailed_title"
                 android:textColor="@color/white"
-                android:fontFamily="@font/productsansbold"
+                android:fontFamily="@font/product_sans_bold"
                 android:textSize="26sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             <TextView
                 android:id="@+id/news_detailed_details"
                 android:layout_width="match_parent"
-                android:fontFamily="@font/productsansregular"
+                android:fontFamily="@font/product_sans_regular"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 android:id="@+id/news_detailed_url"
                 android:layout_width="match_parent"
                 android:textSize="18sp"
-                android:fontFamily="@font/productsansregular"
+                android:fontFamily="@font/product_sans_regular"
                 android:text=""
                 android:clickable="true"
                 android:focusable="true"

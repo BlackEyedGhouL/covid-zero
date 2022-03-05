@@ -1,93 +1,85 @@
 package com.myhealthplusplus.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.SweepGradient;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.myhealthplusplus.app.Models.NewCasesDate;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class DetailedView_COVID extends AppCompatActivity {
 
     private TextView tv_confirmed, tv_confirmed_new, tv_active, tv_active_new, tv_recovered, tv_recovered_new, tv_death,
             tv_death_new, tv_tests, tv_countries;
-
     String str_confirmed, str_confirmed_new, str_active, str_recovered, str_recovered_new,
             str_death, str_death_new, str_tests, str_countries;
-
     private SwipeRefreshLayout swipeRefreshLayout;
-
     private PieChart pieChart;
-
     private int int_active_new = 0;
-
-    Button d_Global, d_Srilanka;
-
-    private BarChart barChart_newCases;
+    Button d_Global, d_sri_lanka;
 
     int i = 1;
+    private final MainActivity activity = new MainActivity();
+    ImageView back;
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
-    private MainActivity activity = new MainActivity();
+    LineChart lineChartNewCases;
+    LineDataSet newCasesLineDataSet = new LineDataSet(null, null);
+    ArrayList<ILineDataSet> iNewCasesLineDataSet = new ArrayList<>();
+    LineData newCasesLineData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view_covid);
+        getWindow().setStatusBarColor(ContextCompat.getColor(DetailedView_COVID.this, R.color.dark_black));
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle(Html.fromHtml("<font color=\"white\">" + "Analytics" + "</font>"));
-
-        Init();
+        init();
         FetchData();
 
         d_Global = findViewById(R.id.detailed_btnGlobal);
@@ -95,18 +87,25 @@ public class DetailedView_COVID extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 i=2;
-                Init();
+                init();
                 FetchData();
             }
         });
 
-        d_Srilanka = findViewById(R.id.detailed_btnSriLanka);
-        d_Srilanka.setOnClickListener(new View.OnClickListener() {
+        d_sri_lanka = findViewById(R.id.detailed_btn_sri_lanka);
+        d_sri_lanka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 i=1;
-                Init();
+                init();
                 FetchData();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
 
@@ -120,78 +119,83 @@ public class DetailedView_COVID extends AppCompatActivity {
             }
         });
 
-        BarDataSet barDataSet1 = new BarDataSet(dataValues1(), "New cases");
-        barDataSet1.setValueTextColor(Color.WHITE);
-        barDataSet1.setColor(getResources().getColor(R.color.red_pie));
-        BarData barData1 = new BarData();
-        barData1.addDataSet(barDataSet1);
+        get_data_new_cases();
+    }
 
-        barChart_newCases.setData(barData1);
-        XAxis xAxis = barChart_newCases.getXAxis();
-        xAxis.setValueFormatter(new MyXAxisValueFormatter());
+    private void get_data_new_cases() {
 
-        YAxis yAxis = barChart_newCases.getAxisLeft();
+        DatabaseReference eventRef = rootRef
+                .child("chartData")
+                .child("new_cases");
+
+        Query query = eventRef.limitToLast(7);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<Entry> newCasesDateList = new ArrayList<>();
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+
+                    NewCasesDate newCasesDate = ds.getValue(NewCasesDate.class);
+                    assert newCasesDate != null;
+                    newCasesDateList.add(new Entry(newCasesDate.getDate(), newCasesDate.getValue()));
+                }
+                new_cases(newCasesDateList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void new_cases(ArrayList<Entry> dataValues) {
+
+        newCasesLineDataSet.setValues(dataValues);
+        newCasesLineDataSet.setLabel("New Cases");
+        iNewCasesLineDataSet.clear();
+        iNewCasesLineDataSet.add(newCasesLineDataSet);
+        newCasesLineData = new LineData(iNewCasesLineDataSet);
+        lineChartNewCases.clear();
+        lineChartNewCases.setData(newCasesLineData);
+        lineChartNewCases.invalidate();
+        newCasesLineDataSet.setValueTextColor(Color.WHITE);
+        newCasesLineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        newCasesLineDataSet.setDrawFilled(true);
+        newCasesLineDataSet.setDrawCircles(true);
+        newCasesLineDataSet.setDrawCircleHole(false);
+        newCasesLineDataSet.setLineWidth(2f);
+        newCasesLineDataSet.setCircleColor(Color.WHITE);
+
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.chart_gradient);
+        newCasesLineDataSet.setFillDrawable(drawable);
+
+        newCasesLineDataSet.setColor(getResources().getColor(R.color.red_pie));
+        LineData barData1 = new LineData();
+        barData1.addDataSet(newCasesLineDataSet);
+
+        lineChartNewCases.setData(barData1);
+        XAxis xAxis = lineChartNewCases.getXAxis();
+        xAxis.setLabelCount(7);
+        xAxis.setTextColor(Color.WHITE);
+        YAxis yAxis = lineChartNewCases.getAxisLeft();
         yAxis.setTextColor(Color.WHITE);
-
-        barDataSet1.setValueFormatter(new MyValueFormatter());
-        //Paint mPaint = barChart_newCases.getRenderer().getPaintRender(); mPaint.setShader(new
-          //      SweepGradient(550,750,Color.parseColor("#007afe"),Color.parseColor("#F6404F")));
-
-        barChart_newCases.getAxisLeft().setAxisMinValue(0f);
-        barChart_newCases.getAxisLeft().setAxisMaxValue(1000f);
-        barChart_newCases.getXAxis().setDrawGridLines(false);
-        barChart_newCases.setTouchEnabled(false);
-        barChart_newCases.getAxisRight().setEnabled(false);
-        barChart_newCases.getLegend().setEnabled(false);
-        barChart_newCases.setDoubleTapToZoomEnabled(false);
-        barChart_newCases.setFitBars(true);
-        barChart_newCases.setScaleEnabled(false);
-        barChart_newCases.setClickable(false);
-        barChart_newCases.setDrawBarShadow(false);
-        barChart_newCases.setDrawGridBackground(false);
-        barChart_newCases.getAxisRight().setEnabled(false);
-        barChart_newCases.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChartNewCases.getXAxis().setDrawGridLines(false);
+        lineChartNewCases.getXAxis().setDrawLabels(true);
+        lineChartNewCases.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChartNewCases.getXAxis().setLabelCount(7, true);
+        lineChartNewCases.setTouchEnabled(false);
+        lineChartNewCases.getLegend().setEnabled(false);
+        lineChartNewCases.setDoubleTapToZoomEnabled(false);
+        lineChartNewCases.setScaleEnabled(false);
+        lineChartNewCases.setClickable(false);
+        lineChartNewCases.setDrawGridBackground(false);
+        lineChartNewCases.getAxisRight().setEnabled(false);
         Description description = new Description();
         description.setText("");
-        barChart_newCases.setDescription(description);
-        barChart_newCases.invalidate();
-    }
-
-    public class MyXAxisValueFormatter implements IAxisValueFormatter {
-
-        @Override
-        public String getFormattedValue(float v, AxisBase axisBase) {
-            axisBase.setLabelCount(7);
-            axisBase.setTextColor(Color.WHITE);
-            return "Nov " + Math.round(v);
-        }
-    }
-
-    public class MyValueFormatter implements IValueFormatter {
-
-        private DecimalFormat mFormat;
-
-        public MyValueFormatter() {
-            mFormat = new DecimalFormat("###,###,##0");
-        }
-
-        @Override
-        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-            // write your logic here
-            return mFormat.format(value);
-        }
-    }
-
-    private ArrayList<BarEntry> dataValues1() {
-        ArrayList<BarEntry> dataV = new ArrayList<>();
-        dataV.add(new BarEntry(10, 693));
-        dataV.add(new BarEntry(11, 715));
-        dataV.add(new BarEntry(12, 723));
-        dataV.add(new BarEntry(13, 716));
-        dataV.add(new BarEntry(14, 697));
-        dataV.add(new BarEntry(15, 732));
-        dataV.add(new BarEntry(16, 720));
-        return dataV;
+        lineChartNewCases.setDescription(description);
     }
 
     private void FetchData() {
@@ -203,9 +207,9 @@ public class DetailedView_COVID extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         String apiUrl = "https://disease.sh/v3/covid-19/all";
-        Button btn1 = findViewById(R.id.detailed_btnSriLanka);
+        Button btn1 = findViewById(R.id.detailed_btn_sri_lanka);
         Button btn2 = findViewById(R.id.detailed_btnGlobal);
-        View d_Srilanka_view = findViewById(R.id.detailed_btnSriLanka_view);
+        View d_sri_lanka_view = findViewById(R.id.detailed_btn_sri_lanka_view);
         View d_Global_view = findViewById(R.id.detailed_btnGlobal_view);
         CardView d_card_countries = findViewById(R.id.detailed_affectedCountries_card_txt);
         TextView activeNew = findViewById(R.id.detailed_active_new_txt);
@@ -216,8 +220,8 @@ public class DetailedView_COVID extends AppCompatActivity {
             if( btn1.getCurrentHintTextColor() != getResources().getColor(R.color.white)){
                 btn1.setTextColor(getResources().getColor(R.color.white));
                 btn2.setTextColor(getResources().getColor(R.color.gray));
-                d_Srilanka_view.setBackgroundResource(R.color.red_pie);
-                d_Global_view.setBackgroundResource(R.color.lightest_black);
+                d_sri_lanka_view.setBackgroundResource(R.color.red_pie);
+                d_Global_view.setBackgroundResource(R.color.gray);
             }
 
             apiUrl = "https://disease.sh/v3/covid-19/countries/lk";
@@ -229,7 +233,7 @@ public class DetailedView_COVID extends AppCompatActivity {
                 btn2.setTextColor(getResources().getColor(R.color.white));
                 btn1.setTextColor(getResources().getColor(R.color.gray));
                 d_Global_view.setBackgroundResource(R.color.red_pie);
-                d_Srilanka_view.setBackgroundResource(R.color.lightest_black);
+                d_sri_lanka_view.setBackgroundResource(R.color.gray);
             }
 
             apiUrl = "https://disease.sh/v3/covid-19/all";
@@ -264,6 +268,7 @@ public class DetailedView_COVID extends AppCompatActivity {
 
                             Handler delay = new Handler();
                             delay.postDelayed(new Runnable() {
+                                @SuppressLint("SetTextI18n")
                                 @Override
                                 public void run() {
 
@@ -328,7 +333,7 @@ public class DetailedView_COVID extends AppCompatActivity {
         }
     }
 
-    private void Init() {
+    private void init() {
 
         tv_confirmed = findViewById(R.id.detailed_confirmed_num_txt);
         tv_confirmed_new = findViewById(R.id.detailed_confirmed_new_txt);
@@ -339,7 +344,8 @@ public class DetailedView_COVID extends AppCompatActivity {
         tv_death = findViewById(R.id.detailed_deaths_num_txt);
         tv_death_new = findViewById(R.id.detailed_deaths_new_txt);
         tv_tests = findViewById(R.id.detailed_sample_num_txt);
-        barChart_newCases = findViewById(R.id.detailed_new_cases_BarChart);
+        lineChartNewCases = findViewById(R.id.detailed_new_cases_BarChart);
+        back = findViewById(R.id.d_back);
 
         if(i==1){
         }
@@ -347,9 +353,8 @@ public class DetailedView_COVID extends AppCompatActivity {
             tv_countries = findViewById(R.id.detailed_affectedCountries_num_txt);
         }
 
-        pieChart = findViewById(R.id.detailed_piechart);
+        pieChart = findViewById(R.id.detailed_pie_chart);
         swipeRefreshLayout = findViewById(R.id.detailed_refresh);
-
     }
 
     private boolean isConnected(DetailedView_COVID detailedViewCovid) {

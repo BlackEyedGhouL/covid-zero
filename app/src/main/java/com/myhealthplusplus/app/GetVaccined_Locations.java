@@ -64,7 +64,7 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
     GoogleMap mgooglemap;
     private FusedLocationProviderClient mLocationClient;
     private int GPS_REQUEST_CODE = 9001;
-    LatLngBounds srilanka_boundry;
+    LatLngBounds sri_lanka_boundry;
     ConstraintLayout layout;
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -85,7 +85,7 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
         double topBoundry = 10.037499991480718;
         double rightBoundry = 82.06118060471636;
 
-        srilanka_boundry = new LatLngBounds(
+        sri_lanka_boundry = new LatLngBounds(
                 new LatLng(bottomBoundry, leftBoundry),
                 new LatLng(topBoundry, rightBoundry)
         );
@@ -102,8 +102,6 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String tag ="Hello";
-                Log.d("", tag);
 
                 String lastUpdated = snapshot
                         .child("vaccineCenters")
@@ -171,7 +169,7 @@ public class GetVaccined_Locations extends AppCompatActivity implements OnMapRea
 
         mgooglemap = googleMap;
         mgooglemap.setMyLocationEnabled(true);
-        mgooglemap.setLatLngBoundsForCameraTarget(srilanka_boundry);
+        mgooglemap.setLatLngBoundsForCameraTarget(sri_lanka_boundry);
         mgooglemap.setMinZoomPreference(7.7f);
         LatLng latLng = new LatLng(7.618352550486964, 80.67400124702566);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 7);

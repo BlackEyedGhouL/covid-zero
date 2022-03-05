@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">MyHealthPlusPlus</string>
     <string name="btnGlobalName">Global</string>
-    <string name="btnSriLankaName">Sri Lanka</string>
+    <string name="btn_sri_lankaName">Sri Lanka</string>
     <string name="lblDeaths">Deaths</string>
     <string name="lblRecovered">Recovered</string>
     <string name="lblActive">Active</string>
     <string name="lblConfirmed">Confirmed</string>
     <string name="lblMoreDetails">Find out More</string>
     <string name="lblSample">Total Tests</string>
-    <string name="lblaffectedCountries">Affected Countries</string>
-    <string name="lblpb">Loading...</string>
+    <string name="lblAffectedCountries">Affected Countries</string>
+    <string name="lblPb">Loading…</string>
     <string name="no_connection">Whoops!</string>
     <string name="no_connection_txt">Slow or no internet connections. Please check your internet settings.</string>
     <string name="try_again">Try Again</string>

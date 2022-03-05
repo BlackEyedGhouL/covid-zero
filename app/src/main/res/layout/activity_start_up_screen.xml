@@ -31,7 +31,7 @@
             android:textColor="@color/white"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:fontFamily="@font/productsansbold" />
+            android:fontFamily="@font/product_sans_bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:textSize="35sp"
             android:textColor="@color/red_pie"
             android:layout_gravity="center"
-            android:fontFamily="@font/productsansbold"
+            android:fontFamily="@font/product_sans_bold"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/gray"
             android:textSize="17sp"
-            android:fontFamily="@font/productsansregular"
+            android:fontFamily="@font/product_sans_regular"
             android:text="The globally-trusted source of the latest COVID-19 info"/>
 
         <LinearLayout
@@ -71,22 +71,24 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="@drawable/ripple"
-                android:fontFamily="@font/productsansbold"
-                android:layout_marginRight="10dp"/>
+                android:fontFamily="@font/product_sans_bold"
+                android:layout_marginEnd="10dp"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/login_btnSignup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Sign up"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="@font/productsansbold"
+                android:fontFamily="@font/product_sans_bold"
                 android:foreground="@drawable/ripple"
                 android:textColor="@color/white"
                 android:background="@color/light_black"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
