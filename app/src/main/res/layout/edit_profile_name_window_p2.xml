@@ -79,7 +79,7 @@
         android:layout_marginTop="20dp"
         android:hint="Password"
         android:textColorHint="@color/gray"
-        app:boxStrokeColor="@color/reg_txtimputlayout"
+        app:boxStrokeColor="@color/reg_txt_input_layout"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/dark_black"
         app:errorTextColor="@color/red_pie"

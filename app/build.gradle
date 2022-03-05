@@ -57,4 +57,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation files('libs/MPAndroidChart-v3.0.1.jar')
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
+    implementation 'com.eightbitlab:blurview:1.6.6'
 }

@@ -2,7 +2,6 @@ package com.myhealthplusplus.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -13,9 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.myhealthplusplus.app.LoginSignup.StartUpScreen;
+import com.myhealthplusplus.app.LoginSignup.SignIn;
 
 import java.util.Objects;
 
@@ -58,7 +55,7 @@ public class Settings extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Settings.this, StartUpScreen.class);
+                Intent intent = new Intent(Settings.this, SignIn.class);
                 startActivity(intent);
             }
         });

@@ -25,8 +25,11 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_profile_card.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_spinner_status.xml" value="0.1" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_spinner_status_up.xml" value="0.1" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/blur_view_round_corners.xml" value="0.2518518518518518" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_continue_round_10_red.xml" value="0.19722222222222222" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_dark_black.xml" value="0.1" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_global.xml" value="0.2703125" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_google.xml" value="0.20925925925925926" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_green_si.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_red_si.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btn_srilanka.xml" value="0.2703125" />
@@ -34,6 +37,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/btns_light_black_main.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/cardview.xml" value="0.23425925925925925" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/chart_gradient.xml" value="0.17916666666666667" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/custom_gradient_image_fade.xml" value="0.2574074074074074" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/detailed_btn_global.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1" />
@@ -41,6 +45,8 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ic_health_sick.xml" value="0.2703125" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/image_fade_gradient.xml" value="0.2574074074074074" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/image_fade_gradient_bottom.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/no_connection_bg.xml" value="0.18981481481481483" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/p_bar.xml" value="0.2564814814814815" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/p_bar_bg.xml" value="3.2" />
@@ -49,6 +55,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/pb_si_circle_red.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/reg_txtinputlayout_colors.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ripple.xml" value="0.2703125" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ripple_10dp.xml" value="0.20925925925925926" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ripple_150dp.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ripple_circle.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/ripple_fab.xml" value="0.2703125" />
@@ -60,7 +67,8 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_allow_permissions_location.xml" value="0.2" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_change_password.xml" value="0.19444444444444445" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_detailed_view_covid.xml" value="0.264" />
-        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined.xml" value="0.264" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_forgot_password.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined.xml" value="0.266304347826087" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined_locations.xml" value="0.2578125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined_p2.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined_verify.xml" value="0.25416666666666665" />
@@ -78,8 +86,10 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_no_connection.xml" value="0.2" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_p_bar.xml" value="0.25025641025641027" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_settings.xml" value="0.25025641025641027" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_sign_in.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_splash_screen.xml" value="0.18703703703703703" />
-        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_start_up_screen.xml" value="0.23981481481481481" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_start_up_screen.xml" value="0.264" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_view_profile.xml" value="0.25025641025641027" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/allow_permissions_splash.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/edit_profile_nameWindow_p1.xml" value="0.25416666666666665" />

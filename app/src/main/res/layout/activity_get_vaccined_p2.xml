@@ -47,7 +47,7 @@
                 android:layout_marginTop="20dp"
                 android:hint="Phone Number"
                 android:textColorHint="@color/gray"
-                app:boxStrokeColor="@color/reg_txtimputlayout"
+                app:boxStrokeColor="@color/reg_txt_input_layout"
                 app:counterEnabled="true"
                 app:counterMaxLength="9"
                 app:counterTextColor="@color/gray"
