@@ -65,7 +65,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/try_again_bg.xml" value="0.18981481481481483" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/font/gg.xml" value="0.284375" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_allow_permissions_location.xml" value="0.2" />
-        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_change_password.xml" value="0.19444444444444445" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_change_password.xml" value="0.2" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_detailed_view_covid.xml" value="0.264" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_forgot_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined.xml" value="0.266304347826087" />
@@ -88,6 +88,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_settings.xml" value="0.25025641025641027" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_sign_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_sign_up.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_sign_up_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_splash_screen.xml" value="0.18703703703703703" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_start_up_screen.xml" value="0.264" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_view_profile.xml" value="0.25025641025641027" />

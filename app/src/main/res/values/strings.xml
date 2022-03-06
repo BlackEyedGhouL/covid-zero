@@ -59,4 +59,13 @@
     <string name="profile_email">Email</string>
     <string name="profile_title">Profile</string>
     <string name="settings_title">Settings</string>
+    <string name="sign_up_p_page_n1">1</string>
+    <string name="sign_up_p_page_n2">/2</string>
+    <string name="sign_up_p_password_must_be">Password must be</string>
+    <string name="sign_up_p_at_least_8_characters">At least 8 characters</string>
+    <string name="sign_up_p_minimum_1_number">Minimum 1 number</string>
+    <string name="sign_up_p_minimum_1_uppercase">Minimum 1 uppercase</string>
+    <string name="sign_up_p_minimum_1_special_symbol">Minimum 1 special symbol</string>
+    <string name="sign_up_page_n1">1/</string>
+    <string name="sign_up_page_n2">2</string>
 </resources>
