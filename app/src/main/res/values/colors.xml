@@ -17,17 +17,15 @@
     <color name="blue_pie">#007afe</color>
     <color name="red_pie">#f6404f</color>
     <color name="green_pie">#08a045</color>
-
+    <color name="dark_green">#388E3C</color>
+    <color name="dark_red">#D32F2F</color>
     <color name="dark_black">#212121</color>
     <color name="light_black">#303030</color>
     <color name="lightest_black">#424242</color>
     <color name="gray">#B4B4B4</color>
-
     <color name="profile_ring_green">#4CAF50</color>
     <color name="profile_ring_red">#F44336</color>
     <color name="profile_ring_yellow">#FFCA28</color>
-
     <color name="fav_red">#c01722</color>
-
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFFFFFFF</color>
 </resources>

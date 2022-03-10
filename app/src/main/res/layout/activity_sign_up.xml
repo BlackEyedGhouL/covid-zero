@@ -143,10 +143,6 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="@drawable/ripple_round"
-                    app:cardBackgroundColor="@color/gray"
                     app:cardCornerRadius="150dp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -156,11 +152,11 @@
 
                     <ImageView
                         android:id="@+id/sign_up_profile_image"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/camera"
+                        android:src="@drawable/default_profile_picture"
                         tools:ignore="ContentDescription" />
 
                 </androidx.cardview.widget.CardView>

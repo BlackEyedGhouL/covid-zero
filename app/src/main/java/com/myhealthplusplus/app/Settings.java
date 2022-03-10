@@ -1,19 +1,20 @@
 package com.myhealthplusplus.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
+import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -21,23 +22,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.myhealthplusplus.app.LoginSignup.ForgotPassword;
 import com.myhealthplusplus.app.LoginSignup.SignIn;
-
-import java.util.Objects;
 
 public class Settings extends AppCompatActivity {
 
-    TextInputLayout current_password, new_password, confirm_password;
+    TextInputLayout current_password, new_password, confirm_password, deletePassword;
     CardView card1, card2, card3, card4;
-    EditText editTextPassword;
-    TextView btnSave, btnCancel;
+    EditText editTextPassword, textDeletePassword;
+    TextView btnSave, btnCancel, btnCancelDelete, btnConfirmDelete, deleteForgot;
     ImageView back;
     FirebaseAuth mAuth;
-
+    private final MainActivity activity = new MainActivity();
     public static String Password;
-    private  boolean is8char=false, hasUpper=false, hasNum=false, hasSpecialSymbol =false, isReady=false;
+    String pass = "";
+    private  boolean is8char=false, hasUpper=false, hasNum=false, hasSpecialSymbol =false, isReady=false, isDeleteReady=false, isGoogle=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,7 @@ public class Settings extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(Settings.this, R.color.dark_black));
 
         mAuth = FirebaseAuth.getInstance();
+        isGoogle = false;
 
         back = findViewById(R.id.settings_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +72,6 @@ public class Settings extends AppCompatActivity {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
                 Intent intent = new Intent(Settings.this, ViewProfile.class);
                 startActivity(intent);
             }
@@ -69,8 +81,143 @@ public class Settings extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
                 Intent intent = new Intent(Settings.this, SignIn.class);
                 startActivity(intent);
+            }
+        });
+
+        CardView deleteProfile = findViewById(R.id.settings_deleteAccount_card);
+        deleteProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                isGoogle = preferences.getBoolean("isGoogle", false);
+                Log.d(TAG, "onClick: "+isGoogle);
+
+                if (!isGoogle) {
+                    pass = preferences.getString("password", "");
+                    Log.d(TAG, "onClick: "+pass);
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+                LayoutInflater inflater = (LayoutInflater) Settings.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = inflater.inflate(R.layout.activity_delete_account, findViewById(R.id.delete_profile_layout));
+                btnConfirmDelete = v.findViewById(R.id.deleteProfile_confirm_btn);
+                btnCancelDelete = v.findViewById(R.id.deleteProfile_cancel_btn);
+                deletePassword = v.findViewById(R.id.deleteProfile_currentPassword_Layout);
+                textDeletePassword = v.findViewById(R.id.deleteProfile_currentPassword_txt);
+                deleteForgot = v.findViewById(R.id.deleteProfile_forgotPassword);
+                builder.setCancelable(true);
+                builder.setView(v);
+
+                final Dialog dialog = builder.create();
+                dialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
+
+                if (isGoogle) {
+                    deleteForgot.setVisibility(View.GONE);
+                    deletePassword.setVisibility(View.GONE);
+                }
+
+                deleteForgot.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        mAuth.signOut();
+                        dialog.dismiss();
+                        Intent intent = new Intent(Settings.this, ForgotPassword.class);
+                        finishAffinity();
+                        startActivity(intent);
+                    }
+                });
+
+                textDeletePassword.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        validateDeletePassword();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+                    }
+                });
+
+                btnConfirmDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (isGoogle) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    mAuth.signOut();
+                                    dialog.dismiss();
+
+                                    String userUid = user.getUid();
+
+                                    activity.ShowDialog(Settings.this);
+                                    deleteFromDatabase(userUid);
+                                    activity.DismissDialog();
+
+                                    runAlertSuccess("Delete account", "Account deleted.");
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    dialog.dismiss();
+                                    runAlertFail("Delete account", "Please try again later.");
+                                }
+                            });
+                        } else {
+                            String p = deletePassword.getEditText().getText().toString();
+                            if(isDeleteReady )
+                            {
+                                if (!p.equals(pass)) {
+                                    dialog.dismiss();
+                                    runAlertFail("Delete account", "Incorrect password.");
+                                } else {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    user.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            mAuth.signOut();
+                                            dialog.dismiss();
+
+                                            String userUid = user.getUid();
+
+                                            activity.ShowDialog(Settings.this);
+                                            deleteFromDatabase(userUid);
+                                            activity.DismissDialog();
+
+                                            runAlertSuccess("Delete account", "Account deleted.");
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            dialog.dismiss();
+                                            runAlertFail("Delete account", "Please try again later.");
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
+
+                btnCancelDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
             }
         });
 
@@ -90,14 +237,14 @@ public class Settings extends AppCompatActivity {
                 final Dialog dialog = builder.create();
                 dialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
-                card1 = (CardView) v.findViewById(R.id.changePassword_checkCard1);
-                card2 = (CardView) v.findViewById(R.id.changePassword_checkCard2);
-                card3 = (CardView) v.findViewById(R.id.changePassword_checkCard3);
-                card4 = (CardView) v.findViewById(R.id.changePassword_checkCard4);
-                current_password = (TextInputLayout) v.findViewById(R.id.changePassword_currentPassword_Layout);
-                new_password = (TextInputLayout) v.findViewById(R.id.changePassword_newPassword_layout);
-                confirm_password = (TextInputLayout) v.findViewById(R.id.changePassword_confirmNewPassword_layout);
-                editTextPassword = (EditText) v.findViewById(R.id.changePassword_newPassword_txt);
+                card1 = v.findViewById(R.id.changePassword_checkCard1);
+                card2 = v.findViewById(R.id.changePassword_checkCard2);
+                card3 = v.findViewById(R.id.changePassword_checkCard3);
+                card4 = v.findViewById(R.id.changePassword_checkCard4);
+                current_password = v.findViewById(R.id.changePassword_currentPassword_Layout);
+                new_password = v.findViewById(R.id.changePassword_newPassword_layout);
+                confirm_password = v.findViewById(R.id.changePassword_confirmNewPassword_layout);
+                editTextPassword = v.findViewById(R.id.changePassword_newPassword_txt);
 
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -152,6 +299,77 @@ public class Settings extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    private void deleteFromDatabase(String userUid) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+        ref.child(userUid).removeValue();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void runAlertFail(String topic, String subTopic) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                Settings.this, R.style.BottomSheetDialogTheme
+        );
+        View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.fail_alert_box,
+                        findViewById(R.id.cm_fail_alert_box)
+                );
+
+        ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+        InsetDrawable inset = new InsetDrawable(back, 20);
+        bottomSheetDialog.getWindow().setBackgroundDrawable(inset);
+
+        TextView t = bottomSheetView.findViewById(R.id.cm_fail);
+        t.setText(topic);
+
+        TextView subT = bottomSheetView.findViewById(R.id.cm_fail_subT);
+        subT.setText(subTopic);
+
+        bottomSheetView.findViewById(R.id.cm_close_fail).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+            }
+        });
+        bottomSheetDialog.setCancelable(true);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void runAlertSuccess(String topic, String subTopic) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                Settings.this, R.style.BottomSheetDialogTheme
+        );
+        View bottomSheetView = LayoutInflater.from(getApplicationContext())
+                .inflate(
+                        R.layout.success_alert_box,
+                        findViewById(R.id.cm_success_alert_box)
+                );
+
+        ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+        InsetDrawable inset = new InsetDrawable(back, 20);
+        bottomSheetDialog.getWindow().setBackgroundDrawable(inset);
+
+        TextView t = bottomSheetView.findViewById(R.id.cm_success);
+        t.setText(topic);
+
+        TextView subT = bottomSheetView.findViewById(R.id.cm_success_subT);
+        subT.setText(subTopic);
+
+        bottomSheetView.findViewById(R.id.cm_close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+                Intent intent = new Intent(Settings.this, SignIn.class);
+                startActivity(intent);
+            }
+        });
+        bottomSheetDialog.setCancelable(false);
+        bottomSheetDialog.setContentView(bottomSheetView);
+        bottomSheetDialog.show();
     }
 
     @SuppressLint("ResourceType")
@@ -237,6 +455,22 @@ public class Settings extends AppCompatActivity {
             current_password.setError(null);
             current_password.setErrorEnabled(false);
             return true;
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    private void validateDeletePassword() {
+        String pass = deletePassword.getEditText().getText().toString();
+
+        if (pass.isEmpty()) {
+            deletePassword.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isDeleteReady = false;
+        }else if (pass.contains(" ")) {
+            deletePassword.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isDeleteReady = false;
+        } else {
+            deletePassword.setBoxStrokeColor(Color.parseColor(getString(R.color.white)));
+            isDeleteReady = true;
         }
     }
 }

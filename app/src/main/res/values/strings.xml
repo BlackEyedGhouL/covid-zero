@@ -68,4 +68,5 @@
     <string name="sign_up_p_minimum_1_special_symbol">Minimum 1 special symbol</string>
     <string name="sign_up_page_n1">1/</string>
     <string name="sign_up_page_n2">2</string>
+    <string name="sign_in_password">Password</string>
 </resources>
