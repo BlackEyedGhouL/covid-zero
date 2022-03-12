@@ -196,7 +196,7 @@ public class DetailedView_COVID extends AppCompatActivity {
         Description description = new Description();
         description.setText("");
         lineChartNewCases.setDescription(description);
-        lineChartNewCases.animateY(2000);
+        lineChartNewCases.animateY(1000);
     }
 
     private void FetchData() {

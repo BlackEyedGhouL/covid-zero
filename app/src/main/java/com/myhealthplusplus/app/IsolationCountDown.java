@@ -89,6 +89,12 @@ public class IsolationCountDown extends AppCompatActivity {
                     pauseTimer();
                 } else {
                     mTimeLeftInMillis = START_TIME_IN_MILLIS;
+                    Calendar end_calendar = Calendar.getInstance();
+                    end_calendar.add(Calendar.DATE, 14);
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+                    mEndDate = "Until " + format1.format(end_calendar.getTime()) + " at " + format2.format(end_calendar.getTime());
+                    until.setText(mEndDate);
                     startTimer();
                 }
             }
@@ -111,14 +117,6 @@ public class IsolationCountDown extends AppCompatActivity {
         lav.loop(true);
         lav.playAnimation();
         pb.setProgressDrawable(getResources().getDrawable(R.drawable.pb_si_circle_red));
-
-        Calendar end_calendar = Calendar.getInstance();
-        end_calendar.add(Calendar.DATE, 14);
-
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
-        mEndDate = "Until " + format1.format(end_calendar.getTime()) + " at " + format2.format(end_calendar.getTime());
-        until.setText(mEndDate);
 
         mEndTime = System.currentTimeMillis() + mTimeLeftInMillis;
 
@@ -264,6 +262,7 @@ public class IsolationCountDown extends AppCompatActivity {
         mEndDate = prefs.getString("endDate", "");
 
         Log.d(TAG, "onStart: is timer running - " + mTimerRunning);
+        Log.d(TAG, "onStart: end time - "+ mEndDate);
 
         if (mTimerRunning) {
             mEndTime = prefs.getLong("endTime", 0);
@@ -291,6 +290,7 @@ public class IsolationCountDown extends AppCompatActivity {
                 alarmManager.set(AlarmManager.RTC_WAKEUP,
                         mEndTime, pendingIntent);
             } else {
+                until.setText(mEndDate);
                 startTimer();
             }
         }
