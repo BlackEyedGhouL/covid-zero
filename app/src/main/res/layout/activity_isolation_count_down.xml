@@ -7,30 +7,75 @@
     android:background="@color/light_black"
     tools:context=".IsolationCountDown">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/si_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_black"
+        android:elevation="20dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="20dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/si_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Isolation Countdown"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/si_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="-5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"
+            app:elevation="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/product_sans_bold"
         android:text="You need to self-isolate"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/si_header" />
 
     <TextView
         android:id="@+id/si_untilTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/product_sans_regular"
         android:text="Until 14 days from now"
         android:textAlignment="center"
         android:textColor="@color/gray"
-        android:textSize="19sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,9 +83,9 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/si_lottieAnimationView"
-        android:layout_width="360dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +103,7 @@
         android:text="Days to go"
         android:textAlignment="center"
         android:textColor="@color/gray"
-        android:textSize="19sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +152,7 @@
         android:text="Stop"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/get_vaccined_card1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -129,6 +175,7 @@
         android:text="Start"
         android:textColor="@color/white"
         android:textSize="18sp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/get_vaccined_card1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -160,7 +207,7 @@
                 android:fontFamily="@font/product_sans_regular"
                 android:text="Once the countdown started you should self-isolate for the full period identified. For further advice, please visit:"
                 android:textColor="@color/gray"
-                android:textSize="19sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/si_more_info"
@@ -174,7 +221,7 @@
                 android:fontFamily="@font/product_sans_regular"
                 android:text="@string/More_info"
                 android:textColor="@color/gray"
-                android:textSize="19sp"
+                android:textSize="17sp"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
         </LinearLayout>

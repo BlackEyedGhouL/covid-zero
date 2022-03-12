@@ -93,7 +93,7 @@
             android:name=".IsolationCountDown"
             android:exported="true"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.MyHealthPlusPlus">
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
