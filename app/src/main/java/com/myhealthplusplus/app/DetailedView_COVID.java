@@ -109,11 +109,11 @@ public class DetailedView_COVID extends AppCompatActivity {
             }
         });
 
+        int refreshCycleColor = Color.parseColor("#c01722");
+        swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                int refreshCycleColor = Color.parseColor("#c01722");
-                swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
                 FetchData();
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -196,6 +196,7 @@ public class DetailedView_COVID extends AppCompatActivity {
         Description description = new Description();
         description.setText("");
         lineChartNewCases.setDescription(description);
+        lineChartNewCases.animateY(2000);
     }
 
     private void FetchData() {

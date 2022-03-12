@@ -1,100 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightest_black"
     android:orientation="vertical"
-    tools:context=".News_Detailed"
-    android:background="@color/light_black">
+    tools:context=".News_Detailed">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="8dp">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/news_detailed_headline_img"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/news_img_roundedCorners"
+        app:srcCompat="@drawable/not_available" />
 
-            <TextView
-                android:id="@+id/news_detailed_title"
-                android:textColor="@color/white"
-                android:fontFamily="@font/product_sans_bold"
-                android:textSize="26sp"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="top"
+        android:background="@drawable/image_fade_gradient_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/news_detailed_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/back"
+        app:elevation="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <com.github.captain_miao.optroundcardview.OptRoundCardView
+        android:id="@+id/news_detailed_bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="550dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:optRoundCardBackgroundColor="@color/light_black"
+        app:optRoundCardCornerRadius="25sp"
+        app:optRoundCardElevation="50dp"
+        app:optRoundCardLeftBottomCorner="false"
+        app:optRoundCardPreventCornerOverlap="false"
+        app:optRoundCardRightBottomCorner="false">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:orientation="vertical">
 
-            </TextView>
-
-            <androidx.cardview.widget.CardView
-                android:elevation="16sp"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/light_black"
-                app:cardCornerRadius="10sp"
-                android:layout_gravity="center_horizontal">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/news_detailed_title"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_black">
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/product_sans_bold"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/news_detailed_headline_img"
-                        app:shapeAppearanceOverlay="@style/news_img_roundedCorners"
-                        app:srcCompat="@drawable/not_available"
+                </TextView>
+
+                <TextView
+                    android:id="@+id/news_detailed_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="30dp"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/news_detailed_title" />
+
+                <TextView
+                    android:id="@+id/news_detailed_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="30dp"
+                    android:textColor="@color/gray"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/news_detailed_author" />
+
+                <View
+                    android:id="@+id/news_detailed_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@color/gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/news_detailed_time" />
+
+                <TextView
+                    android:id="@+id/news_detailed_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/product_sans_regular"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/news_detailed_divider" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@color/light_black"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/news_detailed_details">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:scaleType="centerCrop"
-                        android:layout_height="250dp" />
+                        android:layout_height="match_parent"
+                        android:background="@color/light_black">
 
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/news_detailed_read_more"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@drawable/btn_lightest_black"
+                            android:elevation="16dp"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:foreground="@drawable/ripple_10dp"
+                            android:text="@string/news_detailed_read_more"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="TextContrastCheck" />
 
-            </androidx.cardview.widget.CardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/news_detailed_author"
-                android:layout_marginTop="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/gray"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+                </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/news_detailed_time"
-                android:layout_marginTop="2dp"
-                android:textSize="13sp"
-                android:textColor="@color/gray"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/news_detailed_details"
-                android:layout_width="match_parent"
-                android:fontFamily="@font/product_sans_regular"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-            </TextView>
+    </com.github.captain_miao.optroundcardview.OptRoundCardView>
 
-            <TextView
-                android:id="@+id/news_detailed_url"
-                android:layout_width="match_parent"
-                android:textSize="18sp"
-                android:fontFamily="@font/product_sans_regular"
-                android:text=""
-                android:clickable="true"
-                android:focusable="true"
-                android:autoLink="all"
-                android:textColor="@color/gray"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="30dp">
-            </TextView>
-
-        </LinearLayout>
-
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

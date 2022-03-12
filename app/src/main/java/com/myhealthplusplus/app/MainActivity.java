@@ -76,11 +76,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAuth = FirebaseAuth.getInstance();
         FetchData();
 
+        int refreshCycleColor = Color.parseColor("#c01722");
+        swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                int refreshCycleColor = Color.parseColor("#c01722");
-                swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
                 FetchData();
                 swipeRefreshLayout.setRefreshing(false);
             }

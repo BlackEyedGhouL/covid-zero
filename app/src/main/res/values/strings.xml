@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyHealthPlusPlus</string>
+    <string name="app_name">Covid Zero</string>
     <string name="btnGlobalName">Global</string>
     <string name="btn_sri_lankaName">Sri Lanka</string>
     <string name="lblDeaths">Deaths</string>
@@ -24,7 +24,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="get_your_pcrTest_txt">Have You Been Tested ?</string>
-    <string name="think_sick">If You Think You Are Sick ?</string>
+    <string name="think_sick">If You Think You Are Sick?</string>
     <string name="api_key">d450bca4de2144d5b3d805e5bc614b15</string>
     <string name="get_vaccinated_txt">Get Vaccinated for COVID-19</string>
     <string name="More_info"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">More info</a></string>
@@ -69,4 +69,6 @@
     <string name="sign_up_page_n1">1/</string>
     <string name="sign_up_page_n2">2</string>
     <string name="sign_in_password">Password</string>
+    <string name="news_title">News</string>
+    <string name="news_detailed_read_more">Read More</string>
 </resources>

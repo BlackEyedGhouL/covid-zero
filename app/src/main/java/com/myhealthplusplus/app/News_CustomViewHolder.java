@@ -21,6 +21,5 @@ public class News_CustomViewHolder extends RecyclerView.ViewHolder {
         text_source = itemView.findViewById(R.id.news_source);
         img_headline = itemView.findViewById(R.id.news_headline_img);
         cardView = itemView.findViewById(R.id.news_headlines_card);
-
     }
 }

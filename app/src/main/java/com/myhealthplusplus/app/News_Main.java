@@ -8,11 +8,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -21,7 +22,6 @@ import com.myhealthplusplus.app.Models.NewsApiResponse;
 import com.myhealthplusplus.app.Models.NewsHeadlines;
 
 import java.util.List;
-import java.util.Objects;
 
 public class News_Main extends AppCompatActivity implements News_SelectListener {
 
@@ -29,26 +29,31 @@ public class News_Main extends AppCompatActivity implements News_SelectListener 
     News_CustomAdapter adapter;
     private MainActivity activity = new MainActivity();
     private SwipeRefreshLayout swipeRefreshLayout;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_news);
-
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle(Html.fromHtml("<font color=\"white\">" + "News" + "</font>"));
+        getWindow().setStatusBarColor(ContextCompat.getColor(News_Main.this, R.color.dark_black));
 
         run();
 
+        back = findViewById(R.id.news_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         swipeRefreshLayout = findViewById(R.id.news_refresh);
+        int refreshCycleColor = Color.parseColor("#c01722");
+        swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                int refreshCycleColor = Color.parseColor("#c01722");
-                swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
-
                 run();
-
                 swipeRefreshLayout.setRefreshing(false);
             }
         });

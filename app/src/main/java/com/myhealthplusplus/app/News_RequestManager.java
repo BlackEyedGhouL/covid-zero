@@ -24,7 +24,7 @@ public class News_RequestManager {
 
     public void getNewsHeadlines(News_OnFetchDataListener listener, String sort_by){
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
-        Call<NewsApiResponse> call = callNewsApi.callHeadlines("covid" , sort_by, context.getString(R.string.api_key));
+        Call<NewsApiResponse> call = callNewsApi.callHeadlines("covid" , sort_by,"en", context.getString(R.string.api_key));
 
         try{
             call.enqueue(new Callback<NewsApiResponse>() {
@@ -57,6 +57,7 @@ public class News_RequestManager {
         Call<NewsApiResponse> callHeadlines(
                 @Query("q") String query,
                 @Query("sortBy") String sort_by,
+                @Query("language") String language,
                 @Query("apiKey") String api_key
         );
     }

@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/btns_light_black_main"
+        android:background="@drawable/btn_light_black_main"
         android:fontFamily="@font/product_sans_bold"
         android:foreground="@drawable/ripple_round"
         android:gravity="center"

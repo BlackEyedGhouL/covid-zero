@@ -3,9 +3,14 @@ package com.myhealthplusplus.app;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -44,7 +49,6 @@ public class IsolationCountDown extends AppCompatActivity {
         setContentView(R.layout.activity_isolation_count_down);
         getWindow().setStatusBarColor(ContextCompat.getColor(IsolationCountDown.this, R.color.dark_black));
 
-
         pb = findViewById(R.id.pb_si);
         si_start = findViewById(R.id.si_start);
         si_stop = findViewById(R.id.si_stop);
@@ -54,6 +58,8 @@ public class IsolationCountDown extends AppCompatActivity {
         until = findViewById(R.id.si_untilTime);
         more_info = findViewById(R.id.si_more_info);
         back = findViewById(R.id.si_back);
+
+        createNotificationChannel();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +84,11 @@ public class IsolationCountDown extends AppCompatActivity {
         si_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onStart: click - " + mTimerRunning);
                 if (mTimerRunning) {
                     pauseTimer();
                 } else {
+                    mTimeLeftInMillis = START_TIME_IN_MILLIS;
                     startTimer();
                 }
             }
@@ -194,6 +202,14 @@ public class IsolationCountDown extends AppCompatActivity {
                 pb.setProgressDrawable(getResources().getDrawable(R.drawable.pb_si_circle_green));
                 time_text.setText("14");
                 until.setText("Until 14 days from now");
+
+                Intent intent = new Intent(IsolationCountDown.this, IsolationOverReminder.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(IsolationCountDown.this, 0, intent, 0);
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                alarmManager.set(AlarmManager.RTC_WAKEUP,
+                        mEndTime, pendingIntent);
             }
         }.start();
 
@@ -266,9 +282,30 @@ public class IsolationCountDown extends AppCompatActivity {
                 until.setText("Until 14 days from now");
                 pb.setProgressDrawable(getResources().getDrawable(R.drawable.pb_si_circle_green));
                 time_text.setText("14");
+
+                Intent intent = new Intent(IsolationCountDown.this, IsolationOverReminder.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(IsolationCountDown.this, 0, intent, 0);
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                alarmManager.set(AlarmManager.RTC_WAKEUP,
+                        mEndTime, pendingIntent);
             } else {
                 startTimer();
             }
+        }
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Isolation Countdown";
+            String description = "Congrats! you've successfully completed your isolation time period.";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("notifyIsolation", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
         }
     }
 }

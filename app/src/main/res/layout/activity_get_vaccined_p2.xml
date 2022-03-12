@@ -166,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/btns_light_black_main"
+                android:background="@drawable/btn_light_black_main"
                 android:elevation="5dp"
                 android:fontFamily="@font/product_sans_bold"
                 android:foreground="@drawable/ripple_round"
