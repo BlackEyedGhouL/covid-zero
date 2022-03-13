@@ -221,6 +221,7 @@
                     android:textSize="18sp" />
 
                 <ImageView
+                    android:id="@+id/profile_editName_next_icon"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="end"
@@ -256,9 +257,8 @@
             android:id="@+id/profile_editEmail_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="@drawable/ripple"
+            android:clickable="false"
+            android:focusable="false"
             app:cardBackgroundColor="@color/lightest_black"
             app:cardCornerRadius="0dp"
             tools:ignore="TouchTargetSizeCheck">

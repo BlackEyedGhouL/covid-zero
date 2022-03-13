@@ -14,9 +14,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+
 import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 import com.myhealthplusplus.app.Status.Data;
@@ -28,8 +30,9 @@ public class ViewProfile extends AppCompatActivity {
     CardView editNameCard, editEmailCard;
     TextView editName, editEmail;
     TextInputLayout firstName, lastName, password;
-    ImageView back, profile_picture;
+    ImageView back, profile_picture, name_next_icon;
     public static String FName, LName, PWord;
+    boolean isGoogle = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,71 +54,73 @@ public class ViewProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ViewProfile.this);
-                LayoutInflater inflater = (LayoutInflater) ViewProfile.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View v = inflater.inflate(R.layout.edit_profile_name_window_p1, findViewById(R.id.edit_profile_name_window_p1_layout));
-                TextView btnReview = v.findViewById(R.id.editProfileName_review_btn);
-                TextView btnP1Cancel = v.findViewById(R.id.editProfileName_cancel_p1_btn);
-                builder.setCancelable(true);
-                builder.setView(v);
+                if(isGoogle) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewProfile.this);
+                    LayoutInflater inflater = (LayoutInflater) ViewProfile.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    View v = inflater.inflate(R.layout.edit_profile_name_window_p1, findViewById(R.id.edit_profile_name_window_p1_layout));
+                    TextView btnReview = v.findViewById(R.id.editProfileName_review_btn);
+                    TextView btnP1Cancel = v.findViewById(R.id.editProfileName_cancel_p1_btn);
+                    builder.setCancelable(true);
+                    builder.setView(v);
 
-                final Dialog dialog = builder.create();
-                dialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
+                    final Dialog dialog = builder.create();
+                    dialog.getWindow().setWindowAnimations(R.style.DialogAnimation);
 
-                btnReview.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                    btnReview.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                        firstName = v.findViewById(R.id.editProfileName_firstName_txtLayout);
-                        lastName = v.findViewById(R.id.editProfileName_LastName_txtLayout);
-                        password = v.findViewById(R.id.editProfileName_password_txtLayout);
-                        FName = firstName.getEditText().getText().toString();
-                        LName = lastName.getEditText().getText().toString();
+                            firstName = v.findViewById(R.id.editProfileName_firstName_txtLayout);
+                            lastName = v.findViewById(R.id.editProfileName_LastName_txtLayout);
+                            password = v.findViewById(R.id.editProfileName_password_txtLayout);
+                            FName = firstName.getEditText().getText().toString();
+                            LName = lastName.getEditText().getText().toString();
 
-                        if (!validateFirstName() | !validateLastName()) {
-                            return;
+                            if (!validateFirstName() | !validateLastName()) {
+                                return;
+                            }
+
+                            Toast.makeText(ViewProfile.this, "hello", Toast.LENGTH_SHORT).show();
+
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ViewProfile.this);
+                            LayoutInflater inflater1 = (LayoutInflater) ViewProfile.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                            View v1 = inflater1.inflate(R.layout.edit_profile_name_window_p2, findViewById(R.id.edit_profile_name_window_p2_layout));
+                            TextView btnChange = v1.findViewById(R.id.editProfileName_save_btn);
+                            TextView btnP2Cancel = v1.findViewById(R.id.editProfileName_cancel_p2_btn);
+                            builder1.setCancelable(true);
+                            builder1.setView(v1);
+
+                            final Dialog dialog1 = builder1.create();
+                            dialog1.getWindow().setWindowAnimations(R.style.DialogAnimation);
+
+                            btnChange.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    PWord = password.getEditText().getText().toString();
+                                }
+                            });
+
+                            btnP2Cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialog1.dismiss();
+                                }
+                            });
+
+                            dialog1.show();
                         }
+                    });
 
-                        Toast.makeText(ViewProfile.this, "hello", Toast.LENGTH_SHORT).show();
+                    btnP1Cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
 
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ViewProfile.this);
-                        LayoutInflater inflater1 = (LayoutInflater) ViewProfile.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View v1 = inflater1.inflate(R.layout.edit_profile_name_window_p2, findViewById(R.id.edit_profile_name_window_p2_layout));
-                        TextView btnChange = v1.findViewById(R.id.editProfileName_save_btn);
-                        TextView btnP2Cancel = v1.findViewById(R.id.editProfileName_cancel_p2_btn);
-                        builder1.setCancelable(true);
-                        builder1.setView(v1);
-
-                        final Dialog dialog1 = builder1.create();
-                        dialog1.getWindow().setWindowAnimations(R.style.DialogAnimation);
-
-                        btnChange.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                PWord = password.getEditText().getText().toString();
-                            }
-                        });
-
-                        btnP2Cancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog1.dismiss();
-                            }
-                        });
-
-                        dialog1.show();
-                    }
-                });
-
-                btnP1Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
+                    dialog.show();
+                }
             }
         });
 
@@ -169,11 +174,18 @@ public class ViewProfile extends AppCompatActivity {
         String fullName = preferences.getString("fullName", "");
         String email = preferences.getString("userEmail", "");
         String profilePicture = preferences.getString("userPhoto", "");
+        isGoogle = preferences.getBoolean("isGoogle", false);
 
         editName.setText(fullName);
         editEmail.setText(email);
-
         Glide.with(this).load(profilePicture).into(profile_picture);
+
+        if(isGoogle) {
+            name_next_icon.setVisibility(View.INVISIBLE);
+            editNameCard.setClickable(false);
+            editNameCard.setFocusable(false);
+            editNameCard.setForeground(null);
+        }
     }
 
     private boolean validateLastName() {
@@ -227,5 +239,6 @@ public class ViewProfile extends AppCompatActivity {
         editEmail = findViewById(R.id.profile_editEmail);
         back = findViewById(R.id.profile_back);
         profile_picture = findViewById(R.id.profile_picture);
+        name_next_icon = findViewById(R.id.profile_editName_next_icon);
     }
 }

@@ -1,7 +1,5 @@
 package com.myhealthplusplus.app;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,13 +12,11 @@ import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,15 +37,15 @@ import com.myhealthplusplus.app.LoginSignup.SignIn;
 public class Settings extends AppCompatActivity {
 
     TextInputLayout current_password, new_password, confirm_password, deletePassword;
-    CardView card1, card2, card3, card4;
-    EditText editTextPassword, textDeletePassword;
+    CardView card1, card2, card3, card4, changePassword;
+    EditText editTextNewPassword, textDeletePassword, editTextCurrentPassword, editTextConfirmPassword;
     TextView btnSave, btnCancel, btnCancelDelete, btnConfirmDelete, deleteForgot;
     ImageView back;
     FirebaseAuth mAuth;
     private final MainActivity activity = new MainActivity();
     public static String Password;
     String pass = "";
-    private  boolean is8char=false, hasUpper=false, hasNum=false, hasSpecialSymbol =false, isReady=false, isDeleteReady=false, isGoogle=false;
+    private  boolean is8char=false, hasUpper=false, hasNum=false, hasSpecialSymbol =false, isReady=false, isDeleteReady=false, isGoogle=false, isCurrentPasswordReady = false, isNewPasswordReady = false, isConfirmPasswordReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +55,10 @@ public class Settings extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         isGoogle = false;
+
+        changePassword = findViewById(R.id.settings_editProfile_changePassword_card);
+
+        getDataFromSharedPreferences();
 
         back = findViewById(R.id.settings_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -91,15 +91,6 @@ public class Settings extends AppCompatActivity {
         deleteProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-                isGoogle = preferences.getBoolean("isGoogle", false);
-                Log.d(TAG, "onClick: "+isGoogle);
-
-                if (!isGoogle) {
-                    pass = preferences.getString("password", "");
-                    Log.d(TAG, "onClick: "+pass);
-                }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
                 LayoutInflater inflater = (LayoutInflater) Settings.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -138,7 +129,6 @@ public class Settings extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
                         validateDeletePassword();
                     }
 
@@ -221,7 +211,6 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        CardView changePassword = findViewById(R.id.settings_editProfile_changePassword_card);
         changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,48 +233,92 @@ public class Settings extends AppCompatActivity {
                 current_password = v.findViewById(R.id.changePassword_currentPassword_Layout);
                 new_password = v.findViewById(R.id.changePassword_newPassword_layout);
                 confirm_password = v.findViewById(R.id.changePassword_confirmNewPassword_layout);
-                editTextPassword = v.findViewById(R.id.changePassword_newPassword_txt);
+                editTextNewPassword = v.findViewById(R.id.changePassword_newPassword_txt);
+                editTextCurrentPassword = v.findViewById(R.id.changePassword_currentPassword_txt);
+                editTextConfirmPassword = v.findViewById(R.id.changePassword_confirmNewPassword_txt);
 
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        if (!validateCurrentPassword() | !validateNewPassword() | !validateConfirmPassword()) {
-                            return;
-                        }
+                        if(isReady && isCurrentPasswordReady && isNewPasswordReady && isConfirmPasswordReady) {
 
-                        if(isReady) {
                             Password = new_password.getEditText().getText().toString();
-                            dialog.dismiss();
-                            Toast.makeText(Settings.this, "Password changed successfully!", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            Toast.makeText(Settings.this, "New password invalid", Toast.LENGTH_SHORT).show();
+
+                            if (!Password.equals(pass)) {
+                                    dialog.dismiss();
+                                    runAlertFail("Change Password", "Incorrect password.");
+                                } else {
+
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                user.updatePassword(Password).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        mAuth.signOut();
+                                        dialog.dismiss();
+
+                                        runAlertSuccess("Change Password", "Password changed.");
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        dialog.dismiss();
+                                        runAlertFail("Change Password", "Please try again later.");
+                                    }
+                                });
+                            }
                         }
                     }
                 });
 
-                editTextPassword.addTextChangedListener(new TextWatcher() {
+                editTextNewPassword.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                     }
 
                     @Override
                     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                        validateNewPassword();
                         checkRequirements();
-
-                        if(is8char && hasNum && hasSpecialSymbol && hasUpper)
-                        {
-                            isReady = true;
-                        }
-                        else{
-                            isReady = false;
-                        }
+                        isReady = is8char && hasNum && hasSpecialSymbol && hasUpper;
                     }
 
                     @Override
                     public void afterTextChanged(Editable editable) {
+                    }
+                });
+
+                editTextCurrentPassword.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        validateCurrentPassword();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
+                editTextConfirmPassword.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        validateConfirmPassword();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
                     }
                 });
 
@@ -299,6 +332,19 @@ public class Settings extends AppCompatActivity {
                 dialog.show();
             }
         });
+    }
+
+    private void getDataFromSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        isGoogle = preferences.getBoolean("isGoogle", false);
+
+        if(isGoogle) {
+            changePassword.setVisibility(View.GONE);
+        }
+
+        if (!isGoogle) {
+            pass = preferences.getString("password", "");
+        }
     }
 
     private void deleteFromDatabase(String userUid) {
@@ -412,49 +458,49 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-    private boolean validateConfirmPassword() {
+    @SuppressLint("ResourceType")
+    private void validateConfirmPassword() {
         String val = new_password.getEditText().getText().toString();
         String val1 = confirm_password.getEditText().getText().toString();
 
         if (val.isEmpty()) {
-            confirm_password.setError("Field can not be empty");
-            return false;
+            confirm_password.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isConfirmPasswordReady = false;
         } else if (!(val.equals(val1))) {
-            confirm_password.setError("Password doesn't match with new password");
-            return false;
+            confirm_password.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isConfirmPasswordReady = false;
         } else {
-            confirm_password.setError(null);
-            confirm_password.setErrorEnabled(false);
-            return true;
+            confirm_password.setBoxStrokeColor(Color.parseColor(getString(R.color.white)));
+            isConfirmPasswordReady = true;
         }
     }
 
-    private boolean validateNewPassword() {
+    @SuppressLint("ResourceType")
+    private void validateNewPassword() {
         String newPass = new_password.getEditText().getText().toString();
 
         if (newPass.isEmpty()) {
-            new_password.setError("Field can not be empty");
-            return false;
+            new_password.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isNewPasswordReady = false;
         }else if (newPass.contains(" ")) {
-            new_password.setError("No white spaces are allowed!");
-            return false;
+            new_password.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isNewPasswordReady = false;
         } else {
-            new_password.setError(null);
-            new_password.setErrorEnabled(false);
-            return true;
+            new_password.setBoxStrokeColor(Color.parseColor(getString(R.color.white)));
+            isNewPasswordReady = true;
         }
     }
 
-    private boolean validateCurrentPassword() {
+    @SuppressLint("ResourceType")
+    private void validateCurrentPassword() {
         String val = current_password.getEditText().getText().toString();
 
         if (val.isEmpty()) {
-            current_password.setError("Field can not be empty");
-            return false;
+            current_password.setBoxStrokeColor(Color.parseColor(getString(R.color.red_pie)));
+            isCurrentPasswordReady = false;
         } else {
-            current_password.setError(null);
-            current_password.setErrorEnabled(false);
-            return true;
+            current_password.setBoxStrokeColor(Color.parseColor(getString(R.color.white)));
+            isCurrentPasswordReady = true;
         }
     }
 
