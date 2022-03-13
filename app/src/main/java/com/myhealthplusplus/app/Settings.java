@@ -1,5 +1,7 @@
 package com.myhealthplusplus.app;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,6 +14,7 @@ import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -339,11 +342,12 @@ public class Settings extends AppCompatActivity {
         isGoogle = preferences.getBoolean("isGoogle", false);
 
         if(isGoogle) {
-            changePassword.setVisibility(View.GONE);
-        }
-
-        if (!isGoogle) {
-            pass = preferences.getString("password", "");
+            changePassword.setVisibility(View.INVISIBLE);
+            changePassword.setClickable(false);
+            changePassword.setFocusable(false);
+            changePassword.setForeground(null);
+        } else {pass = preferences.getString("password", "");
+            Log.d(TAG, "getDataFromSharedPreferences: "+pass);
         }
     }
 

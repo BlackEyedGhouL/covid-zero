@@ -107,7 +107,7 @@
         android:foreground="@drawable/ripple_round"
         android:gravity="center"
         android:text="Save Changes"
-        android:textColor="@color/red_pie"
+        android:textColor="@color/white"
         android:textSize="15sp" />
 
     <TextView
