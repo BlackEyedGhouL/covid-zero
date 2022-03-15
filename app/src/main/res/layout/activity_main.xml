@@ -41,7 +41,7 @@
                     <View
                         android:id="@+id/main_view"
                         android:layout_width="match_parent"
-                        android:layout_height="125dp"
+                        android:layout_height="240dp"
                         android:background="@color/dark_black"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,23 +57,93 @@
                         app:srcCompat="@drawable/ic_baseline_menu_24" />
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/main_color_ring"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:outlineAmbientShadowColor="@color/red_pie"
+                        android:outlineSpotShadowColor="@color/red_pie"
+                        app:cardBackgroundColor="@color/red_pie"
+                        app:cardCornerRadius="150dp"
+                        app:cardElevation="50dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="@drawable/ripple_150dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:targetApi="p">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            app:cardCornerRadius="150dp">
+
+                            <ImageView
+                                android:id="@+id/main_profile_picture"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/default_profile_picture"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:text="Hello,"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/menu_btn" />
+
+                    <TextView
+                        android:id="@+id/main_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:gravity="center"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="0dp"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cardView1"
                         android:layout_width="390dp"
                         android:layout_height="307dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         app:cardBackgroundColor="#424242"
                         app:cardCornerRadius="20sp"
                         app:cardElevation="16dp"
                         app:layout_constraintEnd_toStartOf="@+id/main_view"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/main_view"
-                        app:layout_constraintTop_toBottomOf="@+id/menu_btn">
+                        app:layout_constraintTop_toBottomOf="@+id/main_name">
 
                         <LinearLayout
                             android:id="@+id/main_btn_holding_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:baselineAligned="false"
                             android:orientation="horizontal"
                             android:weightSum="2">
 
@@ -132,7 +202,7 @@
                                     android:textAllCaps="false"
                                     android:textColor="@color/gray"
                                     android:textSize="16sp"
-                                    tools:ignore="NestedWeights" />
+                                    tools:ignore="NestedWeights,TextContrastCheck" />
 
                                 <View
                                     android:id="@+id/main_btnGlobal_view"
@@ -147,7 +217,7 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content">
 
                             <include
                                 layout="@layout/activity_main_p1"
@@ -178,18 +248,18 @@
                                 android:layout_height="37dp"
                                 android:layout_marginTop="7dp"
                                 android:background="@drawable/btn_light_black_main"
+                                android:elevation="5dp"
                                 android:fontFamily="@font/product_sans_bold"
+                                android:foreground="@drawable/ripple_round"
                                 android:gravity="center"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
                                 android:text="Show More"
-                                android:elevation="5dp"
                                 android:textAlignment="center"
                                 android:textAllCaps="false"
                                 android:textColor="@color/red_pie"
                                 android:textSize="18sp"
-                                tools:ignore="TouchTargetSizeCheck"
-                                android:foreground="@drawable/ripple_round"/>
+                                tools:ignore="TouchTargetSizeCheck" />
 
                         </LinearLayout>
 
@@ -310,7 +380,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/product_sans_bold"
-                                    android:text="Latest News About COVID-19"
+                                    android:text="Latest news about COVID-19"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
 
@@ -518,7 +588,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/product_sans_bold"
-                                    android:text="Self-isolation Countdown"
+                                    android:text="Self-isolation countdown"
                                     android:textColor="@color/white"
                                     android:textSize="23sp" />
 

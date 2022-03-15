@@ -19,14 +19,14 @@
     <string name="headache">Headache</string>
     <string name="breathless">Breathless</string>
     <string name="fever">Fever</string>
-    <string name="know_more_txt">To Know More About COVID -19</string>
+    <string name="know_more_txt">To know more about COVID-19</string>
     <string name="more_info">More Info</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="get_your_pcrTest_txt">Have You Been Tested ?</string>
-    <string name="think_sick">If You Think You Are Sick?</string>
+    <string name="get_your_pcrTest_txt">Have you been tested?</string>
+    <string name="think_sick">If you think you\'ve been exposed?</string>
     <string name="api_key">d450bca4de2144d5b3d805e5bc614b15</string>
-    <string name="get_vaccinated_txt">Get Vaccinated for COVID-19</string>
+    <string name="get_vaccinated_txt">Get vaccinated for COVID-19</string>
     <string name="More_info"><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/when-to-self-isolate-and-what-to-do/">More info</a></string>
     <string name="sick_starting">If you have a cough, a fever or difficulty breathing, and you are worried that you may have COVID-19, here are recommendations on what to do, step by step.</string>
     //sign_in

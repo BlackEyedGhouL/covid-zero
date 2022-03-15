@@ -230,11 +230,7 @@ public class SignIn extends AppCompatActivity {
                         }
                     });
                 } else {
-                    editor.putString("fullName", user.getDisplayName());
-                    editor.putString("userEmail", user.getEmail());
-                    editor.putString("userPhoto", user.getPhotoUrl().toString());
-                    editor.putBoolean("isGoogle", true);
-                    editor.apply();
+                    getExistingDataFromFirebase(user.getUid());
                 }
             }
 
@@ -244,6 +240,31 @@ public class SignIn extends AppCompatActivity {
             }
         };
         userRef.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void getExistingDataFromFirebase(String uid) {
+        SharedPreferences.Editor editor = getApplicationContext()
+                .getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                .edit();
+
+        DatabaseReference userRef = ref
+                .child("users");
+        userRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                editor.putString("fullName", user.getName());
+                editor.putString("userEmail", user.getEmail());
+                editor.putString("userPhoto", user.getProfilePicture());
+                editor.putBoolean("isGoogle", true);
+                editor.apply();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -276,7 +297,13 @@ public class SignIn extends AppCompatActivity {
                             activity.ShowDialog(SignIn.this);
                             checkIfUserExists();
                             activity.DismissDialog();
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                             Intent intent = new Intent(SignIn.this, MainActivity.class);
+                            intent.putExtra("NAME", user.getDisplayName());
+                            intent.putExtra("PHOTO", user.getPhotoUrl().toString());
+                            intent.putExtra("GOOGLE", true);
                             startActivity(intent);
                         }
                     }
@@ -341,6 +368,7 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View view) {
                 bottomSheetDialog.dismiss();
                 Intent intent = new Intent(SignIn.this, MainActivity.class);
+                intent.putExtra("GOOGLE", false);
                 startActivity(intent);
             }
         });

@@ -50,7 +50,7 @@ public class ViewProfile extends AppCompatActivity {
 
     Spinner spinner;
     CardView profile_color_ring, editProfile;
-    CardView editNameCard, editEmailCard;
+    CardView editNameCard;
     TextView editName, editEmail;
     TextInputLayout firstName, lastName, password;
     ImageView back, profile_picture, name_next_icon;
@@ -151,13 +151,6 @@ public class ViewProfile extends AppCompatActivity {
 
                     dialog.show();
                 }
-            }
-        });
-
-        editEmailCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 
@@ -402,13 +395,11 @@ public class ViewProfile extends AppCompatActivity {
         spinner = findViewById(R.id.profile_spinner_status);
         profile_color_ring = findViewById(R.id.profile_color_ring);
         editNameCard = findViewById(R.id.profile_editName_card);
-        editEmailCard = findViewById(R.id.profile_editEmail_card);
         editName = findViewById(R.id.profile_editName);
         editEmail = findViewById(R.id.profile_editEmail);
         back = findViewById(R.id.profile_back);
         profile_picture = findViewById(R.id.profile_picture);
         name_next_icon = findViewById(R.id.profile_editName_next_icon);
         editProfile = findViewById(R.id.profile_pictureEdit_ring);
-
     }
 }

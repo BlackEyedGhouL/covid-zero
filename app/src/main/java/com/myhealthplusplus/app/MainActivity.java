@@ -1,15 +1,20 @@
 package com.myhealthplusplus.app;
 
+import static android.content.ContentValues.TAG;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +28,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -34,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.myhealthplusplus.app.LoginSignup.SignIn;
@@ -49,19 +56,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private SwipeRefreshLayout swipeRefreshLayout;
     String str_active, str_recovered, str_death;
-    private TextView tv_active, tv_recovered, tv_death;
+    private TextView tv_active, tv_recovered, tv_death, nameOnDashboard;
     private ProgressDialog p_bar;
     private PieChart pieChart;
     Button m_Global, m_sri_lanka;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
     int i = 1, isAlertBoxAlreadyRunning = 0;
-    ImageView menu_btn;
+    ImageView menu_btn, profilePictureView;
     static final float END_SCALE = 0.7f;
     LinearLayout moving_content;
     FirebaseAuth mAuth;
     private long backPressedTime;
+    CardView profileColorRing;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +83,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         Init();
         mAuth = FirebaseAuth.getInstance();
+
         FetchData();
+        getDataFromSharedPreferences();
 
         int refreshCycleColor = Color.parseColor("#c01722");
         swipeRefreshLayout.setColorSchemeColors(refreshCycleColor);
@@ -87,9 +98,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        moving_content = (LinearLayout) findViewById(R.id.moving_content);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        navigationView = findViewById(R.id.nav_view);
+        moving_content = findViewById(R.id.moving_content);
 
         navigationDrawer();
 
@@ -100,6 +111,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 i = 2;
                 Init();
                 FetchData();
+            }
+        });
+
+        profileColorRing.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ViewProfile.class);
+                startActivity(intent);
             }
         });
 
@@ -181,6 +200,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    @SuppressLint("SetTextI18n")
+    private void getDataFromSharedPreferences() {
+        String fullName, profilePicture;
+        boolean isGoogle;
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+        isGoogle = getIntent().getBooleanExtra("GOOGLE", false);
+        Log.d(TAG, "onCreate: "+isGoogle);
+
+        if (!isGoogle) {
+            fullName = preferences.getString("fullName", "");
+            profilePicture = preferences.getString("userPhoto", "");
+        }
+        else {
+            fullName = getIntent().getStringExtra("NAME");
+            profilePicture = getIntent().getStringExtra("PHOTO");
+        }
+
+        nameOnDashboard.setText(fullName+" \uD83D\uDC4B");
+        Glide.with(this).load(profilePicture).into(profilePictureView);
+        Log.d(TAG, "onCreate: "+fullName+" " +profilePicture);
+    }
 
     private void navigationDrawer() {
 
@@ -301,13 +343,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void Init() {
-
         tv_active = findViewById(R.id.main_active_num_txt);
         tv_recovered = findViewById(R.id.main_recovered_num_txt);
         tv_death = findViewById(R.id.main_deaths_num_txt);
         pieChart = findViewById(R.id.main_piechart);
         swipeRefreshLayout = findViewById(R.id.main_refresh);
-
+        nameOnDashboard = findViewById(R.id.main_name);
+        profilePictureView = findViewById(R.id.main_profile_picture);
+        profileColorRing = findViewById(R.id.main_color_ring);
     }
 
     private void FetchData() {
