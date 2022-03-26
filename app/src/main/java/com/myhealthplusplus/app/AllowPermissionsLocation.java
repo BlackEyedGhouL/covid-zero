@@ -1,21 +1,18 @@
 package com.myhealthplusplus.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.SupportMapFragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -74,7 +71,7 @@ public class AllowPermissionsLocation extends AppCompatActivity {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
                 finish();
-                Intent intent = new Intent(AllowPermissionsLocation.this, GetVaccined_Locations.class);
+                Intent intent = new Intent(AllowPermissionsLocation.this, VaccineCenters.class);
                 startActivity(intent);
             }
 

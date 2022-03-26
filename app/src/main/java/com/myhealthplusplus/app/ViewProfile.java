@@ -274,7 +274,7 @@ public class ViewProfile extends AppCompatActivity {
         Glide.with(this).load(profilePicture).into(profile_picture);
 
         if(isGoogle) {
-            name_next_icon.setVisibility(View.INVISIBLE);
+            name_next_icon.setVisibility(View.GONE);
             editNameCard.setClickable(false);
             editNameCard.setFocusable(false);
             editNameCard.setForeground(null);
