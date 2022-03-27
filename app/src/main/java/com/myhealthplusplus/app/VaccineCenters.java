@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.myhealthplusplus.app.Fragments.FragmentVaccineCentersList;
+import com.myhealthplusplus.app.Fragments.FragmentVaccineCentersMap;
 
 public class VaccineCenters extends AppCompatActivity {
 
@@ -47,12 +48,12 @@ public class VaccineCenters extends AppCompatActivity {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                list.setTextColor(getResources().getColor(R.color.gray));
-//                map.setTextColor(getResources().getColor(R.color.white));
-//                list_view.setBackgroundResource(R.color.dark_black);
-//                map_view.setBackgroundResource(R.color.white);
-//
-//                replaceFragment(new StationMapFragment());
+                list.setTextColor(getResources().getColor(R.color.gray));
+                map.setTextColor(getResources().getColor(R.color.white));
+                list_view.setBackgroundResource(R.color.dark_black);
+                map_view.setBackgroundResource(R.color.white);
+
+                replaceFragment(new FragmentVaccineCentersMap());
             }
         });
 

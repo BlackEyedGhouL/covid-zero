@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/vcm_constraint_layout"
+    android:background="@color/light_black"
+    tools:context=".Fragments.FragmentVaccineCentersMap">
+
+    <fragment
+        android:id="@+id/vcm_map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/vcm_floatingActionButton_drop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/dark_red"
+        app:borderWidth="0dp"
+        android:foreground="@drawable/ripple_round"
+        app:elevation="14dp"
+        app:tint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/drop_down"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck, ContentDescription" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/vcm_floatingActionButton_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        app:maxImageSize="30dp"
+        android:foreground="@drawable/ripple_round"
+        android:src="@drawable/my_location"
+        app:borderWidth="0dp"
+        app:elevation="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/vcm_floatingActionButton_drop"
+        app:layout_constraintEnd_toEndOf="@+id/vcm_floatingActionButton_drop"
+        app:tint="@color/dark_red"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck, ContentDescription" />
+
+    <com.github.captain_miao.optroundcardview.OptRoundCardView
+        android:id="@+id/vcm_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:optRoundCardBackgroundColor="@color/lightest_black"
+        app:optRoundCardCornerRadius="20sp"
+        app:optRoundCardElevation="16dp"
+        app:optRoundCardLeftTopCorner="false"
+        app:optRoundCardRightTopCorner="false">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="280dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="40dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/locationpermission"/>
+
+    </com.github.captain_miao.optroundcardview.OptRoundCardView>
+
+    <TextView
+        android:id="@+id/vcm_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:text="Allow Location"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vcm_card" />
+
+    <TextView
+        android:id="@+id/vcm_subTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/product_sans_regular"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="We will need these permissions to give you a better user experience."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vcm_title"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/vcm_allow_access"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/try_again_bg"
+        android:fontFamily="@font/product_sans_bold"
+        android:foreground="@drawable/ripple_round"
+        android:gravity="center"
+        android:text="Allow Access"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:elevation="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vcm_subTitle" />
+
+    <TextView
+        android:id="@+id/vcm_allow_access_notNow"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/product_sans_bold"
+        android:foreground="@drawable/ripple_round"
+        android:gravity="center"
+        android:text="Not Now"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vcm_allow_access"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

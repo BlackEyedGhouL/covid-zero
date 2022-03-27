@@ -23,6 +23,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_edit_profile.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_editprofile_preview_checkbox.xml" value="0.2703125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_profile_card.xml" value="0.2703125" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_search.xml" value="0.20925925925925926" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_search_view.xml" value="0.20925925925925926" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_spinner_status.xml" value="0.1" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/drawable/bg_spinner_status_up.xml" value="0.1" />
@@ -73,6 +74,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_detailed_view_covid.xml" value="0.264" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_forgot_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_fragment_vaccine_centers_list.xml" value="0.4" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_fragment_vaccine_centers_map.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined.xml" value="0.266304347826087" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined_locations.xml" value="0.2578125" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_get_vaccined_p2.xml" value="0.25416666666666665" />
@@ -99,6 +101,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_vaccine_centers.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_view_profile.xml" value="0.25364583333333335" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/allow_permissions_splash.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/custom_info_window.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/edit_profile_nameWindow_p1.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/edit_profile_name_window_p1.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/edit_profile_name_window_p2.xml" value="0.25416666666666665" />
