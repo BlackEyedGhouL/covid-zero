@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +24,7 @@ import java.util.List;
 public class FragmentVaccineCentersList extends Fragment {
 
     Context mContext;
+    SearchView searchView;
     RecyclerView recyclerView;
     DatabaseAdapter databaseAdapter;
     VaccineCentersAdapter vaccineCentersAdapter;
@@ -46,6 +48,7 @@ public class FragmentVaccineCentersList extends Fragment {
         rootView = inflater.inflate(R.layout.activity_fragment_vaccine_centers_list, container, false);
 
         recyclerView = rootView.findViewById(R.id.vcl_recycler_view);
+        searchView = rootView.findViewById(R.id.vcl_search_view);
 
         PreCreateDB.copyDB(mContext);
         databaseAdapter = new DatabaseAdapter(mContext);
@@ -56,6 +59,29 @@ public class FragmentVaccineCentersList extends Fragment {
         vaccineCentersAdapter = new VaccineCentersAdapter(mContext, vaccineCenterList, recyclerView);
         recyclerView.setAdapter(vaccineCentersAdapter);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return true;
+            }
+        });
+
         return rootView;
+    }
+
+    private void filter(String newText) {
+        List<VaccineCenter> filteredList = new ArrayList<>();
+        for(VaccineCenter vaccineCenter : vaccineCenterList) {
+            if(vaccineCenter.getCenter().toLowerCase().contains(newText.toLowerCase())) {
+                filteredList.add(vaccineCenter);
+            }
+        }
+        vaccineCentersAdapter.filterList(filteredList);
     }
 }

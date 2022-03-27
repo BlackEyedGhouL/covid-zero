@@ -64,6 +64,12 @@ public class VaccineCentersAdapter extends RecyclerView.Adapter<VaccineCentersAd
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(List<VaccineCenter> filteredList) {
+        vaccineCenterList = filteredList;
+        notifyDataSetChanged();
+    }
+
     private class MyOnClickListener implements View.OnClickListener {
         @SuppressLint("SetTextI18n")
         @Override
