@@ -198,6 +198,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+
+        Button pcrTEST = findViewById(R.id.btnPcrTest);
+        pcrTEST.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GetYourPcrTest.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("SetTextI18n")

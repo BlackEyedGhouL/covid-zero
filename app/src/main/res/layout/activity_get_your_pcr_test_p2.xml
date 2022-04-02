@@ -4,180 +4,281 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/light_black"
-    tools:context=".GetVaccined_p2">
+    android:theme="@style/reg_txtInputLayout"
+    tools:context=".GetYourPcrTest_p2">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/get_vaccined_p2_card1"
-        android:layout_width="390dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pcr2_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        app:cardBackgroundColor="@color/lightest_black"
-        app:cardCornerRadius="20sp"
-        app:cardElevation="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/dark_black"
+        android:elevation="20dp"
+        android:paddingLeft="25dp"
+        android:paddingTop="20dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/pcr2_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="COVID-19 Testing"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/get_vaccined_p2_reg_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/product_sans_bold"
-                android:text="Registration information"
-                android:textColor="@color/white"
-                android:textSize="26sp" />
+        <ImageView
+            android:id="@+id/pcr2_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="-5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"
+            app:elevation="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/get_vaccined_reg_p2_PN_txtLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/pcr2_header">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_black">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pcr2_card1"
+                android:layout_width="390dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Phone Number"
-                android:textColorHint="@color/gray"
-                app:boxStrokeColor="@color/reg_txt_input_layout"
-                app:counterEnabled="true"
-                app:counterMaxLength="9"
-                app:counterTextColor="@color/gray"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/dark_black"
-                app:prefixText="+94 "
-                app:prefixTextColor="@color/white"
-                app:startIconDrawable="@drawable/ic_baseline_call_24"
-                app:startIconTint="@color/dark_black"
-                app:errorTextColor="@color/red_pie"
-                app:boxStrokeErrorColor="@color/red_pie"
-                app:errorIconTint="@color/red_pie">
+                android:layout_marginBottom="100dp"
+                app:cardBackgroundColor="@color/lightest_black"
+                app:cardCornerRadius="20sp"
+                app:cardElevation="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/get_vaccined_reg_p2_PN_txt"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:maxLength="9"
-                    android:singleLine="true"
-                    android:inputType="number"
-                    android:textColor="@color/white" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:id="@+id/pcr2_reg_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:text="Registration information"
+                        android:textColor="@color/white"
+                        android:textSize="26sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/product_sans_regular"
-                android:text="Gender"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pcr2_PN_txtLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:hint="Phone Number"
+                        android:textColorHint="@color/gray"
+                        app:boxStrokeColor="@color/reg_txt_input_layout"
+                        app:boxStrokeErrorColor="@color/red_pie"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="9"
+                        app:counterTextColor="@color/gray"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/dark_black"
+                        app:errorIconTint="@color/red_pie"
+                        app:errorTextColor="@color/red_pie"
+                        app:prefixText="+94 "
+                        app:prefixTextColor="@color/white"
+                        app:startIconDrawable="@drawable/ic_baseline_call_24"
+                        app:startIconTint="@color/dark_black">
 
-            <RadioGroup
-                android:id="@+id/get_vaccined_reg_p2_gender_radio_group"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pcr2_reg_p2_PN_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:inputType="number"
+                            android:maxLength="9"
+                            android:singleLine="true"
+                            android:textColor="@color/white" />
 
-                <RadioButton
-                    android:id="@+id/get_vaccined_reg_p2_radio_group_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:text="Male"
-                    android:textColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <RadioButton
-                    android:id="@+id/get_vaccined_reg_p2_radio_group_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="60dp"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:text="Female"
-                    android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/product_sans_regular"
+                        android:text="Gender"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
 
-            </RadioGroup>
+                    <RadioGroup
+                        android:id="@+id/pcr2_reg_p2_gender_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/product_sans_regular"
-                android:text="Date of Birth"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                        <RadioButton
+                            android:id="@+id/pcr2_reg_p2_radio_group_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="Male"
+                            android:textColor="@color/white" />
 
-            <DatePicker
-                android:id="@+id/age_picker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:spinnersShown="true"
-                android:theme="@style/MyDatePicker" />
+                        <RadioButton
+                            android:id="@+id/pcr2_reg_p2_radio_group_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="60dp"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="Female"
+                            android:textColor="@color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/product_sans_regular"
-                android:text="Do you identify as an Indigenous person?"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                    </RadioGroup>
 
-            <RadioGroup
-                android:id="@+id/get_vaccined_reg_p2_Indigenous_radio_group"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/product_sans_regular"
+                        android:text="Date of Birth"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
 
-                <RadioButton
-                    android:id="@+id/get_vaccined_reg_p2_Indigenous_radio_group_yes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="75dp"
-                    android:layout_marginEnd="68dp"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:text="Yes"
-                    android:textColor="@color/white" />
+                    <DatePicker
+                        android:id="@+id/age_picker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:calendarViewShown="false"
+                        android:datePickerMode="spinner"
+                        android:spinnersShown="true"
+                        android:theme="@style/MyDatePicker" />
 
-                <RadioButton
-                    android:id="@+id/get_vaccined_reg_p2_Indigenous_radio_group_no"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:text="No"
-                    android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/product_sans_regular"
+                        android:text="Do you identify as an Indigenous person?"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
 
-            </RadioGroup>
+                    <RadioGroup
+                        android:id="@+id/pcr2_reg_p2_Indigenous_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/get_vaccined_reg_p2_Next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/btn_light_black_main"
-                android:elevation="5dp"
-                android:fontFamily="@font/product_sans_bold"
-                android:foreground="@drawable/ripple_round"
-                android:text="Proceed"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                android:textAllCaps="false"
-                android:theme="@style/Theme.MyHealthPlusPlus" />
+                        <RadioButton
+                            android:id="@+id/pcr2_reg_p2_Indigenous_radio_group_yes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="75dp"
+                            android:layout_marginEnd="68dp"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="Yes"
+                            android:textColor="@color/white" />
 
-        </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/pcr2_reg_p2_Indigenous_radio_group_no"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="No"
+                            android:textColor="@color/white" />
 
-    </androidx.cardview.widget.CardView>
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/product_sans_regular"
+                        android:text="Choose the test type"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:textSize="18sp" />
+
+                    <RadioGroup
+                        android:id="@+id/pcr2_reg_p2_Type_radio_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/pcr2_reg_p2_Type_radio_group_pcr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="75dp"
+                            android:layout_marginEnd="68dp"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="Pcr"
+                            android:textColor="@color/white" />
+
+                        <RadioButton
+                            android:id="@+id/pcr2_reg_p2_Type_radio_group_antigen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="Antigen"
+                            android:textColor="@color/white" />
+
+                    </RadioGroup>
+
+                    <Button
+                        android:id="@+id/pcr2_reg_p2_Next"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="44dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/btn_light_black_main"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/product_sans_bold"
+                        android:foreground="@drawable/ripple_round"
+                        android:text="Proceed"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:theme="@style/Theme.MyHealthPlusPlus" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
