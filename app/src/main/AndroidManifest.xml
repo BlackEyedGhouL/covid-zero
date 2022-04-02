@@ -8,8 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <application
@@ -19,8 +20,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealthPlusPlus">
+        <activity
+            android:name=".GetYourPcrTest_p2"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/reg_txtInputLayout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
 
-        <receiver android:name=".IsolationOverReminder"/>
+        <receiver android:name=".IsolationOverReminder" />
 
         <activity
             android:name=".LoginSignup.SignUpPassword"
@@ -102,12 +112,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GetVaccined_Verify"
-            android:exported="true" />
-        <activity
             android:name=".GetVaccined_p2"
             android:exported="true"
-            android:parentActivityName=".News_Main"
+            android:parentActivityName=".GetVaccined"
             android:theme="@style/reg_txtInputLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -116,7 +123,7 @@
         <activity
             android:name=".GetVaccined"
             android:exported="true"
-            android:parentActivityName=".News_Main"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/reg_txtInputLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -142,7 +149,13 @@
         </activity>
         <activity
             android:name=".GetYourPcrTest"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/reg_txtInputLayout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".IfYoureFeelingSick"
             android:exported="true"

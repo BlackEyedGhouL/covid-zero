@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="get_your_pcr_test_reg_firstName_txtLayout" type="id" />
+    <item name="get_your_pcr_test_reg_LastName_txtLayout" type="id" />
+    <item name="get_your_pcr_test_reg_NIC_txtLayout" type="id" />
+    <item name="get_your_pcr_test_reg_PostalCode_txtLayout" type="id" />
+    <item name="get_your_pcr_test_locations" type="id" />
+    <item name="get_your_pcr_test_reg_Next" type="id" />
+</resources>

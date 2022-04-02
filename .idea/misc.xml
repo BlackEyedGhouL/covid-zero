@@ -109,6 +109,12 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/tool_bar.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/toolbar.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/menu/main_menu.xml" value="0.2" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/covid19-app/app/src/main/res/layout/activity_get_vaccined.xml" value="0.22" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/covid19-app/app/src/main/res/layout/activity_get_vaccined_p2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/covid19-app/app/src/main/res/layout/activity_get_vaccined_verify.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/covid19-app/app/src/main/res/layout/activity_get_your_pcr_test.xml" value="0.2" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/covid19-app/app/src/main/res/layout/activity_get_your_pcr_test_p2.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/covid19-app/app/src/main/res/layout/activity_isolation_count_down.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>
