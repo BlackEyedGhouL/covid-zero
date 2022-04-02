@@ -21,10 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealthPlusPlus">
         <activity
-            android:name=".GetYourPcrTest_p2"
+            android:name=".VaccineCenters"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/reg_txtInputLayout">
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -112,9 +111,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".GetVaccined_Verify"
+            android:exported="true" />
+        <activity
             android:name=".GetVaccined_p2"
             android:exported="true"
-            android:parentActivityName=".GetVaccined"
+            android:parentActivityName=".News_Main"
             android:theme="@style/reg_txtInputLayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -123,8 +125,8 @@
         <activity
             android:name=".GetVaccined"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/reg_txtInputLayout">
+            android:parentActivityName=".News_Main"
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -149,13 +151,7 @@
         </activity>
         <activity
             android:name=".GetYourPcrTest"
-            android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/reg_txtInputLayout">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".IfYoureFeelingSick"
             android:exported="true"

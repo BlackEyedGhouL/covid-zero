@@ -1,42 +1,46 @@
 package com.myhealthplusplus.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
-import com.google.android.material.textfield.TextInputEditText;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 public class GetVaccined extends AppCompatActivity {
 
     TextInputLayout firstName, lastName, nic, postalCode;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_vaccined);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle(Html.fromHtml("<font color=\"white\">" + "Vaccinations" + "</font>"));
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.dark_black)));
+        getWindow().setStatusBarColor(ContextCompat.getColor(GetVaccined.this, R.color.dark_black));
 
+        back = findViewById(R.id.gv_back);
         firstName = findViewById(R.id.get_vaccined_reg_firstName_txtLayout);
         lastName = findViewById(R.id.get_vaccined_reg_LastName_txtLayout);
         nic = findViewById(R.id.get_vaccined_reg_NIC_txtLayout);
         postalCode = findViewById(R.id.get_vaccined_reg_PostalCode_txtLayout);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         Button locations = findViewById(R.id.get_vaccined_locations);
         locations.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GetVaccined.this, AllowPermissionsLocation.class);
+                Intent intent = new Intent(GetVaccined.this, VaccineCenters.class);
                 startActivity(intent);
             }
         });

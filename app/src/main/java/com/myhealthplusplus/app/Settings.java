@@ -342,7 +342,7 @@ public class Settings extends AppCompatActivity {
         isGoogle = preferences.getBoolean("isGoogle", false);
 
         if(isGoogle) {
-            changePassword.setVisibility(View.INVISIBLE);
+            changePassword.setVisibility(View.GONE);
             changePassword.setClickable(false);
             changePassword.setFocusable(false);
             changePassword.setForeground(null);

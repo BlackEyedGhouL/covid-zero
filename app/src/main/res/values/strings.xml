@@ -71,4 +71,14 @@
     <string name="sign_in_password">Password</string>
     <string name="news_title">News</string>
     <string name="news_detailed_read_more">Read More</string>
+    <string name="vc_vaccine_centers">Vaccine Centers</string>
+    <string name="vc_list">List</string>
+    <string name="vc_map">Map</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="vcl_police_area_txt">Police Area</string>
+    <string name="vcl_get_directions">Get Directions</string>
+    <string name="vcl_alert_district_txt">District</string>
+    <string name="vcl_alert_center_name">Vaccine Center Name</string>
+    <string name="vcl_center_name">Vaccine Center Name</string>
+    <string name="vcl_district">District</string>
 </resources>
