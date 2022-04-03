@@ -84,24 +84,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AllowPermissionsLocation"
-            android:exported="true"
-            android:parentActivityName=".GetVaccined"
-            android:theme="@style/Theme.Design.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".GetVaccined_Locations"
-            android:exported="true"
-            android:parentActivityName=".GetVaccined"
-            android:theme="@style/Theme.MyHealthPlusPlus">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".IsolationCountDown"
             android:exported="true"
             android:parentActivityName=".MainActivity"
@@ -112,7 +94,12 @@
         </activity>
         <activity
             android:name=".GetVaccined_Verify"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".GetVaccined_p2"
             android:exported="true"

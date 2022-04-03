@@ -10,6 +10,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -75,6 +83,7 @@ public class FragmentVaccineCentersMap extends Fragment implements OnMapReadyCal
     private FusedLocationProviderClient mLocationClient;
     Boolean isAllFabsVisible;
     LatLngBounds sriLanka_boundary;
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
     public FragmentVaccineCentersMap() {
     }
@@ -169,6 +178,41 @@ public class FragmentVaccineCentersMap extends Fragment implements OnMapReadyCal
         return rootView;
     }
 
+    private void setLastUpdated() {
+        DatabaseReference lastUpdateRef = rootRef
+                .child("lastUpdated");
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String lastUpdated = snapshot
+                        .child("vaccineCenters")
+                        .getValue().toString();
+
+                Log.d("Last Updated: ", lastUpdated);
+
+                Snackbar.make(layout, "Last Updated: " + lastUpdated, BaseTransientBottomBar.LENGTH_INDEFINITE)
+                        .setAction("Hide", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                            }
+                        })
+                        .setActionTextColor(getResources().getColor(R.color.red_pie))
+                        .setBackgroundTint(getResources().getColor(R.color.light_black))
+                        .setTextColor(getResources().getColor(R.color.white))
+                        .show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        lastUpdateRef.addListenerForSingleValueEvent(valueEventListener);
+    }
+
     private void getMarkerData() {
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(mContext));
 
@@ -233,6 +277,7 @@ public class FragmentVaccineCentersMap extends Fragment implements OnMapReadyCal
         mMap.moveCamera(cameraUpdate);
 
         getMarkerData();
+        setLastUpdated();
     }
 
     @Override
