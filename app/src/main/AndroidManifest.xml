@@ -21,6 +21,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealthPlusPlus">
         <activity
+            android:name=".GetTested_Verify"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GetVaccined_Verify"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".VaccineCenters"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
@@ -61,7 +77,6 @@
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -93,7 +108,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GetVaccined_Verify"
+            android:name=".GetYourPcrTest_p2"
             android:exported="true"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
@@ -103,8 +118,7 @@
         <activity
             android:name=".GetVaccined_p2"
             android:exported="true"
-            android:parentActivityName=".News_Main"
-            android:theme="@style/reg_txtInputLayout">
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -112,7 +126,6 @@
         <activity
             android:name=".GetVaccined"
             android:exported="true"
-            android:parentActivityName=".News_Main"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -138,7 +151,12 @@
         </activity>
         <activity
             android:name=".GetYourPcrTest"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".IfYoureFeelingSick"
             android:exported="true"
