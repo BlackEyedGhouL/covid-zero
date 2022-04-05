@@ -90,7 +90,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/product_sans_bold"
-                            android:text="Register Now"
+                            android:text="Register now"
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 

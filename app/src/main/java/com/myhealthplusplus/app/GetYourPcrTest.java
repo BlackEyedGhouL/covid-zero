@@ -53,6 +53,10 @@ public class GetYourPcrTest extends AppCompatActivity {
                     return;
                 }
                 Intent intent = new Intent(GetYourPcrTest.this, GetYourPcrTest_p2.class);
+                intent.putExtra("FIRST_NAME", firstName.getEditText().getText().toString());
+                intent.putExtra("LAST_NAME", lastName.getEditText().getText().toString());
+                intent.putExtra("POSTAL_CODE", postalCode.getEditText().getText().toString());
+                intent.putExtra("NIC", nic.getEditText().getText().toString());
                 startActivity(intent);
             }
 

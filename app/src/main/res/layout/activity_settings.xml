@@ -62,8 +62,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="15dp">
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="33dp"
@@ -86,9 +86,9 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="2dp"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:background="@color/lightest_black"/>
+            android:layout_marginRight="20dp"
+            android:background="@color/lightest_black" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/settings_editProfile_card"
@@ -171,10 +171,10 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:background="@color/lightest_black"/>
+            android:background="@color/lightest_black" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/settings_deleteAccount_card"
@@ -215,41 +215,47 @@
 
         </androidx.cardview.widget.CardView>
 
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/settings_sign_out_card"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="392dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="@drawable/ripple"
-            app:cardBackgroundColor="@color/light_black"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
-            tools:ignore="TouchTargetSizeCheck">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="12dp">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/settings_sign_out_card"
+                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp">
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple"
+                app:cardBackgroundColor="@color/light_black"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp"
+                tools:ignore="TouchTargetSizeCheck">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/product_sans_regular"
-                    android:gravity="center"
-                    android:text="Sign out"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp">
 
-        </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/product_sans_regular"
+                        android:gravity="center"
+                        android:text="Sign out"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
 
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

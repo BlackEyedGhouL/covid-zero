@@ -1,50 +1,80 @@
 package com.myhealthplusplus.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Objects;
+import java.util.Date;
 
 public class GetVaccined_p2 extends AppCompatActivity {
 
     RadioGroup gender_radioGroup, indigenous_radiogroup;
     DatePicker datePicker;
     TextInputLayout phoneNumber;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_vaccined_p2);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-        setTitle(Html.fromHtml("<font color=\"white\">" + "Vaccinations" + "</font>"));
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.dark_black)));
+        getWindow().setStatusBarColor(ContextCompat.getColor(GetVaccined_p2.this, R.color.dark_black));
 
         gender_radioGroup = findViewById(R.id.get_vaccined_reg_p2_gender_radio_group);
         indigenous_radiogroup = findViewById(R.id.get_vaccined_reg_p2_Indigenous_radio_group);
-        datePicker = findViewById(R.id.age_picker);
+        datePicker = findViewById(R.id.get_vaccined_p2_age_picker);
         phoneNumber = findViewById(R.id.get_vaccined_reg_p2_PN_txtLayout);
+        back = findViewById(R.id.get_vaccined_p2_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         Button next = findViewById(R.id.get_vaccined_reg_p2_Next);
         next.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
                 if (!validatePN() | !validateGender() | !validateAge() | !validateIndigenous()) {
                     return;
                 }
+
+                RadioButton genderRadioButton = (RadioButton) findViewById(gender_radioGroup.getCheckedRadioButtonId());
+                String gender = genderRadioButton.getText().toString();
+
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
+                Date d = new Date(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
+                String strDate = dateFormatter.format(d);
+
+                RadioButton indigenousRadioButton = (RadioButton) findViewById(indigenous_radiogroup.getCheckedRadioButtonId());
+                String indigenous = indigenousRadioButton.getText().toString();
+
                 Intent intent = new Intent(GetVaccined_p2.this, GetVaccined_Verify.class);
+                intent.putExtra("FIRST_NAME", getIntent().getStringExtra("FIRST_NAME"));
+                intent.putExtra("LAST_NAME", getIntent().getStringExtra("LAST_NAME"));
+                intent.putExtra("POSTAL_CODE", getIntent().getStringExtra("POSTAL_CODE"));
+                intent.putExtra("NIC", getIntent().getStringExtra("NIC"));
+                intent.putExtra("PHONE", "+94"+phoneNumber.getEditText().getText().toString().trim());
+                intent.putExtra("GENDER", gender);
+                intent.putExtra("DOB", strDate);
+                intent.putExtra("INDIGENOUS", indigenous);
                 startActivity(intent);
             }
 

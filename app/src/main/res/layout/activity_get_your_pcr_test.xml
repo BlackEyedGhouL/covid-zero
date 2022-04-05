@@ -92,24 +92,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/product_sans_bold"
-                            android:text="Register Now"
+                            android:text="Register now"
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
                         <ImageView
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_margin="15dp"
                             android:layout_gravity="center"
                             android:scaleType="fitXY"
-                            android:src="@drawable/c_vaccination" />
+                            android:src="@drawable/testings" />
 
                         <TextView
                             android:id="@+id/get_your_pcr_test_desc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             android:fontFamily="@font/product_sans_regular"
-                            android:text="You can register yourself or someone else. We will never ask you for your banking details."
+                            android:text="You can now use the testing registration form to pre-register your details before your COVID-19 test to speed up information collection at the testing site."
                             android:textColor="@color/gray"
                             android:textSize="20sp" />
 
@@ -140,11 +140,9 @@
                     android:layout_width="390dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="100dp"
                     app:cardBackgroundColor="@color/lightest_black"
                     app:cardCornerRadius="20sp"
                     app:cardElevation="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/get_your_pcr_test_card1">
@@ -162,7 +160,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/product_sans_bold"
-                            android:text="Registration Information"
+                            android:text="Registration information"
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
@@ -306,6 +304,92 @@
                             android:textColor="@color/white"
                             android:textSize="17sp"
                             android:theme="@style/Theme.MyHealthPlusPlus" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/get_your_pcr_test_card3"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="100dp"
+                    app:cardBackgroundColor="@color/lightest_black"
+                    app:cardCornerRadius="20sp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/get_your_pcr_test_card2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/get_your_pcr_retest_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Retesting if you previously tested positive for COVID-19"
+                            android:textColor="@color/white"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:id="@+id/get_your_pcr_retest_desc1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="If you have had COVID-19 and develop new or worsening symptoms you should get tested again."
+                            android:textColor="@color/gray"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/get_your_pcr_retest_desc2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="If more than 90 days have passed since your positive COVID-19 result, get tested."
+                            android:textColor="@color/red_pie"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/get_your_pcr_retest_desc3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="If 30 to 90 days have passed since your positive COVID-19 result, you should take an at-home rapid POCT test."
+                            android:textColor="@color/red_pie"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/get_your_pcr_retest_desc4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Less than 30 days since your positive COVID-19 result, no additional COVID-19 testing is required."
+                            android:textColor="@color/red_pie"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/get_your_pcr_retest_desc5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="The above advice is for the general public and is not meant to replace guidance for people who live or work in a hospital."
+                            android:textColor="@color/gray"
+                            android:textSize="20sp" />
 
                     </LinearLayout>
 
