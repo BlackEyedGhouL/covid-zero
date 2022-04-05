@@ -42,7 +42,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.myhealthplusplus.app.Models.DeathDate;
 import com.myhealthplusplus.app.Models.NewCasesDate;
+import com.myhealthplusplus.app.Models.RecoveredDate;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
@@ -62,7 +64,6 @@ public class DetailedView_COVID extends AppCompatActivity {
     private PieChart pieChart;
     private int int_active_new = 0;
     Button d_Global, d_sri_lanka;
-
     int i = 1;
     private final MainActivity activity = new MainActivity();
     ImageView back;
@@ -73,6 +74,16 @@ public class DetailedView_COVID extends AppCompatActivity {
     ArrayList<ILineDataSet> iNewCasesLineDataSet = new ArrayList<>();
     LineData newCasesLineData;
 
+    LineChart lineChartDeaths;
+    LineDataSet deathsLineDataSet = new LineDataSet(null, null);
+    ArrayList<ILineDataSet> iDeathsLineDataSet = new ArrayList<>();
+    LineData deathLineData;
+
+    LineChart lineChartRecovered;
+    LineDataSet recoveredLineDataSet = new LineDataSet(null, null);
+    ArrayList<ILineDataSet> iRecoveredLineDataSet = new ArrayList<>();
+    LineData recoveredLineData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +93,7 @@ public class DetailedView_COVID extends AppCompatActivity {
         init();
         FetchData();
 
-        d_Global = findViewById(R.id.detailed_btnGlobal);
+
         d_Global.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +103,7 @@ public class DetailedView_COVID extends AppCompatActivity {
             }
         });
 
-        d_sri_lanka = findViewById(R.id.detailed_btn_sri_lanka);
+
         d_sri_lanka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,10 +131,11 @@ public class DetailedView_COVID extends AppCompatActivity {
         });
 
         get_data_new_cases();
+        get_data_deaths();
+        get_data_recovered();
     }
 
     private void get_data_new_cases() {
-
         DatabaseReference eventRef = rootRef
                 .child("chartData")
                 .child("new_cases");
@@ -151,8 +163,157 @@ public class DetailedView_COVID extends AppCompatActivity {
         });
     }
 
-    public void new_cases(ArrayList<Entry> dataValues) {
+    private void get_data_deaths() {
+        DatabaseReference eventRef = rootRef
+                .child("chartData")
+                .child("deaths");
 
+        Query query = eventRef.limitToLast(7);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<Entry> deathsDateList = new ArrayList<>();
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+
+                    DeathDate deathDate = ds.getValue(DeathDate.class);
+                    assert deathDate != null;
+                    deathsDateList.add(new Entry(deathDate.getDate(), deathDate.getValue()));
+                }
+                deaths(deathsDateList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void get_data_recovered() {
+        DatabaseReference eventRef = rootRef
+                .child("chartData")
+                .child("recovered");
+
+        Query query = eventRef.limitToLast(7);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                ArrayList<Entry> recoveredDateList = new ArrayList<>();
+
+                for(DataSnapshot ds : snapshot.getChildren()) {
+
+                    RecoveredDate recoveredDate = ds.getValue(RecoveredDate.class);
+                    assert recoveredDate != null;
+                    recoveredDateList.add(new Entry(recoveredDate.getDate(), recoveredDate.getValue()));
+                }
+                recovered(recoveredDateList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void deaths(ArrayList<Entry> dataValues) {
+        deathsLineDataSet.setValues(dataValues);
+        deathsLineDataSet.setLabel("Deaths");
+        iDeathsLineDataSet.clear();
+        iDeathsLineDataSet.add(deathsLineDataSet);
+        deathLineData = new LineData(iDeathsLineDataSet);
+        lineChartDeaths.clear();
+        lineChartDeaths.setData(deathLineData);
+        lineChartDeaths.invalidate();
+        deathsLineDataSet.setValueTextColor(Color.WHITE);
+        deathsLineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        deathsLineDataSet.setDrawFilled(true);
+        deathsLineDataSet.setDrawCircles(true);
+        deathsLineDataSet.setDrawCircleHole(false);
+        deathsLineDataSet.setLineWidth(2f);
+        deathsLineDataSet.setCircleColor(Color.WHITE);
+
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.red_gradient);
+        deathsLineDataSet.setFillDrawable(drawable);
+
+        deathsLineDataSet.setColor(getResources().getColor(R.color.red_pie));
+        LineData barData1 = new LineData();
+        barData1.addDataSet(deathsLineDataSet);
+
+        lineChartDeaths.setData(barData1);
+        XAxis xAxis = lineChartDeaths.getXAxis();
+        xAxis.setLabelCount(7);
+        xAxis.setTextColor(Color.WHITE);
+        YAxis yAxis = lineChartDeaths.getAxisLeft();
+        yAxis.setTextColor(Color.WHITE);
+        lineChartDeaths.getXAxis().setDrawGridLines(false);
+        lineChartDeaths.getXAxis().setDrawLabels(true);
+        lineChartDeaths.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChartDeaths.getXAxis().setLabelCount(7, true);
+        lineChartDeaths.setTouchEnabled(false);
+        lineChartDeaths.getLegend().setEnabled(false);
+        lineChartDeaths.setDoubleTapToZoomEnabled(false);
+        lineChartDeaths.setScaleEnabled(false);
+        lineChartDeaths.setClickable(false);
+        lineChartDeaths.setDrawGridBackground(false);
+        lineChartDeaths.getAxisRight().setEnabled(false);
+        Description description = new Description();
+        description.setText("");
+        lineChartDeaths.setDescription(description);
+        lineChartDeaths.animateY(1000);
+    }
+
+    public void recovered(ArrayList<Entry> dataValues) {
+        recoveredLineDataSet.setValues(dataValues);
+        recoveredLineDataSet.setLabel("Recovered");
+        iRecoveredLineDataSet.clear();
+        iRecoveredLineDataSet.add(recoveredLineDataSet);
+        recoveredLineData = new LineData(iRecoveredLineDataSet);
+        lineChartRecovered.clear();
+        lineChartRecovered.setData(recoveredLineData);
+        lineChartRecovered.invalidate();
+        recoveredLineDataSet.setValueTextColor(Color.WHITE);
+        recoveredLineDataSet.setMode(LineDataSet.Mode.HORIZONTAL_BEZIER);
+        recoveredLineDataSet.setDrawFilled(true);
+        recoveredLineDataSet.setDrawCircles(true);
+        recoveredLineDataSet.setDrawCircleHole(false);
+        recoveredLineDataSet.setLineWidth(2f);
+        recoveredLineDataSet.setCircleColor(Color.WHITE);
+
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.green_gradient);
+        recoveredLineDataSet.setFillDrawable(drawable);
+
+        recoveredLineDataSet.setColor(getResources().getColor(R.color.green_pie));
+        LineData barData1 = new LineData();
+        barData1.addDataSet(recoveredLineDataSet);
+
+        lineChartRecovered.setData(barData1);
+        XAxis xAxis = lineChartRecovered.getXAxis();
+        xAxis.setLabelCount(7);
+        xAxis.setTextColor(Color.WHITE);
+        YAxis yAxis = lineChartRecovered.getAxisLeft();
+        yAxis.setTextColor(Color.WHITE);
+        lineChartRecovered.getXAxis().setDrawGridLines(false);
+        lineChartRecovered.getXAxis().setDrawLabels(true);
+        lineChartRecovered.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChartRecovered.getXAxis().setLabelCount(7, true);
+        lineChartRecovered.setTouchEnabled(false);
+        lineChartRecovered.getLegend().setEnabled(false);
+        lineChartRecovered.setDoubleTapToZoomEnabled(false);
+        lineChartRecovered.setScaleEnabled(false);
+        lineChartRecovered.setClickable(false);
+        lineChartRecovered.setDrawGridBackground(false);
+        lineChartRecovered.getAxisRight().setEnabled(false);
+        Description description = new Description();
+        description.setText("");
+        lineChartRecovered.setDescription(description);
+        lineChartRecovered.animateY(1000);
+    }
+
+    public void new_cases(ArrayList<Entry> dataValues) {
         newCasesLineDataSet.setValues(dataValues);
         newCasesLineDataSet.setLabel("New Cases");
         iNewCasesLineDataSet.clear();
@@ -169,10 +330,10 @@ public class DetailedView_COVID extends AppCompatActivity {
         newCasesLineDataSet.setLineWidth(2f);
         newCasesLineDataSet.setCircleColor(Color.WHITE);
 
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.chart_gradient);
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.blue_gradient);
         newCasesLineDataSet.setFillDrawable(drawable);
 
-        newCasesLineDataSet.setColor(getResources().getColor(R.color.red_pie));
+        newCasesLineDataSet.setColor(getResources().getColor(R.color.blue_pie));
         LineData barData1 = new LineData();
         barData1.addDataSet(newCasesLineDataSet);
 
@@ -335,7 +496,6 @@ public class DetailedView_COVID extends AppCompatActivity {
     }
 
     private void init() {
-
         tv_confirmed = findViewById(R.id.detailed_confirmed_num_txt);
         tv_confirmed_new = findViewById(R.id.detailed_confirmed_new_txt);
         tv_active = findViewById(R.id.detailed_active_num_txt);
@@ -345,7 +505,12 @@ public class DetailedView_COVID extends AppCompatActivity {
         tv_death = findViewById(R.id.detailed_deaths_num_txt);
         tv_death_new = findViewById(R.id.detailed_deaths_new_txt);
         tv_tests = findViewById(R.id.detailed_sample_num_txt);
+        d_sri_lanka = findViewById(R.id.detailed_btn_sri_lanka);
         lineChartNewCases = findViewById(R.id.detailed_new_cases_BarChart);
+        lineChartDeaths = findViewById(R.id.detailed_new_deaths_BarChart);
+        lineChartRecovered = findViewById(R.id.detailed_new_recovered_BarChart);
+        d_Global = findViewById(R.id.detailed_btnGlobal);
+
         back = findViewById(R.id.d_back);
 
         if(i==1){
