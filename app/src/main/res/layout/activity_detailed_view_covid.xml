@@ -308,7 +308,6 @@
                         android:layout_height="match_parent"
                         android:alignmentMode="alignMargins"
                         android:columnCount="2"
-                        android:rowCount="2"
                         tools:ignore="UselessParent">
 
                         <androidx.cardview.widget.CardView

@@ -272,8 +272,8 @@ public class FragmentVaccineCentersMap extends Fragment implements OnMapReadyCal
         mMap.getUiSettings().setCompassEnabled(false);
         mMap.setLatLngBoundsForCameraTarget(sriLanka_boundary);
         mMap.setMinZoomPreference(7.7f);
-        LatLng latLng = new LatLng(6.898410441777559, 79.87451160758005);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 12);
+        LatLng latLng = new LatLng(7.753770044413696, 80.66994692967363);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 7);
         mMap.moveCamera(cameraUpdate);
 
         getMarkerData();

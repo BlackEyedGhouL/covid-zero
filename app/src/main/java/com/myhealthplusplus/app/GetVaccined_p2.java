@@ -16,9 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class GetVaccined_p2 extends AppCompatActivity {
 
@@ -56,14 +54,12 @@ public class GetVaccined_p2 extends AppCompatActivity {
                     return;
                 }
 
-                RadioButton genderRadioButton = (RadioButton) findViewById(gender_radioGroup.getCheckedRadioButtonId());
+                RadioButton genderRadioButton = findViewById(gender_radioGroup.getCheckedRadioButtonId());
                 String gender = genderRadioButton.getText().toString();
 
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
-                Date d = new Date(datePicker.getYear(), datePicker.getMonth() + 1, datePicker.getDayOfMonth());
-                String strDate = dateFormatter.format(d);
+                @SuppressLint("DefaultLocale") String strDate = String.format("%02d-%02d-%d", datePicker.getMonth() + 1, datePicker.getDayOfMonth(), datePicker.getYear());;
 
-                RadioButton indigenousRadioButton = (RadioButton) findViewById(indigenous_radiogroup.getCheckedRadioButtonId());
+                RadioButton indigenousRadioButton = findViewById(indigenous_radiogroup.getCheckedRadioButtonId());
                 String indigenous = indigenousRadioButton.getText().toString();
 
                 Intent intent = new Intent(GetVaccined_p2.this, GetVaccined_Verify.class);
