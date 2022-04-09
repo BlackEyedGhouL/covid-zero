@@ -13,11 +13,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.myhealthplusplus.app.Models.VaccinationToken;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,6 +38,8 @@ public class GetVaccined_Verify extends AppCompatActivity {
     Button save;
     LinearLayout token;
     String codeText;
+    DatabaseReference vaccinationRef;
+    FirebaseUser user;
     TextView validDate, issuedDate, firstName, lastName, postalCode, gender, indigenous, dateOfBirth, nic, phoneNumber;
 
     @Override
@@ -42,6 +49,7 @@ public class GetVaccined_Verify extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GetVaccined_Verify.this, R.color.dark_black));
 
         init();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +148,14 @@ public class GetVaccined_Verify extends AppCompatActivity {
         gender.setText(genderT);
         dateOfBirth.setText(dateOfBirthT);
         indigenous.setText(indigenousT);
+
+        VaccinationToken vaccinationToken = new VaccinationToken(issuedDateT, validDateT, firstNameT, lastNameT, postalCodeT, nicT, phoneNumberT, genderT, dateOfBirthT, indigenousT, false);
+        addDataToDatabase(vaccinationToken, nicT);
+    }
+
+    private void addDataToDatabase(VaccinationToken vaccinationToken, String nic) {
+        vaccinationRef = FirebaseDatabase.getInstance().getReference().child("vaccinationTokens").child(user.getUid());
+        vaccinationRef.child(nic).setValue(vaccinationToken);
     }
 
     private void init() {
