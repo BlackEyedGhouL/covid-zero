@@ -776,7 +776,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="8dp"
-                            android:layout_marginBottom="105dp"
+                            android:layout_marginBottom="20dp"
                             app:cardBackgroundColor="@color/lightest_black"
                             app:cardCornerRadius="20sp">
 
@@ -796,6 +796,79 @@
                         </androidx.cardview.widget.CardView>
 
                     </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/detailed_report_download_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="105dp"
+                        android:padding="20dp"
+                        app:cardBackgroundColor="@color/lightest_black"
+                        app:cardCornerRadius="20sp"
+                        app:cardElevation="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="135dp"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/doctors_fighting" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:background="@color/lightest_black"
+                                android:orientation="vertical"
+                                android:paddingTop="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/product_sans_bold"
+                                    android:text="Report issued by the Epidemiology Unit"
+                                    android:textColor="@color/white"
+                                    android:textSize="23sp" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:gravity="end">
+
+                                    <Button
+                                        android:id="@+id/detailed_report_download_download"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="35dp"
+                                        android:layout_marginTop="10dp"
+                                        android:background="@drawable/btn_light_black_main"
+                                        android:fontFamily="@font/product_sans_bold"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:text="Proceed"
+                                        android:textAllCaps="false"
+                                        android:textColor="@color/white"
+                                        android:textSize="18sp"
+                                        tools:ignore="TouchTargetSizeCheck"
+                                        android:foreground="@drawable/ripple_round"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 

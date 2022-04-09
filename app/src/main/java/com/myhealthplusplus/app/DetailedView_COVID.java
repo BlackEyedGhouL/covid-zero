@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -63,7 +64,7 @@ public class DetailedView_COVID extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private PieChart pieChart;
     private int int_active_new = 0;
-    Button d_Global, d_sri_lanka;
+    Button d_Global, d_sri_lanka, reportDownload;
     int i = 1;
     private final MainActivity activity = new MainActivity();
     ImageView back;
@@ -93,6 +94,16 @@ public class DetailedView_COVID extends AppCompatActivity {
         init();
         FetchData();
 
+        reportDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.epid.gov.lk/web/index.php?option=com_content&view=article&id=225&lang=en";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
         d_Global.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -510,8 +521,8 @@ public class DetailedView_COVID extends AppCompatActivity {
         lineChartDeaths = findViewById(R.id.detailed_new_deaths_BarChart);
         lineChartRecovered = findViewById(R.id.detailed_new_recovered_BarChart);
         d_Global = findViewById(R.id.detailed_btnGlobal);
-
         back = findViewById(R.id.d_back);
+        reportDownload = findViewById(R.id.detailed_report_download_download);
 
         if(i==1){
         }
