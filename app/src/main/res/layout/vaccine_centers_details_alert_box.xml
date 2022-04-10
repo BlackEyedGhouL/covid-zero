@@ -8,7 +8,7 @@
     app:cardElevation="16dp"
     app:optRoundCardRightBottomCorner="false"
     app:optRoundCardLeftBottomCorner="false"
-    app:optRoundCardCornerRadius="30dp"
+    app:optRoundCardCornerRadius="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 

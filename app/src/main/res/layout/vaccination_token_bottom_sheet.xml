@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.captain_miao.optroundcardview.OptRoundCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:id="@+id/vaccination_token_bottom_sheet"
+    app:cardElevation="16dp"
+    app:optRoundCardRightBottomCorner="false"
+    app:optRoundCardLeftBottomCorner="false"
+    app:optRoundCardCornerRadius="20dp"
+    app:optRoundCardBackgroundColor="@color/lightest_black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingTop="8dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="10dp"
+        android:weightSum="2"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/vaccination_token_bottom_sheet_view"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="View"
+            android:textAllCaps="false"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            tools:ignore="NestedWeights,TooDeepLayout" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_gravity="center"
+            android:layout_height="30dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:background="@color/red_pie" />
+
+        <Button
+            android:id="@+id/vaccination_token_bottom_sheet_save"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/product_sans_bold"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+</com.github.captain_miao.optroundcardview.OptRoundCardView>
