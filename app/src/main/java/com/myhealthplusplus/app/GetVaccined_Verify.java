@@ -1,8 +1,12 @@
 package com.myhealthplusplus.app;
 
+import static android.content.ContentValues.TAG;
+
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,13 +14,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -31,15 +43,18 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.HashMap;
 
 public class GetVaccined_Verify extends AppCompatActivity {
 
     ImageView back, qr;
     Button save;
     LinearLayout token;
-    String codeText;
+    String codeText, finalNic;
     DatabaseReference vaccinationRef;
     FirebaseUser user;
+    private final MainActivity activity = new MainActivity();
+    StorageReference storageReference;
     TextView validDate, issuedDate, firstName, lastName, postalCode, gender, indigenous, dateOfBirth, nic, phoneNumber;
 
     @Override
@@ -50,6 +65,7 @@ public class GetVaccined_Verify extends AppCompatActivity {
 
         init();
         user = FirebaseAuth.getInstance().getCurrentUser();
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +82,39 @@ public class GetVaccined_Verify extends AppCompatActivity {
                 token.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
                 Bitmap bitmap = token.getDrawingCache();
 
+                activity.ShowDialog(GetVaccined_Verify.this);
                 save(bitmap);
+                activity.DismissDialog();
             }
         });
 
+        activity.ShowDialog(this);
+
         createToken();
         generateQr();
+
+        activity.DismissDialog();
+    }
+
+    private void uploadImageToStorage(Uri imageUri) {
+        StorageReference fileRef = storageReference.child("vaccination_tokens/" + user.getUid() + "/token_" + finalNic +".jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Log.d(TAG, "onSuccess: Done!");
+                        updateDatabaseWithImage(uri);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "onFail: "+e.getMessage());
+            }
+        });
     }
 
     private void save(Bitmap bitmap) {
@@ -91,6 +134,9 @@ public class GetVaccined_Verify extends AppCompatActivity {
             fileOutputStream.close();
             Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
             token.setDrawingCacheEnabled(false);
+
+            Uri imageUri = Uri.fromFile(imgFile);
+            uploadImageToStorage(imageUri);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -149,13 +195,30 @@ public class GetVaccined_Verify extends AppCompatActivity {
         dateOfBirth.setText(dateOfBirthT);
         indigenous.setText(indigenousT);
 
-        VaccinationToken vaccinationToken = new VaccinationToken(issuedDateT, validDateT, firstNameT, lastNameT, postalCodeT, nicT, phoneNumberT, genderT, dateOfBirthT, indigenousT, false);
+        finalNic = nicT;
+
+        VaccinationToken vaccinationToken = new VaccinationToken(issuedDateT, validDateT, firstNameT, lastNameT, postalCodeT, nicT, phoneNumberT, genderT, dateOfBirthT, indigenousT,"", false);
         addDataToDatabase(vaccinationToken, nicT);
     }
 
     private void addDataToDatabase(VaccinationToken vaccinationToken, String nic) {
         vaccinationRef = FirebaseDatabase.getInstance().getReference().child("vaccinationTokens").child(user.getUid());
         vaccinationRef.child(nic).setValue(vaccinationToken);
+    }
+
+    private void updateDatabaseWithImage(Uri uri) {
+        HashMap uHash = new HashMap();
+        uHash.put("tokenImageUrl", uri.toString());
+
+        vaccinationRef = FirebaseDatabase.getInstance().getReference().child("vaccinationTokens").child(user.getUid());
+        vaccinationRef.child(finalNic).updateChildren(uHash).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "onSuccess: Done!");
+                }
+            }
+        });
     }
 
     private void init() {

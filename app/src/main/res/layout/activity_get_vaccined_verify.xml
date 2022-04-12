@@ -451,6 +451,17 @@
 
             </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/product_sans_regular"
+                    android:text="Please consider downloading the token if you wish to use it later. Otherwise it won't be accessible to you again."
+                    android:textColor="@color/gray"
+                    android:textSize="20sp"
+                    android:layout_marginTop="12dp"/>
+
             <Button
                 android:id="@+id/token_download"
                 android:layout_width="match_parent"
@@ -467,7 +478,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:theme="@style/Theme.MyHealthPlusPlus"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="100dp"

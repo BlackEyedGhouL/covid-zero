@@ -1,5 +1,10 @@
 package com.myhealthplusplus.app.Adapters;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.myhealthplusplus.app.Models.VaccinationToken;
 import com.myhealthplusplus.app.R;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -24,11 +30,13 @@ public class VaccinationTokenAdapter extends RecyclerView.Adapter<VaccinationTok
 
     List<VaccinationToken> vaccinationTokenList;
     RecyclerView recyclerView;
+    Context context;
     final View.OnClickListener onClickListener = new MyOnClickListener();
 
-    public VaccinationTokenAdapter(List<VaccinationToken> vaccinationTokenList, RecyclerView recyclerView) {
+    public VaccinationTokenAdapter(List<VaccinationToken> vaccinationTokenList, RecyclerView recyclerView, Context context) {
         this.vaccinationTokenList = vaccinationTokenList;
         this.recyclerView = recyclerView;
+        this.context = context;
     }
 
     @NonNull
@@ -93,6 +101,8 @@ public class VaccinationTokenAdapter extends RecyclerView.Adapter<VaccinationTok
 
             boolean isUsed = vaccinationTokenList.get(itemPosition).isUsed();
             String issued = vaccinationTokenList.get(itemPosition).getIssuedDateT();
+            String imageUrl = vaccinationTokenList.get(itemPosition).getTokenImageUrl();
+            String nic = vaccinationTokenList.get(itemPosition).getNicT();
 
             DateTimeFormatter userFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
             LocalDate issuedDate = LocalDate.parse(issued, userFormatter);
@@ -100,34 +110,68 @@ public class VaccinationTokenAdapter extends RecyclerView.Adapter<VaccinationTok
             long weeks = ChronoUnit.WEEKS.between(issuedDate, today);
 
             if (!isUsed && weeks < 2) {
-                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-                        recyclerView.getContext(), R.style.BottomSheetDialogTheme
-                );
-                View bottomSheetView = LayoutInflater.from(recyclerView.getContext())
-                        .inflate(
-                                R.layout.vaccination_token_bottom_sheet,
-                                bottomSheetDialog.findViewById(R.id.vaccination_token_bottom_sheet)
-                        );
+                if (!imageUrl.isEmpty()) {
+                    BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                            context, R.style.BottomSheetDialogTheme
+                    );
+                    View bottomSheetView = LayoutInflater.from(context)
+                            .inflate(
+                                    R.layout.vaccination_token_bottom_sheet,
+                                    bottomSheetDialog.findViewById(R.id.vaccination_token_bottom_sheet)
+                            );
 
-                bottomSheetView.findViewById(R.id.vaccination_token_bottom_sheet_view).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        bottomSheetDialog.dismiss();
-                    }
-                });
+                    bottomSheetView.findViewById(R.id.vaccination_token_bottom_sheet_view).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(imageUrl));
+                            context.startActivity(i);
+                            bottomSheetDialog.dismiss();
+                        }
+                    });
 
-                bottomSheetView.findViewById(R.id.vaccination_token_bottom_sheet_save).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        bottomSheetDialog.dismiss();
-                    }
-                });
+                    bottomSheetView.findViewById(R.id.vaccination_token_bottom_sheet_save).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                bottomSheetDialog.setCancelable(true);
-                bottomSheetDialog.setContentView(bottomSheetView);
-                bottomSheetDialog.show();
+                            try
+                            {
+                                DownloadManager downloadManager = null;
+                                downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+
+                                Uri downloadUri = Uri.parse(imageUrl);
+
+                                DownloadManager.Request request = new DownloadManager.Request(downloadUri);
+
+                                request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI
+                                | DownloadManager.Request.NETWORK_MOBILE)
+                                        .setAllowedOverRoaming(false)
+                                        .setTitle("Vaccination_Digital_Token_"+nic)
+                                        .setMimeType("image/jpeg")
+                                        .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                                        .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, File.separator+"Vaccination_Digital_Token_"+nic+".jpg");
+
+                                downloadManager.enqueue(request);
+
+                                Toast.makeText(context, "Token downloaded", Toast.LENGTH_SHORT).show();
+                                bottomSheetDialog.dismiss();
+                            }
+                            catch (Exception e)
+                            {
+                                e.printStackTrace();
+                                Toast.makeText(context, "Token download failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                    bottomSheetDialog.setCancelable(true);
+                    bottomSheetDialog.setContentView(bottomSheetView);
+                    bottomSheetDialog.show();
+                } else {
+                    Toast.makeText(context, "Token hasn't been saved previously", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(recyclerView.getContext(), "Not accessible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Not accessible", Toast.LENGTH_SHORT).show();
             }
         }
     }

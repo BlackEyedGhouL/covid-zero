@@ -237,7 +237,6 @@ public class ViewProfile extends AppCompatActivity {
     }
 
     private void addDataToFirebase(Uri uri) {
-
         HashMap uHash = new HashMap();
         uHash.put("profilePicture", uri.toString());
 
@@ -257,8 +256,6 @@ public class ViewProfile extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     private void getDataFromSharedPreferences() {

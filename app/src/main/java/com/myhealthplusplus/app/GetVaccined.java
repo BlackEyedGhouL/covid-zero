@@ -100,6 +100,11 @@ public class GetVaccined extends AppCompatActivity {
                 intent.putExtra("POSTAL_CODE", postalCode.getEditText().getText().toString());
                 intent.putExtra("NIC", nic.getEditText().getText().toString());
                 startActivity(intent);
+
+                firstName.getEditText().setText(null);
+                lastName.getEditText().setText(null);
+                postalCode.getEditText().setText(null);
+                nic.getEditText().setText(null);
             }
 
             private boolean validateNIC() {
@@ -253,9 +258,13 @@ public class GetVaccined extends AppCompatActivity {
                             .child("nicT")
                             .getValue().toString();
 
-                    vaccinationTokenArrayList.add(new VaccinationToken(issuedDate, validDate, firstName, lastName, postal, nic, phone, gender, dob, indigenous, used));
+                    String tokenImageUrl = ds
+                            .child("tokenImageUrl")
+                            .getValue().toString();
+
+                    vaccinationTokenArrayList.add(new VaccinationToken(issuedDate, validDate, firstName, lastName, postal, nic, phone, gender, dob, indigenous, tokenImageUrl, used ));
                 }
-                vaccinationTokenAdapter = new VaccinationTokenAdapter(vaccinationTokenArrayList, recyclerView);
+                vaccinationTokenAdapter = new VaccinationTokenAdapter(vaccinationTokenArrayList, recyclerView, GetVaccined.this);
                 recyclerView.setAdapter(vaccinationTokenAdapter);
             }
             @Override

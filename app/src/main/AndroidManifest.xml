@@ -118,6 +118,7 @@
         <activity
             android:name=".GetVaccined_p2"
             android:exported="true"
+            android:noHistory="true"
             android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
