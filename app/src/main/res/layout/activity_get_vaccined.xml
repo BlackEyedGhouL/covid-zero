@@ -163,6 +163,16 @@
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
+                        <TextView
+                            android:id="@+id/get_vaccined_reg_subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="You can get only one vaccination token per NIC. From the issued date, it'll be valid for 2 weeks."
+                            android:textColor="@color/gray"
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/get_vaccined_reg_firstName_txtLayout"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

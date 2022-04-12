@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class GetVaccined extends AppCompatActivity {
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     private final MainActivity activity = new MainActivity();
     VaccinationTokenAdapter vaccinationTokenAdapter;
+    boolean doesNotExistsAlready = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,7 @@ public class GetVaccined extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!validateFirstName() | !validateLastName() | !validatePostalCode() | !validateNIC()) {
+                if (!validateFirstName() | !validateLastName() | !validatePostalCode() | !validateNIC() | !doesNotExistsAlready) {
                     return;
                 }
                 Intent intent = new Intent(GetVaccined.this, GetVaccined_p2.class);
@@ -126,6 +128,7 @@ public class GetVaccined extends AppCompatActivity {
                 else {
                     nic.setError(null);
                     nic.setErrorEnabled(false);
+                    checkIfIdHasTokensPreviously(val);
                     return true;
                 }
             }
@@ -199,6 +202,27 @@ public class GetVaccined extends AppCompatActivity {
                     firstName.setErrorEnabled(false);
                     return true;
                 }
+            }
+        });
+    }
+
+    public void checkIfIdHasTokensPreviously(String nic) {
+        DatabaseReference eventRef = rootRef
+                .child("vaccinationTokens").child(user.getUid()).child(nic);
+        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.getValue() == null) {
+                    doesNotExistsAlready = true;
+                } else {
+                    doesNotExistsAlready = false;
+                    Toast.makeText(GetVaccined.this, "Provided NIC has been used previously", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
