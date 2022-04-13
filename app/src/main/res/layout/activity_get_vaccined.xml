@@ -159,7 +159,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/product_sans_bold"
-                            android:text="Registration information"
+                            android:text="Registration information - Dose 01"
                             android:textColor="@color/white"
                             android:textSize="26sp" />
 
@@ -168,7 +168,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/product_sans_regular"
-                            android:text="You can get only one vaccination token per NIC. From the issued date, it'll be valid for 2 weeks."
+                            android:text="If you haven't had any one of the doses before then register through here. From the issued date, it'll be valid for 2 weeks."
                             android:textColor="@color/gray"
                             android:textSize="20sp"
                             android:layout_marginTop="10dp"/>
@@ -319,6 +319,96 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/get_vaccined_card4"
+                    android:layout_width="390dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    app:cardBackgroundColor="@color/lightest_black"
+                    app:cardCornerRadius="20sp"
+                    app:cardElevation="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/get_vaccined_card2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/get_vaccined_reg_23_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:text="Registration information - Dose 02 &amp; Dose 03"
+                            android:textColor="@color/white"
+                            android:textSize="26sp" />
+
+                        <TextView
+                            android:id="@+id/get_vaccined_reg_23_subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/product_sans_regular"
+                            android:text="Provide the NIC number you previously had your doses with. From the issued date, it'll be valid for 2 weeks."
+                            android:textColor="@color/gray"
+                            android:textSize="20sp"
+                            android:layout_marginTop="10dp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/get_vaccined_reg_23_NIC_txtLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:hint="NIC"
+                            android:textColorHint="@color/gray"
+                            app:boxStrokeColor="@color/reg_txt_input_layout"
+                            app:boxStrokeErrorColor="@color/red_pie"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="12"
+                            app:counterTextColor="@color/gray"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/dark_black"
+                            app:errorIconTint="@color/red_pie"
+                            app:errorTextColor="@color/red_pie"
+                            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24"
+                            app:startIconTint="@color/dark_black">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/get_vaccined_reg_23_NIC_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/product_sans_regular"
+                                android:maxLength="12"
+                                android:singleLine="true"
+                                android:textColor="@color/white" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <Button
+                            android:id="@+id/get_vaccined_reg_23_Next"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/btn_light_black_main"
+                            android:elevation="5dp"
+                            android:fontFamily="@font/product_sans_bold"
+                            android:foreground="@drawable/ripple_round"
+                            android:text="Next"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            android:theme="@style/Theme.MyHealthPlusPlus" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/get_vaccined_card3"
                     android:layout_width="390dp"
                     android:layout_height="wrap_content"
@@ -330,7 +420,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/get_vaccined_card2">
+                    app:layout_constraintTop_toBottomOf="@+id/get_vaccined_card4">
 
                     <LinearLayout
                         android:layout_width="match_parent"

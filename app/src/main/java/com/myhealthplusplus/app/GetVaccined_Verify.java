@@ -50,12 +50,12 @@ public class GetVaccined_Verify extends AppCompatActivity {
     ImageView back, qr;
     Button save;
     LinearLayout token;
-    String codeText, finalNic;
+    String codeText, finalNic, finalDose;
     DatabaseReference vaccinationRef;
     FirebaseUser user;
     private final MainActivity activity = new MainActivity();
     StorageReference storageReference;
-    TextView validDate, issuedDate, firstName, lastName, postalCode, gender, indigenous, dateOfBirth, nic, phoneNumber;
+    TextView validDate, issuedDate, firstName, lastName, postalCode, gender, indigenous, dateOfBirth, nic, phoneNumber, dose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ public class GetVaccined_Verify extends AppCompatActivity {
     }
 
     private void uploadImageToStorage(Uri imageUri) {
-        StorageReference fileRef = storageReference.child("vaccination_tokens/" + user.getUid() + "/token_" + finalNic +".jpg");
+        StorageReference fileRef = storageReference.child("vaccination_tokens/" + user.getUid() + "/token_" + finalNic + finalDose +".jpg");
         fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -172,17 +172,7 @@ public class GetVaccined_Verify extends AppCompatActivity {
         String genderT = getIntent().getStringExtra("GENDER");
         String dateOfBirthT = getIntent().getStringExtra("DOB");
         String indigenousT = getIntent().getStringExtra("INDIGENOUS");
-
-        codeText = "validDate: " + validDateT
-                + "\nissuedDate: " + issuedDateT
-                + "\nfirstName: " + firstNameT
-                + "\nlastName: " + lastNameT
-                + "\npostalCode: " + postalCodeT
-                + "\nnic: " + nicT
-                + "\nphoneNumber: " + phoneNumberT
-                + "\ngender: " + genderT
-                + "\ndateOfBirth: " + dateOfBirthT
-                + "\nindigenous: " + indigenousT;
+        String doseT = getIntent().getStringExtra("DOSE");
 
         issuedDate.setText(issuedDateT);
         validDate.setText(validDateT);
@@ -194,11 +184,43 @@ public class GetVaccined_Verify extends AppCompatActivity {
         gender.setText(genderT);
         dateOfBirth.setText(dateOfBirthT);
         indigenous.setText(indigenousT);
+        dose.setText(doseT);
 
         finalNic = nicT;
 
-        VaccinationToken vaccinationToken = new VaccinationToken(issuedDateT, validDateT, firstNameT, lastNameT, postalCodeT, nicT, phoneNumberT, genderT, dateOfBirthT, indigenousT,"", false);
-        addDataToDatabase(vaccinationToken, nicT);
+        switch (doseT) {
+            case "- DOSE 01 -": {
+                doseT = "Dose1";
+                finalDose = "_dose1";
+                VaccinationToken vaccinationToken = new VaccinationToken(issuedDateT, validDateT, firstNameT, lastNameT, postalCodeT, nicT, phoneNumberT, genderT, dateOfBirthT, indigenousT, "", false, true, false, false);
+                addDataToDatabase(vaccinationToken, nicT);
+                break;
+            }
+            case "- DOSE 02 -": {
+                doseT = "Dose2";
+                finalDose = "_dose2";
+                updateDatabaseWithDose(true, "dose2");
+                break;
+            }
+            case "- DOSE 03 -": {
+                doseT = "Dose3";
+                finalDose = "_dose3";
+                updateDatabaseWithDose(true, "dose3");
+                break;
+            }
+        }
+
+        codeText = "validDate: " + validDateT
+                + "\nissuedDate: " + issuedDateT
+                + "\nfirstName: " + firstNameT
+                + "\nlastName: " + lastNameT
+                + "\npostalCode: " + postalCodeT
+                + "\nnic: " + nicT
+                + "\nphoneNumber: " + phoneNumberT
+                + "\ngender: " + genderT
+                + "\ndateOfBirth: " + dateOfBirthT
+                + "\nindigenous: " + indigenousT
+                + "\ndose: " + doseT;
     }
 
     private void addDataToDatabase(VaccinationToken vaccinationToken, String nic) {
@@ -209,6 +231,21 @@ public class GetVaccined_Verify extends AppCompatActivity {
     private void updateDatabaseWithImage(Uri uri) {
         HashMap uHash = new HashMap();
         uHash.put("tokenImageUrl", uri.toString());
+
+        vaccinationRef = FirebaseDatabase.getInstance().getReference().child("vaccinationTokens").child(user.getUid());
+        vaccinationRef.child(finalNic).updateChildren(uHash).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull Task task) {
+                if (task.isSuccessful()) {
+                    Log.d(TAG, "onSuccess: Done!");
+                }
+            }
+        });
+    }
+
+    private void updateDatabaseWithDose(boolean ds, String ds_text) {
+        HashMap uHash = new HashMap();
+        uHash.put(ds_text, ds);
 
         vaccinationRef = FirebaseDatabase.getInstance().getReference().child("vaccinationTokens").child(user.getUid());
         vaccinationRef.child(finalNic).updateChildren(uHash).addOnCompleteListener(new OnCompleteListener() {
@@ -236,5 +273,6 @@ public class GetVaccined_Verify extends AppCompatActivity {
         dateOfBirth = findViewById(R.id.token_dob);
         nic = findViewById(R.id.token_nic);
         phoneNumber = findViewById(R.id.token_phone_number);
+        dose = findViewById(R.id.token_dose);
     }
 }

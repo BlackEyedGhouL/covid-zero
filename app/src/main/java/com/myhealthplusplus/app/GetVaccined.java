@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class GetVaccined extends AppCompatActivity {
 
-    TextInputLayout firstName, lastName, nic, postalCode;
+    TextInputLayout firstName, lastName, nic, postalCode, nic2;
     ImageView back;
     SwipeRefreshLayout swipeRefreshLayout;
     ArrayList<VaccinationToken> vaccinationTokenArrayList = new ArrayList<>();
@@ -40,6 +40,7 @@ public class GetVaccined extends AppCompatActivity {
     private final MainActivity activity = new MainActivity();
     VaccinationTokenAdapter vaccinationTokenAdapter;
     boolean doesNotExistsAlready = false;
+    boolean notTakenD1 = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class GetVaccined extends AppCompatActivity {
         firstName = findViewById(R.id.get_vaccined_reg_firstName_txtLayout);
         lastName = findViewById(R.id.get_vaccined_reg_LastName_txtLayout);
         nic = findViewById(R.id.get_vaccined_reg_NIC_txtLayout);
+        nic2 = findViewById(R.id.get_vaccined_reg_23_NIC_txtLayout);
         postalCode = findViewById(R.id.get_vaccined_reg_PostalCode_txtLayout);
         swipeRefreshLayout = findViewById(R.id.gv_swipe_ref);
 
@@ -77,6 +79,19 @@ public class GetVaccined extends AppCompatActivity {
                 vaccinationTokenAdapter.notifyDataSetChanged();
                 getData();
                 swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        Button next2 = findViewById(R.id.get_vaccined_reg_23_Next);
+        next2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!validateNIC2() | !notTakenD1) {
+                    return;
+                }
+
+                checkIfD2orD3(nic2.getEditText().getText().toString());
+                nic2.getEditText().setText(null);
             }
         });
 
@@ -108,105 +123,10 @@ public class GetVaccined extends AppCompatActivity {
                 postalCode.getEditText().setText(null);
                 nic.getEditText().setText(null);
             }
-
-            private boolean validateNIC() {
-                String val = nic.getEditText().getText().toString();
-                String checkForLetters = "[0-9vV]+";
-
-                if (val.isEmpty()) {
-                    nic.setError("Field can not be empty");
-                    return false;
-                }
-                else if (!val.matches(checkForLetters)) {
-                    nic.setError("Invalid NIC!");
-                    return false;
-                }
-                else if (val.length() < 10 || val.length() == 11) {
-                    nic.setError("NIC should contain 10 or 12 characters!");
-                    return false;
-                }
-                else {
-                    nic.setError(null);
-                    nic.setErrorEnabled(false);
-                    checkIfIdHasTokensPreviously(val);
-                    return true;
-                }
-            }
-
-            private boolean validatePostalCode() {
-                String val = postalCode.getEditText().getText().toString();
-                String checkForLetters = "[0-9]+";
-
-                if (val.isEmpty()) {
-                    postalCode.setError("Field can not be empty");
-                    return false;
-                }
-                else if (!val.matches(checkForLetters)) {
-                    postalCode.setError("Invalid postal code!");
-                    return false;
-                }
-                else if (val.length() < 5) {
-                    postalCode.setError("Postal code should contain 5 characters!");
-                    return false;
-                }
-                else {
-                    postalCode.setError(null);
-                    postalCode.setErrorEnabled(false);
-                    return true;
-                }
-            }
-
-            private boolean validateLastName() {
-                String val = lastName.getEditText().getText().toString();
-                String checkForLetters = "[a-zA-Z]+";
-                String noWhiteSpace = "\\A\\w{1,20}\\z";
-
-                if (val.isEmpty()) {
-                    lastName.setError("Field can not be empty");
-                    return false;
-                }
-                else if (!val.matches(noWhiteSpace)) {
-                    lastName.setError("No white spaces are allowed!");
-                    return false;
-                }
-                else if (!val.matches(checkForLetters)) {
-                    lastName.setError("Invalid last name!");
-                    return false;
-                }
-                else {
-                    lastName.setError(null);
-                    lastName.setErrorEnabled(false);
-                    return true;
-                }
-            }
-
-            private boolean validateFirstName() {
-                String val = firstName.getEditText().getText().toString();
-                String checkForLetters = "[a-zA-Z]+";
-                String noWhiteSpace = "\\A\\w{1,20}\\z";
-
-                if (val.isEmpty()) {
-                    firstName.setError("Field can not be empty");
-                    return false;
-                }
-                else if (!val.matches(noWhiteSpace)) {
-                    firstName.setError("No white spaces are allowed!");
-                    return false;
-                }
-                else if (!val.matches(checkForLetters)) {
-                    firstName.setError("Invalid first name!");
-                    return false;
-                }
-                else {
-                    firstName.setError(null);
-                    firstName.setErrorEnabled(false);
-                    return true;
-                }
-            }
         });
     }
 
-    public void checkIfIdHasTokensPreviously(String nic) {
+    public void checkIfIdHasTokensPreviously (String nic) {
         DatabaseReference eventRef = rootRef
                 .child("vaccinationTokens").child(user.getUid()).child(nic);
         eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -216,13 +136,68 @@ public class GetVaccined extends AppCompatActivity {
                     doesNotExistsAlready = true;
                 } else {
                     doesNotExistsAlready = false;
-                    Toast.makeText(GetVaccined.this, "Provided NIC has been used previously", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GetVaccined.this, "Provided NIC has taken the dose 01 previously", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+    public void checkIfHasTakeD1 (String nic) {
+        DatabaseReference eventRef = rootRef
+                .child("vaccinationTokens").child(user.getUid()).child(nic);
+        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.getValue() != null) {
+                    notTakenD1 = true;
+                } else {
+                    notTakenD1 = false;
+                    Toast.makeText(GetVaccined.this, "Provided NIC hasn't taken the dose 01", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void checkIfD2orD3 (String nic) {
+        rootRef.child("vaccinationTokens").child(user.getUid()).child(nic).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                boolean dose2 = Boolean.parseBoolean(snapshot
+                        .child("dose2")
+                        .getValue().toString());
+
+                boolean dose3 = Boolean.parseBoolean(snapshot
+                        .child("dose3")
+                        .getValue().toString());
+
+                if (dose2 && dose3) {
+                    Toast.makeText(GetVaccined.this, "You're already fully vaccinated", Toast.LENGTH_SHORT).show();
+                } else if (!dose2 && !dose3) {
+                    Intent intent = new Intent(GetVaccined.this, GetVaccined_D2_D3.class);
+                    intent.putExtra("NIC", nic);
+                    intent.putExtra("DOSE", "2");
+                    startActivity(intent);
+                } else if (!dose3) {
+                    Intent intent = new Intent(GetVaccined.this, GetVaccined_D2_D3.class);
+                    intent.putExtra("DOSE", "3");
+                    intent.putExtra("NIC", nic);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }
@@ -266,6 +241,18 @@ public class GetVaccined extends AppCompatActivity {
                             .child("used")
                             .getValue().toString());
 
+                    boolean dose1 = Boolean.parseBoolean(ds
+                            .child("dose1")
+                            .getValue().toString());
+
+                    boolean dose2 = Boolean.parseBoolean(ds
+                            .child("dose2")
+                            .getValue().toString());
+
+                    boolean dose3 = Boolean.parseBoolean(ds
+                            .child("dose3")
+                            .getValue().toString());
+
                     String validDate = ds
                             .child("validDateT")
                             .getValue().toString();
@@ -286,8 +273,9 @@ public class GetVaccined extends AppCompatActivity {
                             .child("tokenImageUrl")
                             .getValue().toString();
 
-                    vaccinationTokenArrayList.add(new VaccinationToken(issuedDate, validDate, firstName, lastName, postal, nic, phone, gender, dob, indigenous, tokenImageUrl, used ));
+                    vaccinationTokenArrayList.add(new VaccinationToken(issuedDate, validDate, firstName, lastName, postal, nic, phone, gender, dob, indigenous, tokenImageUrl, used, dose1, dose2, dose3));
                 }
+
                 vaccinationTokenAdapter = new VaccinationTokenAdapter(vaccinationTokenArrayList, recyclerView, GetVaccined.this);
                 recyclerView.setAdapter(vaccinationTokenAdapter);
             }
@@ -296,5 +284,124 @@ public class GetVaccined extends AppCompatActivity {
         };
         eventRef.addListenerForSingleValueEvent(eventListener);
         activity.DismissDialog();
+    }
+
+    private boolean validateNIC() {
+        String val = nic.getEditText().getText().toString();
+        String checkForLetters = "[0-9vV]+";
+
+        if (val.isEmpty()) {
+            nic.setError("Field can not be empty");
+            return false;
+        }
+        else if (!val.matches(checkForLetters)) {
+            nic.setError("Invalid NIC!");
+            return false;
+        }
+        else if (val.length() < 10 || val.length() == 11) {
+            nic.setError("NIC should contain 10 or 12 characters!");
+            return false;
+        }
+        else {
+            nic.setError(null);
+            nic.setErrorEnabled(false);
+            checkIfIdHasTokensPreviously(val);
+            return true;
+        }
+    }
+
+    private boolean validateNIC2() {
+        String val = nic2.getEditText().getText().toString();
+        String checkForLetters = "[0-9vV]+";
+
+        if (val.isEmpty()) {
+            nic2.setError("Field can not be empty");
+            return false;
+        }
+        else if (!val.matches(checkForLetters)) {
+            nic2.setError("Invalid NIC!");
+            return false;
+        }
+        else if (val.length() < 10 || val.length() == 11) {
+            nic2.setError("NIC should contain 10 or 12 characters!");
+            return false;
+        }
+        else {
+            nic2.setError(null);
+            nic2.setErrorEnabled(false);
+            checkIfHasTakeD1(val);
+            return true;
+        }
+    }
+
+    private boolean validatePostalCode() {
+        String val = postalCode.getEditText().getText().toString();
+        String checkForLetters = "[0-9]+";
+
+        if (val.isEmpty()) {
+            postalCode.setError("Field can not be empty");
+            return false;
+        }
+        else if (!val.matches(checkForLetters)) {
+            postalCode.setError("Invalid postal code!");
+            return false;
+        }
+        else if (val.length() < 5) {
+            postalCode.setError("Postal code should contain 5 characters!");
+            return false;
+        }
+        else {
+            postalCode.setError(null);
+            postalCode.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateLastName() {
+        String val = lastName.getEditText().getText().toString();
+        String checkForLetters = "[a-zA-Z]+";
+        String noWhiteSpace = "\\A\\w{1,20}\\z";
+
+        if (val.isEmpty()) {
+            lastName.setError("Field can not be empty");
+            return false;
+        }
+        else if (!val.matches(noWhiteSpace)) {
+            lastName.setError("No white spaces are allowed!");
+            return false;
+        }
+        else if (!val.matches(checkForLetters)) {
+            lastName.setError("Invalid last name!");
+            return false;
+        }
+        else {
+            lastName.setError(null);
+            lastName.setErrorEnabled(false);
+            return true;
+        }
+    }
+
+    private boolean validateFirstName() {
+        String val = firstName.getEditText().getText().toString();
+        String checkForLetters = "[a-zA-Z]+";
+        String noWhiteSpace = "\\A\\w{1,20}\\z";
+
+        if (val.isEmpty()) {
+            firstName.setError("Field can not be empty");
+            return false;
+        }
+        else if (!val.matches(noWhiteSpace)) {
+            firstName.setError("No white spaces are allowed!");
+            return false;
+        }
+        else if (!val.matches(checkForLetters)) {
+            firstName.setError("Invalid first name!");
+            return false;
+        }
+        else {
+            firstName.setError(null);
+            firstName.setErrorEnabled(false);
+            return true;
+        }
     }
 }

@@ -58,8 +58,8 @@ public class VaccinationTokenAdapter extends RecyclerView.Adapter<VaccinationTok
         DateTimeFormatter userFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
         LocalDate issuedDate = LocalDate.parse(issued, userFormatter);
 
-        holder.validDateText.setText("Valid until: "+valid);
-        holder.issuedDateText.setText("Issued date: "+issued);
+        holder.validDateText.setText("Valid: "+valid);
+        holder.issuedDateText.setText("Issued: "+issued);
         holder.nicText.setText("Nic: "+nic);
 
         LocalDate today = LocalDate.now(ZoneId.of("Asia/Dhaka"));

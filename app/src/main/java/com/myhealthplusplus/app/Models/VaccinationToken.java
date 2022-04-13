@@ -2,9 +2,9 @@ package com.myhealthplusplus.app.Models;
 
 public class VaccinationToken {
     String issuedDateT, validDateT, firstNameT, lastNameT, postalCodeT, nicT, phoneNumberT, genderT, dateOfBirthT, indigenousT, tokenImageUrl;
-    boolean isUsed;
+    boolean isUsed, dose1, dose2, dose3;
 
-    public VaccinationToken(String issuedDateT, String validDateT, String firstNameT, String lastNameT, String postalCodeT, String nicT, String phoneNumberT, String genderT, String dateOfBirthT, String indigenousT, String tokenImageUrl, boolean isUsed) {
+    public VaccinationToken(String issuedDateT, String validDateT, String firstNameT, String lastNameT, String postalCodeT, String nicT, String phoneNumberT, String genderT, String dateOfBirthT, String indigenousT, String tokenImageUrl, boolean isUsed, boolean dose1, boolean dose2, boolean dose3) {
         this.issuedDateT = issuedDateT;
         this.validDateT = validDateT;
         this.firstNameT = firstNameT;
@@ -17,6 +17,9 @@ public class VaccinationToken {
         this.indigenousT = indigenousT;
         this.tokenImageUrl = tokenImageUrl;
         this.isUsed = isUsed;
+        this.dose1 = dose1;
+        this.dose2 = dose2;
+        this.dose3 = dose3;
     }
 
     public String getIssuedDateT() {
@@ -65,5 +68,17 @@ public class VaccinationToken {
 
     public boolean isUsed() {
         return isUsed;
+    }
+
+    public boolean isDose1() {
+        return dose1;
+    }
+
+    public boolean isDose2() {
+        return dose2;
+    }
+
+    public boolean isDose3() {
+        return dose3;
     }
 }

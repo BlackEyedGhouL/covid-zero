@@ -20,7 +20,7 @@ import java.util.Calendar;
 
 public class GetVaccined_p2 extends AppCompatActivity {
 
-    RadioGroup gender_radioGroup, indigenous_radiogroup;
+    RadioGroup gender_radioGroup, indigenous_radioGroup;
     DatePicker datePicker;
     TextInputLayout phoneNumber;
     ImageView back;
@@ -33,7 +33,7 @@ public class GetVaccined_p2 extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GetVaccined_p2.this, R.color.dark_black));
 
         gender_radioGroup = findViewById(R.id.get_vaccined_reg_p2_gender_radio_group);
-        indigenous_radiogroup = findViewById(R.id.get_vaccined_reg_p2_Indigenous_radio_group);
+        indigenous_radioGroup = findViewById(R.id.get_vaccined_reg_p2_Indigenous_radio_group);
         datePicker = findViewById(R.id.get_vaccined_p2_age_picker);
         phoneNumber = findViewById(R.id.get_vaccined_reg_p2_PN_txtLayout);
         back = findViewById(R.id.get_vaccined_p2_back);
@@ -59,7 +59,7 @@ public class GetVaccined_p2 extends AppCompatActivity {
 
                 @SuppressLint("DefaultLocale") String strDate = String.format("%02d-%02d-%d", datePicker.getMonth() + 1, datePicker.getDayOfMonth(), datePicker.getYear());;
 
-                RadioButton indigenousRadioButton = findViewById(indigenous_radiogroup.getCheckedRadioButtonId());
+                RadioButton indigenousRadioButton = findViewById(indigenous_radioGroup.getCheckedRadioButtonId());
                 String indigenous = indigenousRadioButton.getText().toString();
 
                 Intent intent = new Intent(GetVaccined_p2.this, GetVaccined_Verify.class);
@@ -71,6 +71,7 @@ public class GetVaccined_p2 extends AppCompatActivity {
                 intent.putExtra("GENDER", gender);
                 intent.putExtra("DOB", strDate);
                 intent.putExtra("INDIGENOUS", indigenous);
+                intent.putExtra("DOSE", "- DOSE 01 -");
                 startActivity(intent);
             }
 
@@ -97,7 +98,7 @@ public class GetVaccined_p2 extends AppCompatActivity {
             }
 
             private boolean validateIndigenous() {
-                if (indigenous_radiogroup.getCheckedRadioButtonId() == -1) {
+                if (indigenous_radioGroup.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(GetVaccined_p2.this, "Please select you're indigenous or not", Toast.LENGTH_SHORT).show();
                     return false;
                 } else {
