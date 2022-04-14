@@ -42,6 +42,24 @@
 
     </item>
 
+    <item android:title="Management">
+
+        <menu>
+
+            <group
+                android:id="@+id/nav_group_token_scanner"
+                android:checkableBehavior="none">
+
+                <item
+                    android:id="@+id/nav_token_scanner"
+                    android:icon="@drawable/ic_baseline_qr_code_scanner_24"
+                    android:title="Token Scanner" />
+            </group>
+
+        </menu>
+
+    </item>
+
     <group
         android:id="@+id/nav_group_logout"
         android:checkableBehavior="none">

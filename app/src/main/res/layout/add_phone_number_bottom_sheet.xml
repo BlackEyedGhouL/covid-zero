@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.captain_miao.optroundcardview.OptRoundCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:id="@+id/check_in_add_phone_number_bottom_sheet"
+    app:cardElevation="16dp"
+    app:optRoundCardRightBottomCorner="false"
+    app:optRoundCardLeftBottomCorner="false"
+    app:optRoundCardCornerRadius="20dp"
+    app:optRoundCardBackgroundColor="@color/lightest_black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/reg_txtInputLayout"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:paddingTop="8dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/check_in_add_phone_number_txt_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Phone Number"
+            android:textColorHint="@color/gray"
+            app:boxStrokeColor="@color/reg_txt_input_layout"
+            app:boxStrokeErrorColor="@color/red_pie"
+            app:counterEnabled="true"
+            app:counterMaxLength="9"
+            app:counterTextColor="@color/gray"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/dark_black"
+            app:errorIconTint="@color/red_pie"
+            app:errorTextColor="@color/red_pie"
+            app:prefixText="+94 "
+            app:prefixTextColor="@color/white"
+            app:startIconDrawable="@drawable/ic_baseline_call_24"
+            app:startIconTint="@color/dark_black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/check_in_add_phone_number_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/product_sans_regular"
+                android:inputType="number"
+                android:maxLength="9"
+                android:singleLine="true"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/check_in_add_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/try_again_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/product_sans_bold"
+            android:foreground="@drawable/ripple_round"
+            android:gravity="center"
+            android:text="Add Phone Number"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</com.github.captain_miao.optroundcardview.OptRoundCardView>

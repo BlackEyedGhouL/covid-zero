@@ -11,7 +11,7 @@
     android:id="@+id/drawerLayout">
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="330dp"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+id/nav_view"
         android:theme="@style/navigationTheme"
@@ -616,6 +616,73 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView9"
+                        android:layout_width="390dp"
+                        android:layout_height="150dp"
+                        android:layout_marginTop="20dp"
+                        android:padding="20dp"
+                        app:cardBackgroundColor="#424242"
+                        app:cardCornerRadius="20sp"
+                        app:cardElevation="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView8">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingTop="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/product_sans_bold"
+                                    android:text="COVID-19 Safe check-in"
+                                    android:textColor="@color/white"
+                                    android:textSize="23sp" />
+
+                                <Button
+                                    android:id="@+id/btnCheckIn"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="7dp"
+                                    android:background="@drawable/btn_light_black_main"
+                                    android:fontFamily="@font/product_sans_bold"
+                                    android:paddingLeft="20dp"
+                                    android:paddingRight="20dp"
+                                    android:text="Check In"
+                                    android:textAllCaps="false"
+                                    android:textColor="@color/red_pie"
+                                    android:textSize="18sp"
+                                    tools:ignore="TouchTargetSizeCheck"
+                                    android:foreground="@drawable/ripple_round"/>
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/check_in"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/cardViewLast"
                         android:layout_width="390dp"
                         android:layout_height="150dp"
@@ -629,7 +696,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cardView8">
+                        app:layout_constraintTop_toBottomOf="@+id/cardView9">
 
                         <LinearLayout
                             android:layout_width="match_parent"

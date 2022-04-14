@@ -123,7 +123,7 @@ public class SignUpPassword extends AppCompatActivity {
     }
 
     private void addUserToFirebase(String name, String email, String uId, String profilePicture, FirebaseUser fUser) {
-        User user = new User(name, email, uId, profilePicture);
+        User user = new User(name, email, uId, profilePicture, "");
         db = FirebaseDatabase.getInstance();
         ref = db.getReference("users");
         ref.child(uId).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

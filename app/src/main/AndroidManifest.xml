@@ -21,6 +21,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyHealthPlusPlus">
         <activity
+            android:name=".CheckIn.CheckInHome"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VaccineTokenScan"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".GetVaccined_D2_D3"
             android:exported="true"
             android:noHistory="true"

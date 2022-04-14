@@ -5,15 +5,25 @@ public class User {
     String email;
     String uid;
     String profilePicture;
+    String phoneNumber;
 
-    public User(String name, String email, String uid, String profilePicture) {
+    public User(String name, String email, String uid, String profilePicture, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.uid = uid;
         this.profilePicture = profilePicture;
+        this.phoneNumber = phoneNumber;
     }
 
     public User() {
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {

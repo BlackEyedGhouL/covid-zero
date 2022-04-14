@@ -216,7 +216,7 @@ public class SignIn extends AppCompatActivity {
                     FirebaseDatabase db;
                     DatabaseReference reference;
 
-                    User fUser = new User(user.getDisplayName(), user.getEmail(), user.getUid(), user.getPhotoUrl().toString());
+                    User fUser = new User(user.getDisplayName(), user.getEmail(), user.getUid(), user.getPhotoUrl().toString(), "");
                     db = FirebaseDatabase.getInstance();
                     reference = db.getReference("users");
                     reference.child(user.getUid()).setValue(fUser).addOnCompleteListener(new OnCompleteListener<Void>() {

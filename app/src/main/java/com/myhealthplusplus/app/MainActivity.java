@@ -43,6 +43,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.myhealthplusplus.app.CheckIn.CheckInHome;
 import com.myhealthplusplus.app.LoginSignup.SignIn;
 
 import org.eazegraph.lib.charts.PieChart;
@@ -204,6 +205,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GetYourPcrTest.class);
+                startActivity(intent);
+            }
+        });
+
+        Button checkIn = findViewById(R.id.btnCheckIn);
+        checkIn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CheckInHome.class);
                 startActivity(intent);
             }
         });
@@ -454,6 +464,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
@@ -465,6 +476,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(i1);
                 break;
             case R.id.nav_share:
+                break;
+            case R.id.nav_token_scanner:
+                Intent i3 = new Intent(MainActivity.this, VaccineTokenScan.class);
+                startActivity(i3);
                 break;
             case R.id.nav_logout:
                 mAuth.signOut();
