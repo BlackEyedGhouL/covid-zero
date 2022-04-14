@@ -80,8 +80,10 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/font/gg.xml" value="0.284375" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_allow_permissions_location.xml" value="0.2" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_change_password.xml" value="0.2" />
-        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_check_in_home.xml" value="0.19907407407407407" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_check_in_add_people.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_check_in_home.xml" value="0.2" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_check_in_phone_number_verify.xml" value="0.25416666666666665" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_check_in_scanner.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_delete_account.xml" value="0.19722222222222222" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_detailed_view_covid.xml" value="0.21203703703703702" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/activity_forgot_password.xml" value="0.25416666666666665" />
@@ -138,6 +140,7 @@
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/vaccination_token_row.xml" value="0.264" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/vaccine_centers_details_alert_box.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/layout/vaccine_centers_row.xml" value="0.25364583333333335" />
+        <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/menu/check_in_menu.xml" value="0.1734375" />
         <entry key="..\:/Projects/Android_Studio/MyHealthPlusPlus/app/src/main/res/menu/main_menu.xml" value="0.2" />
       </map>
     </option>

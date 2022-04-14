@@ -49,6 +49,21 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
+        <ImageView
+            android:id="@+id/check_in_home_menu"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="-5dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/option_menu"
+            app:elevation="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/check_in_home_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/check_in_home_lottie"
             android:layout_width="wrap_content"

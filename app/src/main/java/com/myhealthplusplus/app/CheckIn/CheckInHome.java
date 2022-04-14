@@ -2,18 +2,26 @@ package com.myhealthplusplus.app.CheckIn;
 
 import static android.content.ContentValues.TAG;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +35,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.single.PermissionListener;
 import com.myhealthplusplus.app.MainActivity;
 import com.myhealthplusplus.app.R;
 
@@ -34,7 +48,7 @@ import java.util.HashMap;
 
 public class CheckInHome extends AppCompatActivity {
 
-    ImageView back;
+    ImageView back, menu;
     FirebaseUser user;
     String phoneNumber;
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -54,6 +68,13 @@ public class CheckInHome extends AppCompatActivity {
 
         checkIfPhoneNumberIsThere();
 
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(view);
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,10 +88,62 @@ public class CheckInHome extends AppCompatActivity {
                 if (isPhoneNumberEmpty) {
                     addPhoneNumber();
                 } else {
-
+                    checkMyPermission();
                 }
             }
         });
+    }
+
+    private void checkMyPermission() {
+
+        Dexter.withContext(this).withPermission(Manifest.permission.CAMERA).withListener(new PermissionListener() {
+            @Override
+            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                Intent intent = new Intent(CheckInHome.this, CheckInScanner.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                Uri uri = Uri.fromParts("package", CheckInHome.this.getPackageName(), "");
+                intent.setData(uri);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                permissionToken.continuePermissionRequest();
+            }
+        }).check();
+    }
+
+    @SuppressLint("RestrictedApi")
+    private void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                int itemId = menuItem.getItemId();
+
+                if (itemId == R.id.check_in_history) {
+                    Toast.makeText(CheckInHome.this, "H", Toast.LENGTH_SHORT).show();
+                    return true;
+                } else if (itemId == R.id.check_in_guests) {
+                    Toast.makeText(CheckInHome.this, "F", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.check_in_menu, popup.getMenu());
+        if(popup.getMenu() instanceof MenuBuilder){
+            MenuBuilder m = (MenuBuilder) popup.getMenu();
+            m.setOptionalIconsVisible(true);
+        }
+        popup.show();
     }
 
     private void checkIfPhoneNumberIsThere() {
@@ -205,5 +278,6 @@ public class CheckInHome extends AppCompatActivity {
         email = findViewById(R.id.check_in_home_email);
         addProof = findViewById(R.id.check_in_home_add_proof);
         checkInNow = findViewById(R.id.check_in_home_check_in_now);
+        menu = findViewById(R.id.check_in_home_menu);
     }
 }
