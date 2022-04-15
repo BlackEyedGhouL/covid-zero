@@ -57,5 +57,9 @@
         <item name="android:windowEnterAnimation">@anim/slide_up_animation</item>
         <item name="android:windowExitAnimation">@anim/slide_down_animation</item>
     </style>
+
+    <style name="CheckInAddPeopleSwitch">
+        <item name="android:colorControlActivated">@color/red_pie</item>
+    </style>
     
 </resources>
