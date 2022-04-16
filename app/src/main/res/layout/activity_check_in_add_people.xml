@@ -11,7 +11,8 @@
         android:id="@+id/check_in_add_people_check_in_now"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/try_again_bg"
         android:clickable="true"
         android:focusable="true"
@@ -72,10 +73,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieAnimationView"
+        android:id="@+id/check_in_add_people_lottieAnimationView"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/check_in_add_people_header"
@@ -96,7 +97,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lottieAnimationView" />
+        app:layout_constraintTop_toBottomOf="@+id/check_in_add_people_lottieAnimationView" />
 
     <TextView
         android:id="@+id/check_in_add_people_location"
@@ -160,7 +161,7 @@
         android:id="@+id/check_in_add_people_frequent_guests_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/check_in_add_people_check_in_people"
         tools:layout_editor_absoluteX="10dp">
@@ -168,7 +169,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/frequent_guests_bg"
+            android:background="@color/dark_black"
             android:orientation="horizontal"
             android:padding="8dp">
 
@@ -186,7 +187,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/check_in_add_people_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
