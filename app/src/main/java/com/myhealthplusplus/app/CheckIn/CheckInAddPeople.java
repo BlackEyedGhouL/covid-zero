@@ -1,6 +1,7 @@
 package com.myhealthplusplus.app.CheckIn;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -47,6 +48,7 @@ public class CheckInAddPeople extends AppCompatActivity {
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     RecyclerView recyclerViewGuests;
     LottieAnimationView lottieAnimationView;
+    String nameIntent, locationIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +81,10 @@ public class CheckInAddPeople extends AppCompatActivity {
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(CheckInAddPeople.this, CheckInFinish.class);
+                intent.putExtra("NAME", nameIntent);
+                intent.putExtra("LOCATION", locationIntent);
+                startActivity(intent);
             }
         });
 
@@ -176,7 +181,8 @@ public class CheckInAddPeople extends AppCompatActivity {
                         .child("name")
                         .getValue().toString();
 
-                location.setText(nameT);
+                locationIntent = nameT;
+                location.setText(locationIntent);
             }
 
             @Override
@@ -194,7 +200,8 @@ public class CheckInAddPeople extends AppCompatActivity {
                         .child("name")
                         .getValue().toString();
 
-                name.setText(getFirstWord(nameT)+", you're checking into");
+                nameIntent = getFirstWord(nameT);
+                name.setText(nameIntent + ", you're checking into");
             }
 
             private String getFirstWord(String text) {

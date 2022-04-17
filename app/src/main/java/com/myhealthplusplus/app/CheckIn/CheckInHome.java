@@ -128,10 +128,12 @@ public class CheckInHome extends AppCompatActivity {
                 int itemId = menuItem.getItemId();
 
                 if (itemId == R.id.check_in_history) {
-                    Toast.makeText(CheckInHome.this, "H", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CheckInHome.this, CheckInHistory.class);
+                    startActivity(intent);
                     return true;
                 } else if (itemId == R.id.check_in_guests) {
-                    Toast.makeText(CheckInHome.this, "F", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(CheckInHome.this, CheckInAddPeople.class);
+                    startActivity(intent);
                     return true;
                 }
                 return false;

@@ -171,21 +171,20 @@
             android:id="@+id/check_in_home_check_in_now"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/try_again_bg"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/product_sans_bold"
+            android:foreground="@drawable/ripple_round"
             android:gravity="center"
             android:text="Check In Now"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:focusable="true"
-            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            android:foreground="@drawable/ripple_round"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
