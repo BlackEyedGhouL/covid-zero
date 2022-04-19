@@ -27,7 +27,9 @@ import java.util.Random;
 public class CheckInCreateNewGuest extends AppCompatActivity {
 
     ImageView back;
-    int random, max, min;
+    int random;
+    int max = 99999999;
+    int min = 11111111;
     private final MainActivity activity = new MainActivity();
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     TextInputLayout firstName, lastName, email, phoneNumber;
@@ -54,18 +56,22 @@ public class CheckInCreateNewGuest extends AppCompatActivity {
 
                 if (!em.isEmpty() && !pn.isEmpty()) {
                     if (!validateFirstName() | !validateLastName() | !validateEmail() | !validatePN()) {
+                        activity.DismissDialog();
                         return;
                     }
                 } else if (!em.isEmpty()) {
                     if (!validateFirstName() | !validateLastName() | !validateEmail()) {
+                        activity.DismissDialog();
                         return;
                     }
                 } else if (!pn.isEmpty()) {
                     if (!validateFirstName() | !validateLastName() | !validatePN()) {
+                        activity.DismissDialog();
                         return;
                     }
                 } else {
                     if (!validateFirstName() | !validateLastName()) {
+                        activity.DismissDialog();
                         return;
                     }
                 }
@@ -101,7 +107,7 @@ public class CheckInCreateNewGuest extends AppCompatActivity {
         if (!phoneNumber.isEmpty()) {
             phoneNumber = "+94" + phoneNumber;
         }
-        Guest guest = new Guest(addedDate, email, firstName, lastName, phoneNumber);
+        Guest guest = new Guest(key, addedDate, email, firstName, lastName, phoneNumber);
         rootRef = FirebaseDatabase.getInstance().getReference().child("frequentGuests").child(user.getUid());
         rootRef.child(key).setValue(guest);
     }

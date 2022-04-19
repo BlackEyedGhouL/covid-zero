@@ -132,7 +132,7 @@ public class CheckInHome extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 } else if (itemId == R.id.check_in_guests) {
-                    Intent intent = new Intent(CheckInHome.this, CheckInAddPeople.class);
+                    Intent intent = new Intent(CheckInHome.this, CheckInFrequentGuests.class);
                     startActivity(intent);
                     return true;
                 }

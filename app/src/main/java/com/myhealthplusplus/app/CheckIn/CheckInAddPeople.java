@@ -140,6 +140,10 @@ public class CheckInAddPeople extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
 
+                    String id = ds
+                            .child("id")
+                            .getValue().toString();
+
                     String firstName = ds
                             .child("firstName")
                             .getValue().toString();
@@ -160,7 +164,7 @@ public class CheckInAddPeople extends AppCompatActivity {
                             .child("phoneNumber")
                             .getValue().toString();
 
-                    guestArrayList.add(new Guest(addedDate, email, firstName, lastName, phoneNumber));
+                    guestArrayList.add(new Guest(id, addedDate, email, firstName, lastName, phoneNumber));
                 }
 
                 guestsAdapter = new GuestsAdapter(guestArrayList, recyclerViewGuests, CheckInAddPeople.this);
