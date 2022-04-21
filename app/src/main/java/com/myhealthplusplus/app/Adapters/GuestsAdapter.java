@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.myhealthplusplus.app.Models.Guest;
 import com.myhealthplusplus.app.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GuestsAdapter extends RecyclerView.Adapter<GuestsAdapter.ViewHolder> {
@@ -20,7 +21,7 @@ public class GuestsAdapter extends RecyclerView.Adapter<GuestsAdapter.ViewHolder
     List<Guest> guestList;
     RecyclerView recyclerView;
     Context context;
-    final View.OnClickListener onClickListener = new MyOnClickListener();
+    public List<String> selectedValues;
 
     public GuestsAdapter(List<Guest> guestList, RecyclerView recyclerView, Context context) {
         this.guestList = guestList;
@@ -33,17 +34,29 @@ public class GuestsAdapter extends RecyclerView.Adapter<GuestsAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.guest_row, parent, false);
-        view.setOnClickListener(onClickListener);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Guest guest = guestList.get(position);
+        String id = guest.getId();
         String firstName = guest.getFirstName();
         String lastName = guest.getLastName();
 
         holder.name.setText(firstName+" "+lastName);
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.name.isChecked()){
+                    selectedValues.add(id);
+                }else{
+                    selectedValues.remove(id);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -57,6 +70,10 @@ public class GuestsAdapter extends RecyclerView.Adapter<GuestsAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    public List<String> listOfSelectedGuests(){
+        return selectedValues;
+    }
+
     class  ViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox name;
@@ -65,15 +82,7 @@ public class GuestsAdapter extends RecyclerView.Adapter<GuestsAdapter.ViewHolder
             super(itemView);
 
             name = itemView.findViewById(R.id.guest_row_name);
-        }
-    }
-
-    private class MyOnClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            int itemPosition = recyclerView.getChildLayoutPosition(view);
-
-
+            selectedValues = new ArrayList<>();
         }
     }
 }

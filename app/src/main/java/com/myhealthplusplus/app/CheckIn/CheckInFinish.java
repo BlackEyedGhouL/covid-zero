@@ -41,7 +41,6 @@ public class CheckInFinish extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CheckInFinish.this, CheckInHome.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

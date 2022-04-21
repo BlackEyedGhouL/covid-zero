@@ -91,7 +91,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/product_sans_regular"
-        android:text="Senith, you're checking into"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/gray"
         android:textSize="22sp"

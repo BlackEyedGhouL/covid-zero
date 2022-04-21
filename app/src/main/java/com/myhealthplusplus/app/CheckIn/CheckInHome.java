@@ -273,6 +273,12 @@ public class CheckInHome extends AppCompatActivity {
         bottomSheetDialog.show();
     }
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+        startActivity(new Intent(CheckInHome.this, MainActivity.class));
+    }
+
     private void init() {
         back = findViewById(R.id.check_in_home_back);
         name = findViewById(R.id.check_in_home_name);

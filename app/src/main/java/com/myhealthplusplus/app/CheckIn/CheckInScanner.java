@@ -7,9 +7,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.myhealthplusplus.app.R;
 
 import java.text.DateFormat;
@@ -23,6 +29,8 @@ public class CheckInScanner extends AppCompatActivity {
 
     ScannerLiveView scannerLiveView;
     ImageView back;
+    DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    boolean isValid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +62,51 @@ public class CheckInScanner extends AppCompatActivity {
 
             @Override
             public void onCodeScanned(String data) {
+                checkIfCodeIsValid(data.trim());
+//                if (isValid) {
+//                    scannerLiveView.stopScanner();
+//                    @SuppressLint("SimpleDateFormat")
+//                    DateFormat df = new SimpleDateFormat("d MMM yyyy 'at' h:mm a");
+//                    String time = df.format(Calendar.getInstance().getTime());
+//
+//                    Intent intent = new Intent(CheckInScanner.this, CheckInAddPeople.class);
+//                    intent.putExtra("CODE",data.trim());
+//                    intent.putExtra("TIME", time);
+//                    startActivity(intent);
+//                } else {
+//                    Toast.makeText(CheckInScanner.this, "Invalid QR code!", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                Log.d(TAG, "Is QR valid: " + isValid + " - " + data.trim());
+            }
+        });
+    }
 
-                scannerLiveView.stopScanner();
+    private void checkIfCodeIsValid(String code) {
+        DatabaseReference eventRef = rootRef
+                .child("checkInBusinesses").child(code);
+        eventRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //isValid = snapshot.getValue() != null;
+                if (snapshot.getValue() == null) {
+                    Toast.makeText(CheckInScanner.this, "Invalid QR code!", Toast.LENGTH_SHORT).show();
+                } else {
+                    scannerLiveView.stopScanner();
+                    @SuppressLint("SimpleDateFormat")
+                    DateFormat df = new SimpleDateFormat("d MMM yyyy 'at' h:mm a");
+                    String time = df.format(Calendar.getInstance().getTime());
 
-                @SuppressLint("SimpleDateFormat")
-                DateFormat df = new SimpleDateFormat("d MMM yyyy 'at' h:mm a");
-                String time = df.format(Calendar.getInstance().getTime());
+                    Intent intent = new Intent(CheckInScanner.this, CheckInAddPeople.class);
+                    intent.putExtra("CODE",code);
+                    intent.putExtra("TIME", time);
+                    startActivity(intent);
+                }
+            }
 
-                Intent intent = new Intent(CheckInScanner.this, CheckInAddPeople.class);
-                intent.putExtra("CODE", data);
-                intent.putExtra("TIME", time);
-                startActivity(intent);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
