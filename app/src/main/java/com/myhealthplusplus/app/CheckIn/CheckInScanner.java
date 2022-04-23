@@ -63,21 +63,6 @@ public class CheckInScanner extends AppCompatActivity {
             @Override
             public void onCodeScanned(String data) {
                 checkIfCodeIsValid(data.trim());
-//                if (isValid) {
-//                    scannerLiveView.stopScanner();
-//                    @SuppressLint("SimpleDateFormat")
-//                    DateFormat df = new SimpleDateFormat("d MMM yyyy 'at' h:mm a");
-//                    String time = df.format(Calendar.getInstance().getTime());
-//
-//                    Intent intent = new Intent(CheckInScanner.this, CheckInAddPeople.class);
-//                    intent.putExtra("CODE",data.trim());
-//                    intent.putExtra("TIME", time);
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(CheckInScanner.this, "Invalid QR code!", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                Log.d(TAG, "Is QR valid: " + isValid + " - " + data.trim());
             }
         });
     }

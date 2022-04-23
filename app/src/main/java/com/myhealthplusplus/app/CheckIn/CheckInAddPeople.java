@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.myhealthplusplus.app.Adapters.GuestsAdapter;
 import com.myhealthplusplus.app.MainActivity;
+import com.myhealthplusplus.app.Models.CheckInHistory;
 import com.myhealthplusplus.app.Models.Guest;
 import com.myhealthplusplus.app.Models.PlacesCheckInUser;
 import com.myhealthplusplus.app.R;
@@ -49,7 +50,7 @@ public class CheckInAddPeople extends AppCompatActivity {
     private final MainActivity activity = new MainActivity();
     FirebaseUser user;
     ArrayList<Guest> guestArrayList = new ArrayList<>();
-    List<String> selectedList;
+    List<String> selectedList = new ArrayList<>();
     GuestsAdapter guestsAdapter;
     DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
     RecyclerView recyclerViewGuests;
@@ -87,17 +88,15 @@ public class CheckInAddPeople extends AppCompatActivity {
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getData();
-
                 if (listSwitch.isChecked()) {
+                    getData();
                     PlacesCheckInUser placesCheckInUser = new PlacesCheckInUser(getIntent().getStringExtra("TIME"), selectedList);
-                    setCheckInDataInDatabase(placesCheckInUser);
+                    setCheckInDataInDatabase(placesCheckInUser, getIntent().getStringExtra("TIME"), selectedList, getIntent().getStringExtra("CODE"));
                     setCheckInBusinessDataInDatabase(placesCheckInUser);
                 } else {
-                    selectedList.clear();
-                    selectedList.add("");
+                    selectedList.add("null");
                     PlacesCheckInUser placesCheckInUser = new PlacesCheckInUser(getIntent().getStringExtra("TIME"), selectedList);
-                    setCheckInDataInDatabase(placesCheckInUser);
+                    setCheckInDataInDatabase(placesCheckInUser, getIntent().getStringExtra("TIME"), selectedList, getIntent().getStringExtra("CODE"));
                     setCheckInBusinessDataInDatabase(placesCheckInUser);
                 }
 
@@ -145,9 +144,14 @@ public class CheckInAddPeople extends AppCompatActivity {
         });
     }
 
-    private void setCheckInDataInDatabase(PlacesCheckInUser placesCheckInUser) {
+    private void setCheckInDataInDatabase(PlacesCheckInUser placesCheckInUser, String time, List<String> selectedList, String code) {
         placesRef = FirebaseDatabase.getInstance().getReference().child("checkInPlacesUsers").child(user.getUid()).child(getIntent().getStringExtra("CODE"));
         placesRef.child(getIntent().getStringExtra("TIME")).setValue(placesCheckInUser);
+
+        CheckInHistory checkInHistory = new CheckInHistory(time, code, selectedList);
+
+        placesRef = FirebaseDatabase.getInstance().getReference().child("checkInHistory").child(user.getUid());
+        placesRef.child(getIntent().getStringExtra("TIME")).setValue(checkInHistory);
     }
 
     private void setCheckInBusinessDataInDatabase(PlacesCheckInUser placesCheckInUser) {
@@ -158,9 +162,10 @@ public class CheckInAddPeople extends AppCompatActivity {
         placesRef.child(getIntent().getStringExtra("TIME")).setValue(placesCheckInUser);
     }
 
-    public void getData(){
+    public void getData() {
         selectedList = guestsAdapter.listOfSelectedGuests();
-        Log.d("Selected list: ", selectedList.toString()) ;}
+        Log.d("Selected list: ", selectedList.toString());
+    }
 
     private void filter(String newText) {
         List<Guest> filteredList = new ArrayList<>();

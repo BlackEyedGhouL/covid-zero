@@ -54,7 +54,7 @@ public class VaccinationTokenAdapter extends RecyclerView.Adapter<VaccinationTok
         String valid = vaccinationToken.getValidDateT();
         String issued = vaccinationToken.getIssuedDateT();
         String nic = vaccinationToken.getNicT();
-        boolean isUsed = vaccinationToken.isUsed();
+        boolean isUsed = vaccinationToken.isFullyVaccinated();
         DateTimeFormatter userFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG);
         LocalDate issuedDate = LocalDate.parse(issued, userFormatter);
 
@@ -99,7 +99,7 @@ public class VaccinationTokenAdapter extends RecyclerView.Adapter<VaccinationTok
         public void onClick(View view) {
             int itemPosition = recyclerView.getChildLayoutPosition(view);
 
-            boolean isUsed = vaccinationTokenList.get(itemPosition).isUsed();
+            boolean isUsed = vaccinationTokenList.get(itemPosition).isFullyVaccinated();
             String issued = vaccinationTokenList.get(itemPosition).getIssuedDateT();
             String imageUrl = vaccinationTokenList.get(itemPosition).getTokenImageUrl();
             String nic = vaccinationTokenList.get(itemPosition).getNicT();
